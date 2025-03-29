@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Arrays" %>
 
 <!DOCTYPE html>
 
@@ -6,6 +7,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <%@ include file="../../part/header.jsp"%>
+<% 
+    String[] list = (String[]) request.getAttribute("list");
+	double userMealSize = (Double) request.getAttribute("userMealSize"); // 서버에서 식사량 값을 가져옴
+	System.out.println("userMealSize2="+userMealSize );
+    System.out.println("list2: " + Arrays.toString(list));
+%>
+
 
 <div class="inner">
     <h2>내 태그 수정하기</h2>
