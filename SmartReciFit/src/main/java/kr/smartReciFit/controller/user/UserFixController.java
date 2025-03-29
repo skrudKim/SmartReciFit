@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Enumeration;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,12 +26,19 @@ public class UserFixController implements Controller {
 		HttpSession session = request.getSession();
 		String ctx=request.getContextPath();
 		
-		String num=request.getParameter("num");
-		if (num==null) {
-			num=(String) request.getAttribute("log");
+		Integer userNum=(Integer)session.getAttribute("log");
+		System.out.println("유저픽스컨트롤러의  UserNum"+userNum);
+		
+		if (userNum==null) {
+			System.out.println("오류발생");
+			return "redirect:"+ctx+"/recipes.do";
 		}
-		System.out.println("userNum="+num);
-		Integer userNum=Integer.parseInt(num);
+		
+//		String num=request.getParameter("num");
+//		if (num==null) {
+//			num=(String) request.getAttribute("log");
+//		}
+		
 		User vo=UserDAO.getInstance().numGetUser(userNum);
 //		System.out.println("테스트옹 vo: "+vo);
 		request.setAttribute("userFix", vo);
@@ -109,30 +115,26 @@ public class UserFixController implements Controller {
 				out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
 				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
 				out.println("<script>");
-				out.println("window.onload = function() {");
 				out.println("  Swal.fire({");
-				out.println("title: '회원 정보 수정 성공!',");
-				//out.println("text: '정보수정을 완료했습니다',");
 				out.println("icon: 'success',");
-				out.println("confirmButtonText: '확인'}).then(function() {");
+				out.println("title: 'Okay!',");
+				out.println("text: '회원 정보 수정을 완료했습니다',");
+				out.println("confirmButtonColor: '#3CB371',}).then(function() {");
 				out.println("location.href='" + ctx + "/userContent.do';");
 				out.println("  });");
-				out.println("};");
 				out.println("</script>");
 				System.out.println("회원 정보 수정 성공");
 			}else {
 				out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
 				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
 				out.println("<script>");
-				out.println("window.onload = function() {");
 				out.println("  Swal.fire({");
-				out.println("title: '회원 정보 수정 실패!',");
-				out.println("text: '오류가 발생했습니다',");
-				out.println("icon: 'error,");
-				out.println("confirmButtonText: '확인'}).then(function() {");
+				out.println("title: 'Error!',");
+				out.println("text: '회원 정보 수정을 실패했습니다',");
+				out.println("icon: 'error',");
+				out.println("confirmButtonColor: '#777777'}).then(function() {");
 				out.println("    history.go(-1);");
 				out.println("  });");
-				out.println("};");
 				out.println("</script>");
 				System.out.println("회원 정보 수정 실패");
 			}
@@ -142,20 +144,19 @@ public class UserFixController implements Controller {
 			out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
 			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
 			out.println("<script>");
-			out.println("window.onload = function() {");
 			out.println("  Swal.fire({");
 			out.println("title: '회원 정보 수정 실패!',");
 			out.println("text: '오류가 발생했습니다',");
-			out.println("icon: 'error,");
-			out.println("confirmButtonText: '확인'}).then(function() {");
+			out.println("icon: 'error',");
+			out.println("confirmButtonColor: '#777777'}).then(function() {");
 			out.println("    history.go(-1);");
 			out.println("  });");
-			out.println("};");
 			out.println("</script>");
 			System.out.println("회원 가입 실패");
 //			return "userJoin.do";
+		}finally {
+			out.close();
 		}
-		out.close();
 		return null;
 	}
 

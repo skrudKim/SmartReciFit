@@ -76,49 +76,6 @@
 <button name="btn-fixUser" id="btn-fixUser"
 	onclick="location.href='${ctx}/userFix.do?num=${userContent.userNum}'">회원정보수정</button>
 
-<c:choose>
-	<c:when test="${empty userInfoContent}">
-		<table>
-			<tr>
-				<td><p>아직 인포를 저장하지 않았습니다.</p></td>
-			</tr>
-			<tr>
-				<td><button name="btn-makeInfo" id="btn-makeInfo"
-						onclick="location.href='${ctx}/userInfoFix.do">인포만들기</button></td>
-			</tr>
-		</table>
-	</c:when>
-
-	<c:otherwise>
-		<table>
-			<tr>
-				<td>나의 식사량</td>
-				<td>${userInfoMealSize}</td>
-			</tr>
-			<tr>
-				<td>나의 선호 TAG</td>
-				<td><c:forEach var="info" items="${totalInfo}">${info}</c:forEach>
-				</td>
-			</tr>
-			<!-- 이거 이렇게 냅다 연결시키면 냅다 입력이 되니까 이거 막아주는거 하나 장치 마련하기  -->
-			<tr>
-				<td colspan="2">
-					<form id="userInfoFixForm" action="${ctx}/userInfoFix.do"
-						method="post">
-						<input type="hidden" name="num" value="${userContent.userNum}">
-						<input type="hidden" name="userMealSize"
-							value="${userInfoMealSize}">
-						<c:forEach var="item" items="${totalInfo}">
-							<input type="hidden" name="list" value="${item}">
-						</c:forEach>
-						<button type="submit" name="btn-makeInfo" id="btn-makeInfo">인포수정하기</button>
-					</form>
-
-				</td>
-			</tr>
-		</table>
-	</c:otherwise>
-</c:choose>
 
 <%-- <script src="${ctx}/js/user/userContent.js"></script> --%>
 <!-- ============= 소셜 계정 연동 ================= -->
@@ -193,11 +150,6 @@ session.removeAttribute("message"); // 메시지 삭제 (새로고침 시 alert 
 %>
 <p style="font-size: 12px; color: #555; margin-top: 10px;">⚠️ 회원가입한
 	이메일을 사용하는 계정을 연동해주세요. 연동시 기존 로그인으로 접속됩니다.</p>
-
-
-<button name="btn-userFix" id="btn-userFix"
-	onclick="location.href='${ctx}/userFix.do'">회원정보수정</button>
-
 
 <c:choose>
 	<c:when test="${empty userInfoContent}">

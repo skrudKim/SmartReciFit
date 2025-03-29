@@ -105,7 +105,19 @@ public class UserInfoController implements Controller {
         
         if (result==0) {
 			System.out.println("UserInfoInsert 오류");
-			out.println("<script> alert('유저 인포 입력 오류');");
+			out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
+			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
+			out.println("<script>");
+			out.println("window.onload = function() {");
+			out.println("  Swal.fire({");
+			out.println("icon: 'error',");
+			out.println("title: 'Error!',");
+			out.println("text: 'TAG 입력에 실패했습니다.',");
+			out.println("confirmButtonColor: '#777777}).then(function() {");
+			out.println("    history.go(-1);");
+			out.println("  });");
+			out.println("};");
+			out.println("</script>");
 			out.println("history.go(-1); </script>"); 
         	//return "userInfo";
 		}else {
@@ -113,11 +125,34 @@ public class UserInfoController implements Controller {
 			//스윗머시기 띄워야지
 //			out.println("<script> Swal.fire({title: '회원가입 완료!',text: '저희 사이트에 가입해주셔서 감사합니다.',icon: 'success', confirmButtonText: '확인'});");
 			if (log==null) {
-				out.println("<script>alert('회원 가입 성공.');");
-				out.println("location.href='" + ctx + "/index.jsp';</script>");
+				out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
+				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
+				out.println("<script>");
+				out.println("window.onload = function() {");
+				out.println("  Swal.fire({");
+				out.println("icon: 'success',");
+				out.println("title: 'Okay!',");
+				out.println("text: '회원 가입에 성공했습니다.',");
+				out.println("confirmButtonColor: '#3CB371',}).then(function() {");
+				out.println("location.href='" + ctx + "/index.jsp';");
+				out.println("  });");
+				out.println("};");
+				out.println("</script>");
 			}else {
-				out.println("<script>alert('정보 수정 완료.');");
-				out.println("location.href='" + ctx + "/userContent.do';</script>");
+				out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
+				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
+				out.println("<script>");
+				out.println("window.onload = function() {");
+				out.println("  Swal.fire({");
+				out.println("icon: 'success,");
+				out.println("title: 'Okay!',");
+				out.println("text: 'TAG 수정에 성공했습니다.',");
+				out.println("confirmButtonColor: '#3CB371',}).then(function() {");
+				out.println("location.href='" + ctx + "/userContent.do';");
+//				out.println("    history.go(-1);");
+				out.println("  });");
+				out.println("};");
+				out.println("</script>");
 			}
 //			return "redirect:" + ctx + "/index.jsp";
 		}

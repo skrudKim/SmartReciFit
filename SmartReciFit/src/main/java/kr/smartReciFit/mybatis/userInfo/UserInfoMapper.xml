@@ -28,6 +28,17 @@
 	<delete id="delUserInfobyUserNum" parameterType="integer">
 	delete from user_info where user_num=#{userNum};
 	</delete>
+	
+		<!-- num으로 유저인포 업데이트하기 -->
+	<update id="updateInfoByNum" parameterType="Map">
+		update user_info set
+		user_meal_size=#{mealSizeInt},
+		user_ingredient=#{ingredient},
+		user_cookingStyle=#{cookingStyle},
+		user_cookingMethod=#{cookingMethod},
+		user_eatTime=#{eatTime}
+		where user_num=#{userNum}
+	</update>
     
 	
 </mapper>
