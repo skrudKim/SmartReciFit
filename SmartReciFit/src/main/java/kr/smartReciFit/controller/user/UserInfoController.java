@@ -91,7 +91,6 @@ public class UserInfoController implements Controller {
         System.out.println("String으로 만든 cookingStyle: "+cookingStyle);
         System.out.println("String으로 만든 cookingMethod: "+cookingMethod);
         System.out.println("String으로 만든 eatTime: "+eatTime);
-        
 
 		//log가 null인지 확인하고
 		//log가 null이 아니면 userNum 에 넣어서 추가 아니면
@@ -111,7 +110,7 @@ public class UserInfoController implements Controller {
 			out.println("window.onload = function() {");
 			out.println("  Swal.fire({");
 			out.println("icon: 'error',");
-			out.println("title: 'Error!',");
+			out.println("title: '오류 발생!',");
 			out.println("text: 'TAG 입력에 실패했습니다.',");
 			out.println("confirmButtonColor: '#777777}).then(function() {");
 			out.println("    history.go(-1);");
@@ -131,8 +130,8 @@ public class UserInfoController implements Controller {
 				out.println("window.onload = function() {");
 				out.println("  Swal.fire({");
 				out.println("icon: 'success',");
-				out.println("title: 'Okay!',");
-				out.println("text: '회원 가입에 성공했습니다.',");
+				out.println("title: '회원 가입 성공!',");
+				out.println("text: 'SmartReciFit에 오신 것을 환영합니다.',");
 				out.println("confirmButtonColor: '#3CB371',}).then(function() {");
 				out.println("location.href='" + ctx + "/index.jsp';");
 				out.println("  });");
@@ -144,9 +143,9 @@ public class UserInfoController implements Controller {
 				out.println("<script>");
 				out.println("window.onload = function() {");
 				out.println("  Swal.fire({");
-				out.println("icon: 'success,");
-				out.println("title: 'Okay!',");
-				out.println("text: 'TAG 수정에 성공했습니다.',");
+				out.println("icon: 'success',");
+				out.println("title: 'TAG 입력 성공!',");
+				out.println("text: '마이페이지에서 확인해주세요.',");
 				out.println("confirmButtonColor: '#3CB371',}).then(function() {");
 				out.println("location.href='" + ctx + "/userContent.do';");
 //				out.println("    history.go(-1);");

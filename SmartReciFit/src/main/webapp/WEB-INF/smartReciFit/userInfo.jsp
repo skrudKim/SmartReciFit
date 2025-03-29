@@ -6,7 +6,12 @@
 <!-- 예쁜 알람창용 스크립트 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<%
+    boolean isLoggedIn = (session.getAttribute("log") != null);
+%>
+<script>
+    let isLoggedIn = <%= isLoggedIn %>; // JavaScript 변수에 로그인 상태 전달
+</script>
 <%@ include file="../../part/header.jsp"%>
 
       <div class="inner">
@@ -86,4 +91,32 @@
     </div>
     
 <script src="${ctx}/js/user/userInfo.js"> </script>
+<script>
+$(document).ready(function() {
+	if (!isLoggedIn) {
+		Swal.fire({
+			icon: "info",
+			title: "선호TAG를 입력하시겠습니까?",
+			text: "마이페이지에 기록해둘 수 있어요",
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: "네, 입력할게요",
+			denyButtonText: "입력하지 않을래요"
+		}).then((result) => {
+			if (result.isConfirmed) {
+				console.log("입력하기 선택");
+			} else if (result.isDenied) {
+				console.log("입력안하기 선택");
+		        Swal.fire({
+					title: "회원가입 완료!",
+		            text: "저희 사이트에 가입해주셔서 감사합니다.",
+		            icon: "success",
+		            confirmButtonText: "확인"
+		        }).then(() => {
+					window.location.href = "index.jsp";
+		        });
+			}
+		});
+	}}
+</script>
 <%@ include file="../../part/footer.jsp"%>

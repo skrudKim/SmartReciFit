@@ -29,6 +29,7 @@ public class UserContentController implements Controller {
 		//System.out.println("UserContentController의 num"+getNum);
 		Integer getLog=(Integer)session.getAttribute("log");
 		System.out.println("UserContentController의 log"+getLog);
+		
 		if(getLog==null){
 			return "redirect:"+ctx+"/recipes.do";
 		}else{

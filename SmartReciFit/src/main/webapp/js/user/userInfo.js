@@ -18,30 +18,31 @@ submitButton.addEventListener('click', (event) => {
 });
 
 $(document).ready(function() {
-	
-	Swal.fire({
-		icon: "info",
-		  title: "추가 정보 입력",
-		  text: "내가 선호하는 음식을 기록해둘 수 있어요",
-		  showDenyButton: true,
-		  showCancelButton: false,
-		  confirmButtonText: "네, 입력할게요",
-		  denyButtonText: "입력하지 않을래요"
-		}).then((result) => {
-		  if (result.isConfirmed) {
-			  console.log("입력하기 선택");
-		  } else if (result.isDenied) {
-			  console.log("입력안하기 선택");
-		        Swal.fire({
-		            title: "회원가입 완료!",
-		            text: "저희 사이트에 가입해주셔서 감사합니다.",
-		            icon: "success",
-		            confirmButtonText: "확인"
-		        }).then(() => {
-		            window.location.href = "index.jsp";
-		        });
-		  }
-		});
+	// if (!isLoggedIn) {
+	// 	Swal.fire({
+	// 		icon: "info",
+	// 		title: "추가 정보 입력",
+	// 		text: "내가 선호하는 음식을 기록해둘 수 있어요",
+	// 		showDenyButton: true,
+	// 		showCancelButton: false,
+	// 		confirmButtonText: "네, 입력할게요",
+	// 		denyButtonText: "입력하지 않을래요"
+	// 	}).then((result) => {
+	// 		if (result.isConfirmed) {
+	// 			console.log("입력하기 선택");
+	// 		} else if (result.isDenied) {
+	// 			console.log("입력안하기 선택");
+	// 	        Swal.fire({
+	// 				title: "회원가입 완료!",
+	// 	            text: "저희 사이트에 가입해주셔서 감사합니다.",
+	// 	            icon: "success",
+	// 	            confirmButtonText: "확인"
+	// 	        }).then(() => {
+	// 				window.location.href = "index.jsp";
+	// 	        });
+	// 		}
+	// 	});
+	// }
 	
     const checkboxes = $('input[type="checkbox"]');
     const submitButton = $('#btn-infoSubmit');

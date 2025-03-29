@@ -121,35 +121,41 @@ public class UserInfoFixController implements Controller {
         
         if (result==0) {
 			System.out.println("UserInfoFix 오류");
+			
 			out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
 			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
 			out.println("<script>");
+			out.println("window.onload = function() {");
 			out.println("  Swal.fire({");
-			out.println("icon: 'error,");
-			out.println("title: 'Error!',");
-			out.println("text: 'TAG 수정에 실패했습니다.',");
-			out.println("confirmButtonColor: '#777777'}).then(function() {");
+			out.println("icon: 'error',");
+			out.println("title: 'TAG 수정 실패!',");
+			out.println("text: '입력값을 확인해주세요.',");
+			out.println("confirmButtonColor: '#777777',}).then(function() {");
+//			out.println("location.href='" + ctx + "/userContent.do';");
 			out.println("    history.go(-1);");
 			out.println("  });");
+			out.println("};");
 			out.println("</script>");
-			out.println("<script>history.go(-1); </script>"); 
-        	//return "userInfo";
+			
 		}else {
 			System.out.println("UserInfo 수정 완료");
 			//스윗머시기 띄워야지
+			
 			out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
 			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
 			out.println("<script>");
+			out.println("window.onload = function() {");
 			out.println("  Swal.fire({");
-			out.println("icon: 'success,");
-			out.println("title: 'Okay!',");
-			out.println("text: 'TAG 수정에 성공했습니다.',");
+			out.println("icon: 'success',");
+			out.println("title: 'TAG 수정 성공!',");
+			out.println("text: '마이페이지에서 확인해주세요.',");
 			out.println("confirmButtonColor: '#3CB371',}).then(function() {");
-			out.println("    history.go(-1);");
+			out.println("location.href='" + ctx + "/userContent.do';");
+//			out.println("    history.go(-1);");
 			out.println("  });");
+			out.println("};");
 			out.println("</script>");
-			out.println("<script>location.href='" + ctx + "/userContent.do';</script>");
-//			return "redirect:" + ctx + "/index.jsp";
+			
 		}
         return null;
 	}

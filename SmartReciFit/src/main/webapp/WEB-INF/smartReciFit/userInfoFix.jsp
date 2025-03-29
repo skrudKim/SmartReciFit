@@ -17,7 +17,7 @@
 
 <div class="inner">
     <h2>내 태그 수정하기</h2>
-    <form id="userInfoForm" method="post" action="userInfo.do">
+    <form id="userInfoForm" method="post" action="userInfoFix.do">
         <p>평소 식사량을 선택해 주세요. 해당 정보를 기반으로 레시피의 재료양이 수정됩니다.</p>
         <div class="checkMealSize" id="box-mealSixe">
             <input type="radio" name="mealSize" value="0.5"> 0.5인분
@@ -93,14 +93,30 @@
 
 <script>
     $(document).ready(function() {
-        let selectedValues = ${list}; //전달받은 배열
-
-        // 모든 체크박스에 대해 반복하며 선택된 값과 비교하여 체크
-        $('input:checkbox').each(function() {
-            if (selectedValues && selectedValues.includes(this.value)) {
+    	
+        // 식사량 라디오 버튼 초기 선택
+        //문자열을 숫자형으로 변환
+        const mealSize = parseFloat("<%= userMealSize %>"); 
+        $(`input[name="mealSize"]`).each(function() {
+            if (parseFloat(this.value) === mealSize) { // 숫자형으로 비교
                 this.checked = true;
             }
         });
+        
+    	console.log("mealSize: "+mealSize);
+    	
+        const listString = "<%= Arrays.toString(list) %>";
+        const list = listString.substring(1, listString.length - 1).split(', '); // JavaScript 배열로 변환
+        
+    	console.log("list: "+list);
+
+        // 모든 체크박스에 대해 반복하며 선택된 값과 비교하여 체크
+        $('input:checkbox').each(function() {
+            if (list && list.indexOf(this.value) !== -1) {
+                this.checked = true;
+            }
+        });
+        
     });
 </script>
 

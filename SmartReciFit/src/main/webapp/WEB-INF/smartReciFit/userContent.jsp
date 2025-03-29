@@ -177,8 +177,20 @@ session.removeAttribute("message"); // 메시지 삭제 (새로고침 시 alert 
 			</tr>
 			<!-- 이거 이렇게 냅다 연결시키면 냅다 입력이 되니까 이거 막아주는거 하나 장치 마련하기  -->
 			<tr>
-				<td colspan="2"><button name="btn-makeInfo" id="btn-makeInfo"
-						onclick="location.href='${ctx}/userInfo.do'">인포수정하기</button></td>
+				<td colspan="2">
+				
+					<form id="userInfoFixForm" action="${ctx}/userInfoFix.do"
+						method="post">
+						<input type="hidden" name="num" value="${userContent.userNum}">
+						<input type="hidden" name="userMealSize"
+							value="${userInfoMealSize}">
+						<c:forEach var="item" items="${totalInfo}">
+							<input type="hidden" name="list" value="${item}">
+						</c:forEach>
+						<button type="submit" name="btn-makeInfo" id="btn-makeInfo">인포수정하기</button>
+					</form>
+						
+				</td>
 			</tr>
 		</table>
 	</c:otherwise>
