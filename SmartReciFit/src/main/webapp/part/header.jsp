@@ -70,6 +70,7 @@
                     <a href="${ctx}/userJoin.do" class="btn-userJoin">회원가입</a>
                 </c:when>
                 <c:otherwise>
+                	<button class="btn-create-recipe" onclick="location.href='${ctx}/createRecipe.do'">레시피등록</button>
                     <a href="${ctx}/logout.do" class="logout-btn">로그아웃</a>
                     <c:choose>
                          <c:when test="${not empty sessionScope.user.userNickName}">
