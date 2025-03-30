@@ -12,8 +12,8 @@ function kakaoLogin() {
 
 					sendUserInfoToServer('kakao', nickname, email);
 
-					alert('로그인 성공')
-					location.href = ctx + "/main.do";
+					alert('로그인 성공ddd')
+					history.go(0);
 				},
 				fail: function(error) {
 					console.error(error);
@@ -41,7 +41,7 @@ function sendUserInfoToServer(platform, nickname, email) {
 				window.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
 			} else {
 				// 메인 페이지로 이동
-				window.location.href = `${ctx}/main.do`;
+				location.reload();
 			}
 		},
 		error: function(error) {
@@ -72,63 +72,7 @@ window.addEventListener('message', function(event) {
 }, false);
 
 /* ------------------------ 구글 script ------------------------ */
-/*function handleCredentialResponse(response) {
-	const jwtToken = response.credential;
-	const payload = JSON.parse(Base64.decode(jwtToken.split('.')[1]));
 
-	console.log('ID: ' + payload.sub);
-	console.log('Full Name: ' + payload.name);
-	console.log('Given Name: ' + payload.given_name);
-	console.log('Family Name: ' + payload.family_name);
-	console.log('Image URL: ' + payload.picture);
-	console.log('Email: ' + payload.email);
-
-	const nickname = payload.name;
-	const email = payload.email;
-
-	sendUserInfoToServer('google', nickname, email);
-}
-
-function sendUserInfoToServer(platform, nickname, email) {
-	console.log('sendUserInfoToServer');
-	$.ajax({
-		type: 'POST',
-		url: `${ctx}/saveSocialLoginInfo.do`,
-		data: {
-			platform: platform,
-			nickname: nickname,
-			email: email
-		},
-		success: function(data) {
-			if (data === '닉네임 중복') {
-				// 닉네임 입력 폼으로 이동
-				window.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
-			} else {
-				// 메인 페이지로 이동
-				window.location.href = `${ctx}/main.do`;
-			}
-		},
-		error: function(error) {
-			console.error('Error sending user info:', error);
-		}
-	});
-}
-
-window.onload = function() {
-	google.accounts.id
-		.initialize({
-			client_id: "231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com", // 여기에 클라이언트 ID를 입력하세요
-			callback: handleCredentialResponse,
-			login_uri: "http://localhost:8084/SmartReciFit/main.do" // 로그인 URI 설정
-		});
-	google.accounts.id.renderButton(document.querySelector(".g_id_signin"),
-		{
-			theme: "outline",
-			size: "large",
-			shape: "c",
-			logo_alignment: "left"
-		});
-}*/
 
 function handleCredentialResponse(response) {
     const jwtToken = response.credential;

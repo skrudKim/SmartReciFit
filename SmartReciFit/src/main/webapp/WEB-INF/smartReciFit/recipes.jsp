@@ -2,30 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../part/header.jsp"%>
 <style>
-/* ----- 전역 스타일 및 기본 설정 ----- */
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	/* 요소 크기 계산 방식 통일 */
-}
-
-html {
-	font-size: 16px;
-	/* 기본 폰트 크기 설정 (rem 단위 기준) */
-}
-
-body {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	/* 시스템 기본 폰트 우선 사용 */
-	line-height: 1.6;
-	/* 가독성을 위한 줄 간격 */
-	background-color: #f4f7f6;
-	/* 부드러운 배경색 */
-	color: #333;
-	/* 기본 글자색 */
-}
 
 /* ----- 필터 섹션 ----- */
 .recipe-filter {

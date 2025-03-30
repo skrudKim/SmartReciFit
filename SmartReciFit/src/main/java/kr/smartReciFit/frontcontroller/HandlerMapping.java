@@ -57,6 +57,7 @@ import kr.smartReciFit.controller.user.MailSend;
 import kr.smartReciFit.controller.user.MainController;
 import kr.smartReciFit.controller.user.NicknameInputFormController;
 import kr.smartReciFit.controller.user.SaveSocialLoginInfo;
+import kr.smartReciFit.controller.user.UnlinkButtonController;
 import kr.smartReciFit.controller.user.UserContentController;
 import kr.smartReciFit.controller.user.UserDelController;
 import kr.smartReciFit.controller.user.UserFindController;
@@ -105,6 +106,7 @@ public class HandlerMapping {
 		mappings.put("/saveSocialLoginInfo.do", new SaveSocialLoginInfo());
 		mappings.put("/linkSocial.do", new LinkSocialLoginController());
 		mappings.put("/nicknameInputForm.do", new NicknameInputFormController());
+		mappings.put("/unLinkButton.do", new UnlinkButtonController());
 		
 		
 

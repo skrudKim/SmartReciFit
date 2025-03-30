@@ -134,7 +134,7 @@ if (user != null) {
 	}
 %>
 
-<table border="1">
+<%-- <table border="1">
 	<tr>
 		<td>카카오 계정 연동</td>
 		<td>
@@ -143,8 +143,8 @@ if (user != null) {
 				<%}%>>
 				<%=linkedAccounts.getOrDefault("kakao", false) ? "연동됨" : "연동"%>
 			</button> <a href="javascript:kakaoLogin()"><img
-				src="<c:url value='/img/kakao_login_large_wide.png'/>"
-				style="width: 200px <%=linkedAccounts.getOrDefault("kakao", false) ? "pointer-events: none; opacity: 0.5;" : ""%>"></a>
+				src="<c:url value='/img/kakaoIcon.png'/>"
+				style="width: 40px <%=linkedAccounts.getOrDefault("kakao", false) ? "pointer-events: none; opacity: 0.5;" : ""%>"></a>
 		</td>
 	</tr>
 	<tr>
@@ -162,6 +162,10 @@ if (user != null) {
 	<tr>
 		<td>구글 계정 연동</td>
 		<td>
+			<button id="googleButton" onclick="googleLogin()"
+				<%if (linkedAccounts.getOrDefault("google", false)) {%> disabled<%}%>>
+				<%=linkedAccounts.getOrDefault("google", false) ? "연동됨" : "연동"%>
+			</button>
 			<div id="g_id_onload"
 				data-client_id="231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com"
 				data-login_uri="http://localhost:8084/SmartReciFit/main.do"
@@ -172,8 +176,63 @@ if (user != null) {
 				<%=linkedAccounts.getOrDefault("google", false) ? "style='pointer-events: none; opacity: 0.5;'" : ""%>></div>
 		</td>
 	</tr>
-</table>
+</table> --%>
 
+<div class="contentSocialBox">
+	<table border="1">
+		<tr>
+			<td colspan="2"
+				style="text-align: center; font-weight: bold; color: red;">아이콘을
+				눌러 연동하세요.</td>
+		</tr>
+		<tr>
+			<td>카카오 계정 연동</td>
+			<td><img id="kakaoIcon" onclick="kakaoLogin()"
+				src="<c:url value='/img/kakaoIcon.png'/>"
+				style="width: 40px; cursor: pointer;
+                <%=linkedAccounts.getOrDefault("kakao", false) ? "pointer-events: none; opacity: 0.5;" : ""%>">
+			</td>
+			<td>
+				<button id="kakaoUnlink"
+					style="pointer-events: <%=linkedAccounts.getOrDefault("kakao", false) ? "auto" : "none"%>; opacity: <%=linkedAccounts.getOrDefault("kakao", false) ? "1" : "0.5"%>;"
+					onclick="unlinkSocial('kakao')">연동 해제</button>
+			</td>
+		</tr>
+		<tr>
+			<td>네이버 계정 연동</td>
+			<td><img class="naver_social_connection"
+				src="${ctx}/img/btnG_아이콘원형.png"
+				style="width: 40px; cursor: pointer;
+    <%=linkedAccounts.getOrDefault("naver", false) ? "pointer-events: none; opacity: 0.5;" : ""%>">
+
+				<div id="naver_id_login" style="display: none;"></div></td>
+			<td>
+				<button id="naverUnlink"
+					style="pointer-events: <%=linkedAccounts.getOrDefault("naver", false) ? "auto" : "none"%>; opacity: <%=linkedAccounts.getOrDefault("naver", false) ? "1" : "0.5"%>;"
+					onclick="unlinkSocial('naver')">연동 해제</button>
+			</td>
+		</tr>
+		<tr>
+			<td>구글 계정 연동</td>
+			<td><div id="g_id_onload"
+					data-client_id="231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com"
+					data-login_uri="http://localhost:8084/SmartReciFit/main.do"
+					data-auto_prompt="false"></div>
+				<div class="g_id_signin" id="googleSignInButton"
+					data-type="standard" data-size="large" data-theme="outline"
+					data-text="sign_in_with" data-shape="rectangular"
+					data-logo_alignment="left"
+					<%=linkedAccounts.getOrDefault("google", false) ? "style='pointer-events: none; opacity: 0.5;'" : ""%>></div>
+
+			</td>
+			<td>
+				<button id="googleUnlink"
+					style="pointer-events: <%=linkedAccounts.getOrDefault("google", false) ? "auto" : "none"%>; opacity: <%=linkedAccounts.getOrDefault("google", false) ? "1" : "0.5"%>;"
+					onclick="unlinkSocial('google')">연동 해제</button>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <%
 // 세션에서 메시지 가져오기
@@ -240,6 +299,44 @@ session.removeAttribute("message"); // 메시지 삭제 (새로고침 시 alert 
 	    document.querySelector('#naver_id_login').querySelector('a').click();
 	});
 
+</script>
+
+<script>
+function unlinkSocial(platform) {
+	fetch('unLinkButton.do?platform=' + platform)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('네트워크 오류가 발생했습니다.');
+            }
+            return response.text();
+        })
+        .then(data => {
+            if (data === 'success') {
+                alert(platform + ' 계정 연동이 해제되었습니다.');
+                document.getElementById(platform + 'Unlink').style.pointerEvents = 'none';
+                document.getElementById(platform + 'Unlink').style.opacity = '0.5';
+
+                // 연동 버튼 활성화
+                if (platform === 'kakao') {
+                    document.getElementById('kakaoIcon').style.pointerEvents = 'auto'; // 카카오 연동 버튼 활성화
+                    document.getElementById('kakaoIcon').style.opacity = '1';
+                } else if (platform === 'naver') {
+                    document.querySelector('.naver_social_connection').style.pointerEvents = 'auto'; // 네이버 연동 버튼 활성화
+                    document.querySelector('.naver_social_connection').style.opacity = '1';
+                } else if (platform === 'google') {
+                    document.getElementById('googleSignInButton').style.pointerEvents = 'auto'; // 구글 연동 버튼 활성화
+                    document.getElementById('googleSignInButton').style.opacity = '1';
+                }
+
+            } else {
+                alert('연동 해제에 실패했습니다. 다시 시도해주세요.');
+            }
+        })
+        .catch(error => {
+            console.error('연동 해제 오류:', error);
+            alert('연동 해제 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+        });
+}
 </script>
 
 <%@ include file="../../part/footer.jsp"%>

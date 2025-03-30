@@ -6,12 +6,29 @@
     font-weight: normal;
     font-style: normal;
 }
-body {
-     font-family: 'ChosunGu', sans-serif; /* 전체 페이지에 폰트 적용 */
+
+/* * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+} */
+
+html {
+  font-size: 16px;
 }
 
+body {
+  font-family: 'ChosunGu', sans-serif; /* 통일된 폰트 스타일 */
+  /* 다른 스타일... */
+  line-height: 1.6;
+	/* 가독성을 위한 줄 간격 */
+	background-color: #f4f7f6;
+	/* 부드러운 배경색 */
+	color: #333;
+	/* 기본 글자색 */
+	  margin: 0;
+  padding: 0;
+}
 
 
 .container {
@@ -121,7 +138,7 @@ header {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 320px; /* 모달 너비 조정 */
+   width: 320px;  /* 모달 너비 조정 */
 }
 
 .modal-content button.btn-close {

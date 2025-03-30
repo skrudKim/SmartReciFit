@@ -28,7 +28,11 @@ public class UserContentController implements Controller {
 		String getNum=request.getParameter("num");
 		System.out.println("UserContentController의 num"+getNum);
 		if(getNum==null){
-			return "redirect:"+ctx+"/main.do";
+			System.out.println("여기 들어옴");
+			if(session.getAttribute("log") == null) {
+				return "recipes.do";
+			}
+			return "userContent";
 		}else{
 			num = Integer.parseInt(getNum);
 		}

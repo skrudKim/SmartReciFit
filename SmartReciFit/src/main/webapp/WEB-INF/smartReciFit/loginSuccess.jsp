@@ -67,7 +67,7 @@
    	                window.opener.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
    	            } else {
    	                // 메인 페이지로 이동
-   	                window.opener.location.href = `${ctx}/main.do`;
+   	                window.opener.location.reload();
    	            }
    	        	window.close();
    	        },
@@ -75,13 +75,7 @@
    	            console.error('Error sending user info:', error);
    	        }
    	    });
-        /* window.opener.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`; */
-
-        // 팝업 닫기
-        /* window.close(); */
     } else {
-        // 팝업이 아닌 경우 직접 이동
-       /*  window.location.href = "http://localhost:8084/SmartReciFit/main.do"; */
     }
   }
   
