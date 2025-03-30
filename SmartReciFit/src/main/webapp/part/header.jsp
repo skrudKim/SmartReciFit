@@ -32,8 +32,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/css/style.css">
 </head>
-
 <header>
+
     <div class="header-container">
 
         <%-- 1. 로고 (위치/크기는 CSS로 제어) --%>
@@ -67,7 +67,7 @@
             <c:choose>
                 <c:when test="${empty sessionScope.user.userNickName and empty sessionScope.log}">
                     <%-- 클래스 login-open 과 btn-userJoin 유지 (JS 또는 CSS 선택자 위해) --%>
-                    <button class="login-open">로그인</button>
+                    <button class="login-open" styke="font-family: 'ChosunGu'">로그인</button>
                     <a href="${ctx}/userJoin.do" class="btn-userJoin">회원가입</a>
                 </c:when>
                 <c:otherwise>
