@@ -5,9 +5,16 @@
 <style>
 /* --- 기존 스타일 (페이징, 검색 등) --- */
 .paging { text-align: center; margin-top: 20px; }
-.paging a, .paging span { display: inline-block; padding: 5px 10px; margin: 0 3px; border: 1px solid #ccc; text-decoration: none; color: #333; transition: background-color 0.3s ease, color 0.3s ease; }
-.paging a.current { background-color: #2E8B57; color: white; border-color: #2E8B57; }
-.paging a:hover { background-color: #3CB371; color: white; }
+.paging a, .paging span { 
+display: inline-block; 
+padding: 5px 10px; 
+margin: 0 3px; 
+border: 1px solid #ccc; 
+text-decoration: none; color: #333; 
+transition: background-color 0.3s ease, color 0.3s ease; 
+}
+.paging a.current { background-color: #3CB371; color: white; border: 2px solid #2E8B57; }
+.paging a:hover { background-color: #3CB371; color: white; border: 2px solid #2E8B57;}
 .paging span { color: #999; border-color: transparent; }
 .search-area { text-align: center; margin-top: 20px; }
 .search-area select, .search-area input { padding: 5px; border: 1px solid #ccc; margin-right: 5px; vertical-align: middle; }
@@ -38,13 +45,12 @@
 }
 
 .review-list thead th {
-    background-color: #c4fbc150; /* 연한 회색 배경 */
+    background-color: #FFCD50; 
     padding: 15px 10px; /* 헤더 패딩 증가 */
     border: none; /* 헤더의 모든 테두리 제거 */
     border-bottom: 1px solid #dee2e6; /* 헤더 아래 구분선만 다시 추가 */
     text-align: center;
     font-weight: 600;
-    color: #6c757d; /* 헤더 글자색 약간 연하게 */
     white-space: nowrap;
     font-size: 0.9rem;
 }
@@ -77,9 +83,6 @@
 .review-list tbody td:nth-child(6) { /* 좋아요 */
     color: #6c757d;
     font-size: 0.9em;
-}
-.review-list tbody td:nth-child(4) { /* 등록일 */
-     white-space: nowrap;
 }
 
 /* 이미지 아이콘 스타일 */

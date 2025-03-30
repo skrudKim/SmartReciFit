@@ -43,7 +43,7 @@
 .event-info {
     flex-basis: 220px;
     flex-shrink: 0; 
-    background-color: #f0f0f0; 
+    background-color: #FFF3C2; 
     padding: 20px;
     display: flex;
     flex-direction: column;
