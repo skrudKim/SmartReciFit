@@ -2,76 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../part/adminHeader.jsp"%>
 
-<style>
-.review-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 20px;
-	padding: 20px;
-}
-
-.review-item {
-	text-align: center;
-}
-
-.review-item img {
-	cursor: pointer;
-	width: 100px; /* 이미지 크기 조정 */
-	height: 100px;
-	object-fit: cover; /* 이미지 비율 유지 */
-}
-
-.paging {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.paging a {
-	display: inline-block;
-	padding: 5px 10px;
-	margin: 0 3px;
-	border: 1px solid #ccc;
-	text-decoration: none;
-	color: #333;
-	transition: background-color 0.3s ease, color 0.3s ease; /* 추가 */
-}
-
-.paging a.current {
-	background-color: #2E8B57;
-	color: white;
-	border-color: #007bff;
-}
-
-.paging a:hover {
-	background-color: #3CB371;
-	color: white;
-}
-
-.paging span {
-	display: inline-block;
-	padding: 5px 10px;
-	margin: 0 3px;
-	color: #999;
-}
-
-.search-area {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.search-area-input {
-	padding: 5px;
-	border: 1px solid #ccc;
-}
-
-.search-btn {
-	padding: 5px 10px;
-	background-color: #3CB371;
-	color: white;
-	border: none;
-	cursor: pointer;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="${ctx}/css/searchAdminResult.css">
 
 <div class="review-list">
 	<h2>검색 결과</h2>

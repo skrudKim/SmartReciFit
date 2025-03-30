@@ -1,91 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../part/header.jsp"%>
-<style>
-.event-main {
-    max-width: 900px; 
-    margin: 40px auto; 
-    padding: 0 15px;
-}
 
-.event-main h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 35px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #eee; 
-}
+<link rel="stylesheet" type="text/css" href="${ctx}/css/events.css">
 
-.event-list {
-  
-}
-
-
-.event-item {
-    display: flex; 
-    border: 1px solid #ddd; 
-    margin-bottom: 25px; 
-    background-color: #fff; 
-    border-radius: 8px; 
-    overflow: hidden; 
-    text-decoration: none;
-    color: inherit; 
-    transition: box-shadow 0.3s ease; 
-}
-
-.event-item:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
-}
-
-
-.event-info {
-    flex-basis: 220px;
-    flex-shrink: 0; 
-    background-color: #FFF3C2; 
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    border-right: 1px solid #eee; 
-}
-
-.event-title {
-    font-size: 1.15rem; 
-    font-weight: 600;
-    color: #333;
-    margin: 0 0 8px 0; 
-}
-
-.event-date {
-    font-size: 0.9rem; 
-    color: #555; 
-    margin: 0;
-}
-
-.event-image-placeholder {
-    flex-grow: 1; 
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    min-height: 160px; 
-    background-color: #f8f8f8;
-    color: #bbb; 
-    font-size: 1rem;
-}
-
-.event-image-placeholder img {
-    display: block; 
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-
-
-
-</style>
 
 <div class="event-main">
 

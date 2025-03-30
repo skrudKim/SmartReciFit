@@ -1,250 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../part/header.jsp"%>
-<style>
-/* 폼 스타일링 */
-.create-recipe-container {
-	max-width: 800px;
-	margin: 40px auto;
-	padding: 30px;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	background-color: #fff;
-}
-
-.create-recipe-container h2 {
-	text-align: center;
-	margin-bottom: 30px;
-	color: #333;
-	font-size: 1.8rem;
-}
-
-.form-group {
-	margin-bottom: 25px;
-}
-
-.form-group label {
-	display: block;
-	font-weight: 600;
-	margin-bottom: 8px;
-	color: #555;
-}
-
-/* 일반 입력 필드, 텍스트 영역, 셀렉트 박스 스타일 */
-.form-group input[type="text"],
-.form-group textarea,
-.form-group select {
-	width: 100%;
-	padding: 10px 12px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	font-size: 1rem;
-	box-sizing: border-box; 
-}
-
-.form-group textarea {
-	min-height: 100px;
-	resize: vertical;
-}
-
-.form-group input[type="file"] {
-	display: none; 
-}
-
-/* 파일 선택 버튼 스타일 */
-.form-group .file-label {
-	display: inline-block;
-	padding: 8px 15px;
-	background-color: #eee;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	cursor: pointer;
-	font-size: 0.9rem;
-	margin-top: 5px; 
-}
-
-.form-group .file-label:hover {
-	background-color: #ddd;
-}
-
-/* 파일명 표시 영역 스타일 */
-#thumbnail-filename, .step-filename {
-    margin-left: 10px;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-
-/* 카테고리 선택 그룹 */
-.category-group {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 15px;
-	align-items: center;
-	padding: 15px; 
-    border: 1px solid #eee; 
-    border-radius: 4px;
-}
-
-.category-group > label { 
-	margin-bottom: 0;
-	width: 80px;
-	flex-shrink: 0;
-}
-
-.category-group select {
-	flex-grow: 1;
-	min-width: 150px;
-}
-
-/* 체크박스 그룹 스타일 */
-.checkbox-group {
-    width: 100%; 
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 15px; /* 세로, 가로 간격 */
-    margin-top: 10px;
-}
-.checkbox-group > label { 
-    width: auto; 
-    margin-right: 5px;
-    font-weight: normal;
-    color: #777;
-}
-.checkbox-group label { 
-    margin-right: 10px;
-    font-weight: normal;
-    cursor: pointer;
-    display: inline-flex; /* 체크박스와 텍스트 정렬 */
-    align-items: center;
-}
-.checkbox-group input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-.category-group label[for^="cooking-method-"],
-.category-group label[for^="ingredient-"] {
-    font-weight: normal; 
-    color: #555;
-    cursor: pointer; 
-}
-
-
-.ingredient-item {
-	display: flex;
-	gap: 10px;
-	margin-bottom: 10px;
-	align-items: center;
-}
-
-.ingredient-item input {
-	flex-grow: 1;
-}
-
-
-
-.step-item {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    align-items: flex-start;
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #fcfcfc; 
-}
-
-.step-number {
-    font-weight: bold;
-    color: #2E8B57;
-    margin-top: 10px;
-    flex-shrink: 0;
-    width: 50px; 
-}
-
-.step-content {
-    flex-grow: 1;
-    display: flex;
-    gap: 10px; 
-    flex-direction: column;
-}
-
-/* 요리 순서 텍스트 영역 높이 조절 */
-.step-content textarea {
-    width: 100%;
-    min-height: 100px; 
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    resize: vertical;
-    box-sizing: border-box;
-}
-
-.step-image-upload {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.step-image-upload .file-label {
-    margin-top: 0;
-}
-.step-item .remove-btn {
-   align-self: center;
-   margin-left: auto;
-   flex-shrink: 0;
-}
-
-
-/* 추가/삭제 버튼 공통 스타일 */
-.add-btn, .remove-btn {
-	padding: 5px 10px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	font-size: 0.9rem;
-    margin-left: 5px; 
-}
-
-
-.add-btn {
-	background-color: #2E8B57;
-	color: white;
-}
-
-.remove-btn {
-	background-color: #dc3545;
-	color: white;
-}
-
-
-.add-btn:hover { background-color: #256d45; }
-.remove-btn:hover { background-color: #c82333; }
-
-
-
-.submit-btn {
-	display: block;
-	width: 100%;
-	padding: 12px;
-	background-color: #3CB371;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	font-size: 1.1rem;
-	font-weight: 600;
-	cursor: pointer;
-	transition: background-color 0.2s ease;
-	margin-top: 30px;
-}
-
-.submit-btn:hover {
-	background-color: #2E8B57;
-}
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="${ctx}/css/createRecipe.css">
 
 <div class="create-recipe-container">
 	<h2>나만의 레시피 등록</h2>
@@ -286,17 +43,35 @@
 				<option value="아시안식">아시안식</option>
 				<option value="기타">기타</option>
 			</select>
-			<c:forEach var="cookingMethod" items="${tagCookingMethod}">
-				<input type="checkbox" class="cooking-method" id="cooking-method-${cookingMethod}"
-					name="cooking-method" value="${cookingMethod}">
-				<label for="cooking-method-${cookingMethod}">${cookingMethod}</label>
-			</c:forEach>
+			  <div class="checkbox-sections-wrapper">
 
-			<c:forEach var="ingredient" items="${tagIngredient}">
-				<input type="checkbox" class="ingredient" id="ingredient-${ingredient}"
-					name="ingredient" value="${ingredient}">
-				<label for="ingredient-${ingredient}">${ingredient}</label>	
-			</c:forEach>
+        <%-- 요리 방법 체크박스 그룹 --%>
+        <div class="checkbox-section cooking-method-section">
+            <label class="checkbox-section-title">요리 방법:</label> <%-- 그룹 라벨 추가 (선택 사항) --%>
+            <div class="checkbox-items"> <%-- 체크박스 아이템들을 감싸는 div --%>
+                <c:forEach var="cookingMethod" items="${tagCookingMethod}">
+                    <div class="checkbox-item"> <%-- 개별 아이템 div --%>
+                        <input type="checkbox" class="cooking-method" id="cooking-method-${cookingMethod}" name="cooking-method" value="${cookingMethod}">
+                        <label for="cooking-method-${cookingMethod}">${cookingMethod}</label>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+
+        <%-- 주재료 체크박스 그룹 --%>
+        <div class="checkbox-section ingredient-section">
+            <label class="checkbox-section-title">주재료:</label> <%-- 그룹 라벨 추가 (선택 사항) --%>
+             <div class="checkbox-items"> <%-- 체크박스 아이템들을 감싸는 div --%>
+                <c:forEach var="ingredient" items="${tagIngredient}">
+                    <div class="checkbox-item"> <%-- 개별 아이템 div --%>
+                        <input type="checkbox" class="ingredient" id="ingredient-${ingredient}" name="ingredient" value="${ingredient}">
+                        <label for="ingredient-${ingredient}">${ingredient}</label>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+
+    </div> <%-- checkbox-sections-wrapper 끝 --%>
 
 		</div>
 

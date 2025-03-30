@@ -187,10 +187,6 @@
 		resultMap="ApiRecipeResultMap">
 		SELECT *
 		FROM recipe r
-		INNER JOIN api_recipe ar
-		ON
-		r.recipe_num=
-		ar.recipe_num
 		INNER JOIN tag t
 		ON t.tag_recipe_id =
 		r.recipe_num

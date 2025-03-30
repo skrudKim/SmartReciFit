@@ -1,0 +1,295 @@
+.create-recipe-container {
+	max-width: 800px;       /* 폼 최대 너비 */
+	margin: 40px auto;      /* 상하 여백 및 중앙 정렬 */
+	padding: 30px;          /* 내부 여백 */
+	border: 1px solid #ddd; /* 테두리 */
+	border-radius: 8px;     /* 모서리 둥글게 */
+	background-color: #fff; /* 배경색 */
+}
+
+/* 폼 제목 (H2) */
+.create-recipe-container h2 {
+	text-align: center;     /* 가운데 정렬 */
+	margin-bottom: 30px;    /* 아래쪽 여백 */
+	color: #333;            /* 글자색 */
+	font-size: 1.8rem;      /* 글자 크기 */
+}
+
+/* 각 입력 그룹 (div.form-group) */
+.form-group {
+	margin-bottom: 25px;    /* 그룹 간 아래쪽 여백 */
+}
+
+/* 그룹 내 라벨 (label) */
+.form-group label {
+	display: block;         /* 라벨을 별도 줄로 표시 */
+	font-weight: 600;       /* 글자 두께 */
+	margin-bottom: 8px;     /* 라벨 아래쪽 여백 */
+	color: #555;            /* 글자색 */
+}
+
+/* 일반 입력 필드 (input[type="text"]), 텍스트 영역 (textarea), 셀렉트 박스 (select) 공통 스타일 */
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+	width: 100%;            /* 너비 100% */
+	padding: 10px 12px;     /* 내부 여백 (상하, 좌우) */
+	border: 1px solid #ccc; /* 테두리 */
+	border-radius: 4px;     /* 모서리 둥글게 */
+	font-size: 1rem;        /* 글자 크기 */
+	box-sizing: border-box; /* 패딩/테두리 포함하여 너비 계산 */
+}
+
+/* 텍스트 영역 (textarea) 추가 스타일 */
+.form-group textarea {
+	min-height: 100px;      /* 최소 높이 */
+	resize: vertical;       /* 세로 크기 조절만 허용 */
+}
+
+/* 파일 입력 필드 (input[type="file"]) 숨기기 */
+.form-group input[type="file"] {
+	display: none;
+}
+
+/* 파일 선택 버튼 모양 라벨 (label.file-label) */
+.form-group .file-label {
+	display: inline-block;  /* 인라인 블록 요소로 배치 */
+	padding: 8px 15px;      /* 내부 여백 */
+	background-color: #FFCD50; /* 배경색 */
+	border: 1px solid #ccc; /* 테두리 */
+	border-radius: 4px;     /* 모서리 둥글게 */
+	cursor: pointer;        /* 마우스 커서 변경 */
+	font-size: 0.9rem;      /* 글자 크기 */
+	margin-top: 5px;        /* 위쪽 여백 (필요시) */
+}
+/* 파일 선택 버튼 호버 효과 */
+.form-group .file-label:hover {
+	background-color: #FFCD50;
+	outline: 2px solid #FFA300;
+}
+
+/* 파일명 표시 영역 (span#thumbnail-filename, span.step-filename) */
+#thumbnail-filename, .step-filename {
+    margin-left: 10px;      /* 왼쪽 여백 (버튼과의 간격) */
+    font-size: 0.9rem;      /* 글자 크기 */
+    color: #666;            /* 글자색 */
+    vertical-align: middle; /* 파일 선택 버튼과 수직 정렬 */
+}
+
+/* 카테고리 선택 그룹 */
+.category-group {
+	display: flex;          /* Flexbox 레이아웃 사용 */
+	flex-wrap: wrap;        /* 내용 많으면 줄바꿈 */
+	gap: 15px;              /* 자식 요소들 사이 간격 */
+	align-items: center;    /* 자식 요소들 수직 중앙 정렬 */
+	padding: 15px;          /* 내부 여백 */
+    border: 1px solid #eee; /* 테두리 */
+    border-radius: 4px;     /* 모서리 둥글게 */
+}
+
+/* 카테고리 그룹 내 첫번째 라벨 ('카테고리' 라벨) */
+.category-group > label:first-of-type {
+	margin-bottom: 0;       /* 아래쪽 여백 제거 */
+	width: 80px;            /* 고정 너비 */
+	flex-shrink: 0;         /* 너비 줄어들지 않게 함 */
+}
+
+/* 카테고리 그룹 내 셀렉트 박스 (select) */
+.category-group select {
+	flex-grow: 1;           /* 남는 공간 차지 */
+	min-width: 150px;       /* 최소 너비 */
+}
+
+/* 체크박스 섹션 전체 래퍼 (div.checkbox-sections-wrapper) */
+.checkbox-sections-wrapper {
+    width: 100%;            /* 너비 100% (줄바꿈 유도) */
+    margin-top: 20px;       /* 위쪽 select 박스와의 간격 */
+    padding-top: 15px;      /* 위쪽 구분선과의 내부 여백 */
+    border-top: 1px dashed #ccc; /* 구분선 */
+}
+
+/* 각 체크박스 섹션 (div.checkbox-section) */
+.checkbox-section {
+    margin-bottom: 15px;    /* 섹션 간 아래쪽 여백 */
+}
+.checkbox-section:last-child {
+    margin-bottom: 0;       /* 마지막 섹션은 아래쪽 여백 제거 */
+}
+
+/* 체크박스 섹션 제목 (label.checkbox-section-title) - 선택사항 */
+.checkbox-section-title {
+    display: block;         /* 제목을 별도 줄로 */
+    font-weight: 600;       /* 글자 두께 */
+    color: #555;            /* 글자색 */
+    margin-bottom: 10px;    /* 제목 아래쪽 여백 */
+}
+
+/* 체크박스 아이템들 컨테이너 (div.checkbox-items) */
+.checkbox-items {
+    display: flex;          /* Flexbox 레이아웃 */
+    flex-wrap: wrap;        /* 아이템 많으면 줄바꿈 */
+    gap: 10px 15px;         /* 아이템 간 간격 (세로, 가로) */
+}
+
+/* 개별 체크박스 + 라벨 아이템 (div.checkbox-item) */
+.checkbox-item {
+    display: inline-flex;   /* 내부 요소(체크박스, 라벨)를 인라인 Flex로 배치 */
+    align-items: center;    /* 내부 요소 수직 중앙 정렬 */
+}
+
+/* 체크박스 자체 (input[type="checkbox"]) */
+.checkbox-item input[type="checkbox"] {
+    margin-right: 5px;      /* 오른쪽 여백 (라벨과의 간격) */
+    cursor: pointer;        /* 마우스 커서 변경 */
+}
+
+/* 체크박스 라벨 (label) */
+.checkbox-item label {
+    font-weight: normal;    /* 기본 글자 두께 */
+    color: #555;            /* 글자색 */
+    cursor: pointer;        /* 마우스 커서 변경 */
+    margin-bottom: 0;       /* 아래쪽 여백 제거 (form-group label과 구분) */
+}
+
+/* 재료 입력 그룹*/
+
+/* 재료 항목 컨테이너 (div.ingredient-item) */
+.ingredient-item {
+	display: flex;          /* Flexbox 레이아웃 */
+	gap: 10px;              /* 자식 요소(input, button) 사이 간격 */
+	margin-bottom: 10px;    /* 항목 아래쪽 여백 */
+	align-items: center;    /* 자식 요소 수직 중앙 정렬 */
+}
+
+/* 재료 입력 필드 (input[type="text"]) */
+.ingredient-item input[type="text"] {
+	flex-grow: 1;           /* 남는 공간 차지 */
+    min-width: 0;           /* 내용물보다 작아질 수 있도록 허용 */
+}
+
+/* 재료 입력 필드 옆 삭제 버튼 (button.remove-btn) */
+/* (아래 '+' / '-' 버튼 공통 스타일에서 대부분 정의됨) */
+.ingredient-item .remove-btn {
+    flex-shrink: 0;         /* 공간 부족 시 버튼 크기 줄어들지 않게 함 */
+}
+
+/* 재료 목록 아래 추가 버튼 (+) */
+/* (아래 '+' / '-' 버튼 공통 스타일에서 대부분 정의됨) */
+#ingredient-list + .add-btn { /* '+' 버튼 선택자 */
+    margin-top: 5px;       /* 위쪽 재료 목록과의 간격 */
+    /* 필요시 margin-left 추가 가능 */
+}
+
+
+/* 요리 순서 그룹 */
+
+/* 각 요리 순서 항목 컨테이너 (div.step-item) */
+.step-item {
+    display: flex;          /* Flexbox 레이아웃 */
+    gap: 15px;              /* 자식 요소들 사이 간격 */
+    margin-bottom: 20px;    /* 항목 아래쪽 여백 */
+    align-items: flex-start;/* 자식 요소들 위쪽 정렬 */
+    border: 1px solid #eee; /* 테두리 */
+    padding: 15px;          /* 내부 여백 */
+    border-radius: 5px;     /* 모서리 둥글게 */
+    background-color: #fcfcfc; /* 약간의 배경색 */
+}
+
+/* 단계 번호 (span.step-number) */
+.step-number {
+    font-weight: bold;      /* 글자 두껍게 */
+    color: #2E8B57;         /* 글자색 */
+    margin-top: 10px;       /* 위쪽 여백 (textarea와 정렬 맞추기 위함) */
+    flex-shrink: 0;         /* 너비 줄어들지 않게 함 */
+    width: 50px;            /* 고정 너비 */
+    text-align: right;      /* 오른쪽 정렬 (선택 사항) */
+    padding-right: 5px;     /* 오른쪽 여백 (선택 사항) */
+}
+
+/* 단계 내용 컨테이너 (div.step-content) */
+.step-content {
+    flex-grow: 1;           /* 남는 공간 차지 */
+    display: flex;          /* 내부 요소(textarea, 이미지 업로드) Flex 배치 */
+    gap: 10px;              /* 내부 요소 사이 간격 */
+    flex-direction: column; /* 내부 요소 세로 배치 */
+}
+
+/* 단계 설명 텍스트 영역 (textarea) */
+/* (위의 공통 textarea 스타일 상속) */
+.step-content textarea {
+    /* 특별히 다른 스타일 필요하면 여기에 추가 */
+}
+
+/* 단계별 이미지 업로드 영역 (div.step-image-upload) */
+.step-image-upload {
+    display: flex;          /* Flexbox 레이아웃 */
+    align-items: center;    /* 내부 요소 수직 중앙 정렬 */
+    gap: 10px;              /* 내부 요소 사이 간격 */
+}
+
+/* 단계별 이미지 업로드 파일 선택 버튼 (label.file-label) */
+.step-image-upload .file-label {
+    margin-top: 0;          /* 위쪽 여백 제거 */
+}
+
+/* 단계 삭제 버튼 (button.remove-btn) */
+/* (아래 '+' / '-' 버튼 공통 스타일에서 대부분 정의됨) */
+.step-item .remove-btn {
+   align-self: center;     /* 버튼 자체를 수직 중앙 정렬 */
+   margin-left: auto;      /* 왼쪽에 남는 공간 모두 차지 (오른쪽 끝으로 이동) */
+   flex-shrink: 0;         /* 크기 줄어들지 않게 함 */
+}
+
+/* 요리 순서 목록 아래 추가 버튼 (+) */
+/* (아래 '+' / '-' 버튼 공통 스타일에서 대부분 정의됨) */
+#steps-list + .add-btn {   /* '+' 버튼 선택자 */
+     margin-top: 5px;       /* 위쪽 요리 순서 목록과의 간격 */
+}
+
+/* 추가/삭제 버튼 (+ / -) 공통 스타일  */
+.add-btn, .remove-btn {
+	padding: 5px 10px;      /* 내부 여백 */
+	border: none;           /* 테두리 없음 */
+	border-radius: 4px;     /* 모서리 둥글게 */
+	cursor: pointer;        /* 마우스 커서 변경 */
+	font-size: 0.9rem;      /* 글자 크기 */
+    /* margin-left: 5px; */ /* 개별적으로 마진을 주는 것이 더 좋음 */
+}
+
+/* 추가 버튼 (+) 스타일 */
+.add-btn {
+	background-color: #2E8B57; /* 배경색 */
+	color: white;           /* 글자색 */
+}
+.add-btn:hover {
+    background-color: #256d45; /* 호버 시 배경색 */
+}
+
+/* 삭제 버튼 (-) 스타일 */
+.remove-btn {
+	background-color: #dc3545; /* 배경색 */
+	color: white;           /* 글자색 */
+}
+.remove-btn:hover {
+    background-color: #c82333; /* 호버 시 배경색 */
+}
+
+/* 등록 버튼 스타일 */
+.submit-btn {
+	display: block;      
+	width: 100%;           
+	padding: 12px;         
+	background-color: #3CB371; /* 배경색 */
+	color: white;           /* 글자색 */
+	border: none;           /* 테두리 없음 */
+	border-radius: 5px;     /* 모서리 둥글게 */
+	font-size: 1.1rem;      /* 글자 크기 */
+	font-weight: 600;       /* 글자 두께 */
+	cursor: pointer;        /* 마우스 커서 변경 */
+	transition: background-color 0.2s ease; /* 부드러운 색상 전환 효과 */
+	margin-top: 30px;       /* 위쪽 여백 */
+}
+/* 등록 버튼 호버 효과 */
+.submit-btn:hover {
+	background-color: #2E8B57;
+}
