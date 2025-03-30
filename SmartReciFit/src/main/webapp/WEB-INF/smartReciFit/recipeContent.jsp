@@ -3,223 +3,377 @@
 <%@ include file="../../part/header.jsp"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
-/* ----- 기본 및 전체 레이아웃 ----- */
+/* General Body Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
-  /* 읽기 좋은 기본 폰트 */
-  line-height: 1.6;
-  /* 줄 간격 */
-  margin: 0;
-  padding: 20px;
-  background-color: #f8f8f8;
-  /* 약간의 배경색 */
-  color: #333;
-  /* 기본 글자색 */
+	font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+	/* Common Korean font */
+	margin: 0;
+	padding: 0;
+	/* Light background for the page */
+	line-height: 1.6;
 }
 
+/* Main Recipe Container */
 .recipe-content {
-  max-width: 800px;
-  /* 콘텐츠 최대 너비 설정 */
-  margin: 0 auto;
-  /* 페이지 중앙 정렬 */
-  background-color: #fff;
-  /* 콘텐츠 영역 배경색 */
-  padding: 30px;
-  border-radius: 8px;
-  /* 약간 둥근 모서리 */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  /* 부드러운 그림자 효과 */
+	max-width: 800px;
+	/* Limit width for better readability */
+	margin: 20px auto;
+	/* Center the container */
+	background-color: #ffffff;
+	/* White background for the content area */
+	padding: 0;
+	/* Reset padding, apply to inner elements */
+	/* Subtle shadow */
+	/* Slightly rounded corners */
+	overflow: hidden;
+	/* Ensure children don't overflow rounded corners */
 }
 
-/* ----- 제목 및 메인 이미지 ----- */
+/* Hidden Inputs - No visual style needed */
+.recipe-type, .meal-size {
+	display: none;
+}
+
+/* Recipe Title Header */
 .recipe-title {
-  text-align: center;
-  /* 제목 중앙 정렬 */
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: #d9534f;
-  /* 포인트 색상 (예: 토마토 색) */
+	border-radius: 10px;
+	background-color: #4CAF50;
+	/* Green background like the image */
+	color: white;
+	/* White text */
+	font-size: 1.8em;
+	/* Larger font size for title */
+	text-align: center;
+	/* Center the title */
+	padding: 15px 20px;
+	/* Padding around the title */
+	margin: 0 0 20px 0;
+	/* Remove default margin */
 }
 
-/* .recipe-content 바로 아래의 첫 이미지 (메인 레시피 이미지) */
+/* Main Recipe Image */
 .recipe-content>img {
-  display: block;
-  /* 이미지를 블록 요소로 만들어 margin auto 적용 */
-  max-width: 100%;
-  /* 컨테이너 너비에 맞춤 */
-  height: auto;
-  /* 가로세로 비율 유지 */
-  margin: 0 auto 30px auto;
-  /* 위쪽 마진 0, 좌우 auto(중앙), 아래쪽 마진 */
-  border-radius: 5px;
-  /* 이미지 모서리 살짝 둥글게 */
+	border-radius: 10px;
+	display: block;
+	/* Remove extra space below image */
+	width: 100%;
+	/* Make image responsive */
+	height: auto;
+	/* Maintain aspect ratio */
+	max-height: 500px;
+	/* Optional: limit image height */
+	object-fit: cover;
+	/* Cover the area nicely */
+	margin-bottom: 10px;
+	/* No margin around the image itself */
 }
 
-/* ----- 재료 및 양념 섹션 ----- */
-.ingredient-container,
-.seasoning-container {
-  margin-bottom: 25px;
-  padding: 15px;
-  border: 1px solid #eee;
-  /* 섹션 구분선 */
-  border-radius: 5px;
+.ingredient-seasoning-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
 }
 
-.ingredient-container::before,
-.seasoning-container::before {
-  /* 각 섹션 제목 역할 (옵션) */
-  display: block;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #555;
+.origin-meal-size {
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.ingredient-container::before {
-  content: "재료";
-}
-
-.seasoning-container::before {
-  content: "양념";
-}
-
-.ingredient,
-.seasoning {
-  margin-bottom: 8px;
-  /* 항목 간 간격 */
-  padding-left: 15px;
-  /* 약간의 들여쓰기 효과 */
-  position: relative;
-  /* 가상 요소 기준점 */
-}
-
-/* 각 항목 앞에 작은 점 추가 (옵션) */
-.ingredient::before,
-.seasoning::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #d9534f;
-  /* 포인트 색상 */
-}
-
-/* ----- 인분 조절 슬라이더 ----- */
+/* Serving Size Slider Area */
 .range-container {
-  display: flex;
-  /* 슬라이더와 출력값을 가로로 배치 */
-  align-items: center;
-  /* 세로 중앙 정렬 */
-  justify-content: center;
-  /* 가로 중앙 정렬 (선택 사항) */
-  margin-bottom: 30px;
-  padding: 15px;
-  background-color: #f0f0f0;
-  /* 배경 구분 */
-  border-radius: 5px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 20px;
+	/* Add vertical margin */
+	/* Separator line */
+	/* Separator line */
+	/* Needed for pseudo-elements */
 }
 
-.range-container label {
-  /* 만약 label 태그를 사용한다면 */
-  margin-right: 10px;
-}
-
+/* The Slider Input */
 #range {
-  flex-grow: 1;
-  /* 슬라이더가 남은 공간 차지 */
-  max-width: 300px;
-  /* 슬라이더 최대 너비 */
-  margin-right: 15px;
-  cursor: pointer;
+	flex-grow: 1;
+	/* Allow slider to take up space */
+	max-width: 300px;
+	/* Limit slider width */
+	height: 4px;
+	cursor: pointer;
+	accent-color: orange;
+	/* Color for the thumb/track like the image */
+	background: blue;
+	/* Default track color */
+	outline: none;
 }
 
-.output {
-  font-weight: bold;
-  min-width: 30px;
-  /* 최소 너비 확보 */
-  text-align: right;
-  background-color: #fff;
-  padding: 5px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+/* Slider Output Value (Hidden as per image structure, labels are used instead) */
+.output-container {
+	display: flex;
+	width: 100px;
+	justify-content: center;
+	align-items: center;
 }
 
-/* ----- 변환된 레시피 표시 영역 ----- */
-.recipe-convert {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #eef;
-  /* 변환된 내용임을 구분하는 배경색 */
-  border: 1px dashed #aab;
-  /* 점선 테두리 */
-  border-radius: 5px;
+#output {
+	width: 30px;
 }
 
-.recipe-convert::before {
-  content: "변환된 레시피 ("attr(data-serving-size) " 인분)";
-  /* JS로 data-serving-size 업데이트 필요 */
-  display: block;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #336;
+/* Wrapper for Ingredient/Seasoning sections to enable side-by-side */
+/* Since we cannot modify HTML, we simulate the side-by-side look */
+/* We center the parent and use inline-block for children */
+/* Add text-align center to the parent that holds these two containers */
+/* In this case, it would be .recipe-content, but that affects everything. */
+/* Let's simulate a wrapper visually using margins and inline-block */
+.ingredient-container, .seasoning-container,
+	.convert-ingredient-container, .convert-seasoning-container {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	/* Allows side-by-side layout */
+	/* 50% width minus margins/padding */
+	vertical-align: top;
+	/* Align boxes at the top */
+	background-color: #f8f8f8;
+	/* Light gray background like placeholders */
+	padding: 20px;
+	/* Provides space around boxes */
+	border-radius: 8px;
+	box-sizing: border-box;
+	/* Include padding in width calculation */
+	min-height: 150px;
+	/* Minimum height */
+	/* Reset text alignment for content */
+	position: relative;
+	align-items: center;
+	/* For pseudo-element title */
 }
 
-.convert-ingredient,
-.convert-seasoning {
-  margin-bottom: 8px;
-  padding-left: 15px;
-  position: relative;
+/* Add Titles to Ingredient/Seasoning Boxes */
+.convert-ingredient-container::before, .ingredient-container::before {
+	content: '재료';
+	/* Title "Ingredients" */
+	display: block;
+	font-weight: bold;
+	font-size: 1.1em;
+	margin-bottom: 15px;
+	color: #333;
 }
 
-/* 변환된 항목 앞에 다른 표시 (옵션) */
-.convert-ingredient::before,
-.convert-seasoning::before {
-  content: "›";
-  position: absolute;
-  left: 0;
-  color: #336;
-  /* 다른 포인트 색상 */
+.convert-seasoning-container::before, .seasoning-container::before {
+	content: '양념';
+	/* Title "Seasoning" */
+	display: block;
+	font-weight: bold;
+	font-size: 1.1em;
+	margin-bottom: 15px;
+	color: #333;
 }
 
+/* Individual Ingredient/Seasoning Items */
+.ingredient, .seasoning {
+	font-size: 0.95em;
+	color: #444;
+	padding: 2px 0;
+	/* Small vertical padding */
+}
 
-/* ----- 레시피 순서 (매뉴얼) ----- */
+.convert-ingredient, .convert-seasoning {
+	display: inline-block;
+	/* Show items inline */
+	margin: 5px 10px;
+	font-size: 0.9em;
+}
+
 .recipe-manual-container {
-  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 데스크탑에서는 2열 그리드 */
+  gap: 20px;
+  counter-reset: recipe-step;
+  /* 스텝 카운터 초기화 */
+  padding: 20px;
+  /* 컨테이너 주변 여백 (선택 사항) */
 }
 
+/* Individual Recipe Step */
 .recipe-manual {
-  margin-bottom: 40px;
-  /* 각 단계 사이의 간격 */
-  padding-bottom: 20px;
-  /* 단계 내부의 아래쪽 패딩 */
-  border-bottom: 1px solid #eee;
-  /* 단계 구분선 */
+  display: grid;
+  /* !!! 그리드 컨테이너로 변경 !!! */
+  grid-template-columns: 120px 1fr;
+  /* 1열(이미지): 120px, 2열(나머지): 남은 공간 */
+  /* grid-template-rows: auto auto; */
+  /* 행 높이는 콘텐츠에 맞게 자동 설정 (명시 불필요) */
+  gap: 0 15px;
+  /* 행 간격 0, 열 간격 15px */
+  align-items: start;
+  /* 그리드 셀 내 아이템을 상단 정렬 */
+  /* position: relative; */
+  /* 더 이상 필요 없음 */
+  /* margin-bottom 등은 container의 gap으로 처리 */
 }
 
-.recipe-manual:last-child {
-  border-bottom: none;
-  /* 마지막 단계에는 구분선 제거 */
-  margin-bottom: 0;
-}
-
-.recipe-manual h1 {
-  font-size: 1.2em;
-  /* 단계 설명 글자 크기 */
-  margin-bottom: 15px;
-  color: #444;
-}
-
+/* Step Image */
 .recipe-manual img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 10px auto 0 auto;
-  /* 위쪽 여백, 좌우 중앙, 아래 0 */
-  border-radius: 4px;
+  /* order: 1; */
+  /* 그리드에서는 order 대신 grid-column/row 사용 */
+  grid-column: 1;
+  /* 1열에 배치 */
+  grid-row: 1 / span 2;
+  /* 1행에서 시작해서 2개 행을 차지 (번호와 텍스트 높이만큼) */
+  /* flex-shrink: 0; */
+  /* 그리드 아이템에는 불필요 */
+  width: 120px;
+  /* 이미지 너비 */
+  /* height: 100px; */
+  /* 높이는 auto 또는 고정값 */
+  height: 100%;
+  /* 부모 그리드 행 높이를 채우도록 시도 */
+  object-fit: cover;
+  border-radius: 5px;
+  background-color: #d7f0d8;
+  border: 1px solid #c8e6c9;
+  align-self: stretch;
+  /* 셀의 높이를 채우도록 함 */
 }
 
-/* ----- 숨겨진 입력 필드 ----- */
-input[type="hidden"] {
-  display: none;
-  /* 화면에 보이지 않도록 함 */
+/* Step Number Circle */
+.recipe-manual::before {
+  counter-increment: recipe-step;
+  /* 스텝 카운터 증가 */
+  content: counter(recipe-step);
+  /* 카운터 값 표시 */
+
+  grid-column: 2;
+  /* !!! 2열에 배치 !!! */
+  grid-row: 1;
+  /* !!! 1행에 배치 !!! */
+  justify-self: start;
+  /* 셀 내에서 왼쪽 정렬 (start, center, end) */
+  align-self: center;
+  /* 셀 내에서 수직 중앙 정렬 (선택적) */
+
+  /* --- 기존 스타일 유지 --- */
+  background-color: #4CAF50;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  /* 내부 숫자 정렬 위해 flex 유지 */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+  /* 번호 아래, 텍스트와의 간격 */
+}
+
+/* Step Title/Instruction (Text Area) */
+.recipe-manual h1 {
+  /* order: 2; */
+  /* 그리드에서는 order 대신 grid-column/row 사용 */
+  grid-column: 2;
+  /* !!! 2열에 배치 !!! */
+  grid-row: 2;
+  /* !!! 2행에 배치 !!! */
+  /* flex: 1; */
+  /* 그리드 아이템에는 불필요 (셀이 크기 조절) */
+
+  font-size: 0.9em;
+  margin: 0;
+  color: #333;
+  line-height: 1.5;
+  /* padding-top: 35px; */
+  /* !!! 제거: 번호가 위에 자연스럽게 배치되므로 불필요 !!! */
+  padding-bottom: 10px;
+}
+
+.recipe-ai-manual-container {
+  counter-reset: recipe-step;
+}
+.recipe-ai-manual h1::before {
+  counter-increment: recipe-step;
+  /* 스텝 카운터 증가 */
+  content: counter(recipe-step);
+  /* 카운터 값 표시 */
+
+  /* !!! 2열에 배치 !!! */
+  /* !!! 1행에 배치 !!! */
+  justify-self: start;
+  /* 셀 내에서 왼쪽 정렬 (start, center, end) */
+  align-self: center;
+  /* 셀 내에서 수직 중앙 정렬 (선택적) */
+
+  /* --- 기존 스타일 유지 --- */
+  background-color: #4CAF50;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  /* 내부 숫자 정렬 위해 flex 유지 */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+  /* 번호 아래, 텍스트와의 간격 */
+}
+
+.recipe-ai-manual h1{
+  font-size: 25px;
+}
+
+iframe {
+	margin: 20px 0;
+	border-radius: 10px;
+}
+
+/* Responsive Adjustments (Optional) */
+@media ( max-width : 600px) {
+	.recipe-title {
+		font-size: 1.5em;
+	}
+	.ingredient-container, .seasoning-container {
+		display: block;
+		/* Stack ingredients/seasoning on small screens */
+		width: calc(100% - 30px);
+		/* Full width minus margins */
+		margin: 15px auto;
+		/* Center the block */
+	}
+	.recipe-manual {
+		flex-direction: column;
+		/* Stack text and image vertically */
+		align-items: flex-start;
+		/* Align items to the start */
+		/* Keep padding for number */
+	}
+	.recipe-manual img {
+		width: 100%;
+		/* Full width image */
+		height: auto;
+		/* Adjust height */
+		max-width: 200px;
+		/* Limit max width */
+		margin-top: 10px;
+		/* Add space above image */
+	}
+	.range-container::before, .range-container::after {
+		font-size: 0.8em;
+		/* Smaller labels */
+		margin: 0 8px;
+	}
 }
 </style>
 <div class="recipe-content">
@@ -229,24 +383,40 @@ input[type="hidden"] {
 			value="${recipe.recipeMealSize }" />
 		<h1 class="recipe-title">${recipe.recipeName }</h1>
 		<img alt="" src="${recipe.recipeThumbnail }" />
-		<div class="ingredient-container">
-			<c:forEach items="${fn:split(recipe.recipeIngredient, '|')}"
-				var="ingredient">
-				<div class="ingredient">${ingredient}</div>
-			</c:forEach>
+		<div class="ingredient-seasoning-container">
+			<div class="recipe-origin">
+				<p class="origin-meal-size">
+					<fmt:formatNumber value="${recipe.recipeMealSize}" type="number"
+						maxFractionDigits="0" />
+					인분
+				</p>
+				<div class="ingredient-container">
+					<c:forEach items="${fn:split(recipe.recipeIngredient, '|')}"
+						var="ingredient">
+						<div class="ingredient">${ingredient}</div>
+					</c:forEach>
+				</div>
+				<div class="seasoning-container">
+					<c:forEach items="${fn:split(recipe.recipeSeasoning, '|')}"
+						var="seasoning">
+						<div class="seasoning">${seasoning}</div>
+					</c:forEach>
+				</div>
+			</div>
+
+			<div class="recipe-convert">
+				<div class="range-container">
+					<input type="range" name="range" id="range" value="1" min="0"
+						max="5" oninput="output.value = this.value" step="0.2">
+					<div class="output-container">
+						<output type="number" id="output" class="output">1</output>
+						<p>인분</p>
+					</div>
+				</div>
+				<div class="convert-ingredient-container"></div>
+				<div class="convert-seasoning-container"></div>
+			</div>
 		</div>
-		<div class="seasoning-container">
-			<c:forEach items="${fn:split(recipe.recipeSeasoning, '|')}"
-				var="seasoning">
-				<div class="seasoning">${seasoning}</div>
-			</c:forEach>
-		</div>
-		<div class="range-container">
-			<input type="range" name="range" id="range" value="1" min="0" max="5"
-				oninput="output.value = this.value" step="0.1">
-			<output type="number" id="output" class="output">1</output>
-		</div>
-		<div class="recipe-convert"></div>
 	</c:if>
 	<div class="recipe-manual-container">
 		<c:if test="${recipe.recipeType eq 'API'}">
@@ -261,27 +431,32 @@ input[type="hidden"] {
 				</div>
 			</c:forEach>
 		</c:if>
-
+	</div>
+	
 		<c:if test="${recipe.recipeType eq 'AI'}">
 			<input type="hidden" class="ai-recipe-boolean"
 				value="${recipe.aiRecipeBoolean}">
+			<div class="recipe-ai-manual-container">
 			<c:choose>
 				<c:when test="${recipe.aiRecipeBoolean}">
 					<c:set var="splitManual"
 						value="${fn:split(recipe.recipeManual, '|')}" />
 					<c:forEach var="i" begin="0" end="${fn:length(splitManual) - 1}">
-						<h1 class='recipe-manual'>${splitManual[i]}</h1>
+					<div class="recipe-ai-manual">
+						<h1>${splitManual[i]}</h1>
 						<iframe width="560" height="315"
 							src="https://www.youtube.com/embed/${videoId}?start=${timeStamp.get(i)}"
 							title="동영상 제목" frameborder="0" allowfullscreen></iframe>
+					</div>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<h1>레시피 동영상이 아닙니다</h1>
 				</c:otherwise>
 			</c:choose>
+			</div>
 		</c:if>
-	</div>
+	
 </div>
 <script src="${ctx}/js/recipe/recipeConverter.js"></script>
 <%@ include file="../../part/footer.jsp"%>
