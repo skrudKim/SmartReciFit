@@ -15,6 +15,7 @@ public class AdminUserController implements Controller {
     @Override
     public String requestHandler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	System.out.println("AdminUserController 진입");
         UserDAO dao = UserDAO.getInstance();
         String ctx=request.getContextPath();
         if (request.getRequestURI().contains("deleteUser.do")) {

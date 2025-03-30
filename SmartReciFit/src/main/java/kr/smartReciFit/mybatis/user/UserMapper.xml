@@ -250,6 +250,7 @@
 		WHERE user_num = #{userNum} AND google IS NOT NULL
 	</select>
 
+<!-- 소셜로그인 연동 부분 쿼리문 -->
 <select id="checkExistingSocialEmail" parameterType="map" resultType="int">
     SELECT COUNT(*) FROM social 
     WHERE user_num = #{userNum} 
