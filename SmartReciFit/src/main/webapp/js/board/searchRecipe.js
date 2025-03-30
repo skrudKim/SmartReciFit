@@ -38,7 +38,7 @@ function searchRecipes() {
                input.value = recipe.recipeNum;
 
                label.appendChild(input);
-               label.appendChild(document.createTextNode(recipe.recipeName + " (" + recipe.recipeIngredient + ")"));
+               label.appendChild(document.createTextNode(recipe.recipeName));
                li.appendChild(label);
                ul.appendChild(li);
            });
