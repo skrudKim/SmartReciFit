@@ -89,7 +89,7 @@
     
 <script src="${ctx}/js/user/userInfo.js"> </script>
 <script>
-<%-- $(document).ready(function() {
+$(document).ready(function() {
 	
     let isLoggedIn = <%= isLoggedIn %>; // JavaScript 변수에 로그인 상태 전달
 	console.log("isLoggedIn="+isLoggedIn);
@@ -118,6 +118,6 @@
 		        });
 			}
 		});
-	}} --%>
+	}}
 </script>
 <%@ include file="../../part/footer.jsp"%>

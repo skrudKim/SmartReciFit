@@ -110,38 +110,38 @@ public class UserJoinController implements Controller {
 //			out.println("}"); // window.onload 함수 닫기
 //			out.println("</script>");
 			
-			out.print("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>" +
-			          "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>" +
-			          "<script>" +
-			          "window.onload = function() {" +
-			          "  Swal.fire({" +
-			          "    icon: 'info'," +
-			          "    title: '선호TAG를 입력하시겠습니까?'," +
-			          "    text: '마이페이지에 기록해둘 수 있습니다.'," +
-			          "    showDenyButton: true," +
-			          "    showCancelButton: false," +
-			          "    confirmButtonText: '네, 입력할게요'," +
-			          "    denyButtonText: '입력하지 않을래요'" +
-//			          "    confirmButtonColor: '#3CB371'," +
-//			          "    denyButtonColor: '#777777'" +
-			          "  }).then((result) => {" +
-			          "    if (result.isConfirmed) {" +
-			          "      console.log('입력하기 선택');" +
-			          "      window.location.href='" + ctx + "/userInfo.do';" +
-			          "    } else if (result.isDenied) {" +
-			          "      console.log('입력안하기 선택');" +
-			          "      Swal.fire({" +
-			          "        icon: 'success'," +
-			          "        title: '회원 가입 성공!'," +
-			          "        text: 'SmartReciFit에 오신 것을 환영합니다.'," +
-			          "        confirmButtonColor: '#3CB371'" +
-			          "      }).then(function() {" +
-			          "        location.href='" + ctx + "/index.jsp';" +
-			          "      });" +
-			          "    }" +
-			          "  });" +
-			          "}" +
-			          "</script>");
+//			out.print("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>" +
+//			          "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>" +
+//			          "<script>" +
+//			          "window.onload = function() {" +
+//			          "  Swal.fire({" +
+//			          "    icon: 'info'," +
+//			          "    title: '선호TAG를 입력하시겠습니까?'," +
+//			          "    text: '마이페이지에 기록해둘 수 있습니다.'," +
+//			          "    showDenyButton: true," +
+//			          "    showCancelButton: false," +
+//			          "    confirmButtonText: '네, 입력할게요'," +
+//			          "    denyButtonText: '입력하지 않을래요'" +
+////			          "    confirmButtonColor: '#3CB371'," +
+////			          "    denyButtonColor: '#777777'" +
+//			          "  }).then((result) => {" +
+//			          "    if (result.isConfirmed) {" +
+//			          "      console.log('입력하기 선택');" +
+//			          "      window.location.href='" + ctx + "/userInfo.do';" +
+//			          "    } else if (result.isDenied) {" +
+//			          "      console.log('입력안하기 선택');" +
+//			          "      Swal.fire({" +
+//			          "        icon: 'success'," +
+//			          "        title: '회원 가입 성공!'," +
+//			          "        text: 'SmartReciFit에 오신 것을 환영합니다.'," +
+//			          "        confirmButtonColor: '#3CB371'" +
+//			          "      }).then(function() {" +
+//			          "        location.href='" + ctx + "/index.jsp';" +
+//			          "      });" +
+//			          "    }" +
+//			          "  });" +
+//			          "}" +
+//			          "</script>");
 			
 			out.println("<script>location.href='" + ctx + "/userInfo.do';</script>");
 			//out.close();
