@@ -77,8 +77,74 @@ public class UserJoinController implements Controller {
 			//유저 가입완료 알람창 + 정보 입력 할지
 			UserDAO.getInstance().UserJoin(id,pw,name,nickName,email,phone,profileImg);
 			System.out.println("회원 가입 성공");
+			
+//			out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
+//			out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>");
+//			out.println("<script>");
+//			out.println("window.onload = function() {");
+//			out.println("  Swal.fire({");
+//			out.println("icon: 'info',");
+//			out.println("title: '선호TAG를 입력하시겠습니까?',");
+//			out.println("text: '마이페이지에 기록해둘 수 있습니다.',");
+//			out.println("showDenyButton: true,");
+//			out.println("showCancelButton: false,");
+//			out.println("confirmButtonText: '네, 입력할게요',");
+//			out.println("denyButtonText: '입력하지 않을래요'");
+//			//out.println("confirmButtonColor: '#3CB371',");
+//			//out.println("denyButtonColor: '#777777',})");
+//			out.println(".then((result) => {");
+//			out.println("if (result.isConfirmed) {");
+//			out.println("console.log('입력하기 선택');");
+//			out.println("window.location.href='" + ctx + "/userInfo.do';");
+//			out.println("} else if (result.isDenied) {");
+//			out.println("console.log('입력안하기 선택');");
+//			out.println("  Swal.fire({");
+//			out.println("icon: 'success',");
+//			out.println("title: '회원 가입 성공!',");
+//			out.println("text: 'SmartReciFit에 오신 것을 환영합니다.',");
+//			out.println("confirmButtonColor: '#3CB371',}).then(function() {");
+//			out.println("location.href='" + ctx + "/index.jsp';");
+//			out.println("      });");
+//			out.println("    }"); // else if 블록 닫기
+//			out.println("  });"); // then 블록 닫기
+//			out.println("}"); // window.onload 함수 닫기
+//			out.println("</script>");
+			
+			out.print("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>" +
+			          "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>" +
+			          "<script>" +
+			          "window.onload = function() {" +
+			          "  Swal.fire({" +
+			          "    icon: 'info'," +
+			          "    title: '선호TAG를 입력하시겠습니까?'," +
+			          "    text: '마이페이지에 기록해둘 수 있습니다.'," +
+			          "    showDenyButton: true," +
+			          "    showCancelButton: false," +
+			          "    confirmButtonText: '네, 입력할게요'," +
+			          "    denyButtonText: '입력하지 않을래요'" +
+//			          "    confirmButtonColor: '#3CB371'," +
+//			          "    denyButtonColor: '#777777'" +
+			          "  }).then((result) => {" +
+			          "    if (result.isConfirmed) {" +
+			          "      console.log('입력하기 선택');" +
+			          "      window.location.href='" + ctx + "/userInfo.do';" +
+			          "    } else if (result.isDenied) {" +
+			          "      console.log('입력안하기 선택');" +
+			          "      Swal.fire({" +
+			          "        icon: 'success'," +
+			          "        title: '회원 가입 성공!'," +
+			          "        text: 'SmartReciFit에 오신 것을 환영합니다.'," +
+			          "        confirmButtonColor: '#3CB371'" +
+			          "      }).then(function() {" +
+			          "        location.href='" + ctx + "/index.jsp';" +
+			          "      });" +
+			          "    }" +
+			          "  });" +
+			          "}" +
+			          "</script>");
+			
 			out.println("<script>location.href='" + ctx + "/userInfo.do';</script>");
-			out.close();
+			//out.close();
 			
 //			return "redirect:" + ctx + "/userInfo.do";
 		}catch (Exception e) {
@@ -97,8 +163,9 @@ public class UserJoinController implements Controller {
 			out.println("};");
 			out.println("</script>");
 			System.out.println("회원 가입 실패");
-			out.close();
 //			return "userJoin.do";
+		}finally {
+			out.close();
 		}
 		return null;
 	}

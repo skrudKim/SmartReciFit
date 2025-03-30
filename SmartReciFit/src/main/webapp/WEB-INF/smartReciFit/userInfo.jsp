@@ -89,12 +89,12 @@
     
 <script src="${ctx}/js/user/userInfo.js"> </script>
 <script>
-$(document).ready(function() {
+<%-- $(document).ready(function() {
 	
     let isLoggedIn = <%= isLoggedIn %>; // JavaScript 변수에 로그인 상태 전달
 	console.log("isLoggedIn="+isLoggedIn);
 	
-if (!isLoggedIn) {
+ if (!isLoggedIn) {
 		Swal.fire({
 			icon: "info",
 			title: "선호TAG를 입력하시겠습니까?",
@@ -118,6 +118,6 @@ if (!isLoggedIn) {
 		        });
 			}
 		});
-	}}
+	}} --%>
 </script>
 <%@ include file="../../part/footer.jsp"%>
