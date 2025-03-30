@@ -3,7 +3,8 @@
 <div class="modal login-modal">
 	<div class="modal-content">
 		<button class="btn-close login-close">&times;</button>
-		<form id="loginForm">
+		  <h2 style="text-align: center;margin: 45px 0;">Smart ReciFit 로그인</h2> <!-- 제목 추가 -->
+		<form id="loginForm" style="margin-top: 20px;">
 			<label for="id">아이디</label> <input type="text" id="id" name="id"
 				required placeholder="아이디를 입력하세요."> <label for="pw">비밀번호</label>
 			<input type="password" id="pw" name="pw" required
@@ -11,14 +12,16 @@
 			<button type="submit">로그인</button>
 		</form>
 
-		<div>
+		
+		<div class="icon-container">
+		
 			<!-- 카카오 로그인 버튼 노출 영역 -->
 			<a href="javascript:kakaoLogin()"><img
-				src="<c:url value='/img/kakao_login_large_wide.png'/>"
-				style="width: 200px"></a>
+				src="<c:url value='/img/kakaoIcon.png'/>" class="login-icon"></a>
 			<!-- 카카오 로그인 버튼 노출 영역 -->
 
 			<!-- 네이버 로그인 버튼 노출 영역 -->
+			<img class="naver_login_connection login-icon" src="${ctx}/img/btnG_아이콘원형.png">
 			<div id="naver_id_login"></div>
 			<!-- //네이버 로그인 버튼 노출 영역 -->
 
@@ -27,13 +30,17 @@
 				data-client_id="231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com"
 				data-login_uri="http://localhost:8084/SmartReciFit/main.do"
 				data-auto_prompt="false"></div>
-			<div class="g_id_signin" data-type="standard" data-size="large"
-				data-theme="outline" data-text="sign_in_with"
-				data-shape="rectangular" data-logo_alignment="left"></div>
+			<div class="g_id_signin" data-type="icon" data-size="large"
+				data-theme="filled_blue" data-shape="circle" 
+				data-logo_alignment="left"
+				>
+			</div>
 			<!-- 구글 로그인 버튼 노출 영역 -->
+			
 		</div>
-		<div>
-			<a href="${ctx}/userFind.do">아이디 찾기 또는 비밀번호 찾기</a>
+
+		<div class="find-account" style="text-align: center;margin-top: 10px;font-size: 12px;"> <!-- 작게 표시 -->
+			 <a href="${ctx}/userFind.do" class="find-account button">아이디 또는 비밀번호 찾기</a>
 		</div>
 
 
@@ -55,3 +62,11 @@
 <!------------------------ 구글 script loginOut.js 에 있음 ------------------------>
 
 <script src="${ctx}/js/user/userSocialLogin.js"></script>
+<script type="text/javascript">
+	document.querySelector('.naver_login_connection').addEventListener(
+			'click',
+			function() {
+				document.querySelector('#naver_id_login').querySelector('a')
+						.click();
+			});
+</script>

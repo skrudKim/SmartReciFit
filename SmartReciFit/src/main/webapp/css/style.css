@@ -21,6 +21,8 @@ body {
   padding: 0;
 }
 
+
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -97,6 +99,8 @@ header {
   background-color: var(--secondary-color);
 }
 /*  로그인 모달 창*/
+/* 로그인 모달 창 */
+/* 로그인 모달 창 */
 .modal.login-modal,
 .overlay {
   display: none;
@@ -107,12 +111,15 @@ header {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .modal.login-modal {
   z-index: 1001; /* 다른 요소 위에 표시 */
 }
+
 .overlay {
   z-index: 1000;
 }
+
 .modal.login-modal.active,
 .overlay.active {
   display: block;
@@ -124,10 +131,10 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--header-footer-color);
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 400px; /* 모달 너비 조정 */
+  width: 320px; /* 모달 너비 조정 */
 }
 
 .modal-content button.btn-close {
@@ -152,7 +159,7 @@ header {
 
 .modal-content input {
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -170,6 +177,48 @@ header {
 .modal-content button[type="submit"]:hover {
   background-color: var(--secondary-color);
 }
+
+.modal-content #naver_id_login {
+  display: none; /* 이 요소를 숨깁니다 */
+}
+
+/* 아이콘 컨테이너 */
+
+.icon-container {
+  display: flex; /* 가로 정렬 */
+  justify-content: center; /* 아이콘을 중앙에 정렬 */
+  margin: 50px 0; /* 상하 여백 조정 */
+  width: 100%; /* 너비를 100%로 설정 */
+}
+
+.login-icon {
+  width: 40px; /* 아이콘 크기 통일 */
+  height: 40px; /* 아이콘 높이 통일 */
+  object-fit: contain; /* 이미지 비율 유지 */
+  cursor: pointer; /* 커서 포인터 추가 */
+  margin: 0 10px; /* 아이콘 간격 조정 */
+}
+.icon-container img.naver_login_connection {
+    margin-right: 20px; /* 네이버 아이콘 오른쪽에 10px 마진 추가 */
+}
+/* 아이디 또는 비밀번호 찾기 링크 */
+.find-account.button {
+    display: inline-block; /* 버튼처럼 보이도록 */
+    padding: 10px 20px; /* 버튼 안쪽 여백 */
+    background-color: FFCD50; /* 배경색 노란색 */
+    color: black; /* 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-decoration: none; /* 링크 스타일 제거 */
+    cursor: pointer; /* 커서 포인터 추가 */
+    margin-top: 20px; /* 상단 여백 */
+}
+
+.find-account.button:hover {
+    background-color: fff3c2; /* 마우스 오버 시 색상 변경 */
+}
+
 
 table, td{
 	border: 1px solid black;
