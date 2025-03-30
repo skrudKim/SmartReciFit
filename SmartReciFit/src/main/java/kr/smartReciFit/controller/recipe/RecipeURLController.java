@@ -67,7 +67,19 @@ public class RecipeURLController implements Controller {
 		if (recipe.isAiRecipeBoolean()) {
 			String thumbnailUrl = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
 			recipe.setRecipeThumbnail(thumbnailUrl);
-			request.setAttribute("timeStamp", dao.getRecipeTimeStamp(recipe.getRecipeManualTimeStamp()));
+			try {
+				
+				request.setAttribute("timeStamp", dao.getRecipeTimeStamp(recipe.getRecipeManualTimeStamp()));
+				
+			} catch (Exception e) {
+				String ctx = request.getContextPath();
+				PrintWriter out = response.getWriter();
+				out.println("<script type='text/javascript'>");
+				out.println("alert('youtube 레시피 요약 중 오류가 생겼습니다 ');");
+				out.println("window.location.href = '"+ ctx +"/index.jsp';");
+				out.println("</script>");
+				e.printStackTrace();
+			}
 		}
 		recipe.setRecipeType(RecipeType.AI);
 		if (!isExist) {

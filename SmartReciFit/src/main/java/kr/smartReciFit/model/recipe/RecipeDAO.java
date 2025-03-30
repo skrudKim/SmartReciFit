@@ -215,7 +215,7 @@ public class RecipeDAO {
 		return videoId;
 	}
 	
-	public ArrayList<Integer> getRecipeTimeStamp(String rawData) {
+	public ArrayList<Integer> getRecipeTimeStamp(String rawData) throws Exception{
 		ArrayList<Integer> timeStamp = new ArrayList<Integer>();
 		String[] temp = rawData.split("\\|");
 		for(String str : temp) {
