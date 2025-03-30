@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (data === "done") {
 						alert("로그아웃 성공");
 						setTimeout(() => {
-							location.href = ctx + "/main.do";
+							location.reload();
 						}, 500);
 					} else {
 						alert("로그아웃 실패");
@@ -89,12 +89,3 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 
-    function findId() {
-        alert("아이디 찾기 기능은 아직 구현되지 않았습니다.");
-        // 아이디 찾기 모달 또는 페이지로 이동하는 코드
-    }
-
-    function findPw() {
-        alert("비밀번호 찾기 기능은 아직 구현되지 않았습니다.");
-        // 비밀번호 찾기 모달 또는 페이지로 이동하는 코드
-    }

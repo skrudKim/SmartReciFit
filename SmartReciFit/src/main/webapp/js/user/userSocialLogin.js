@@ -26,29 +26,7 @@ function kakaoLogin() {
 	})
 }
 
-function sendUserInfoToServer(platform, nickname, email) {
-	$.ajax({
-		type: 'POST',
-		url: `${ctx}/saveSocialLoginInfo.do`,
-		data: {
-			platform: platform,
-			nickname: nickname,
-			email: email
-		},
-		success: function(data) {
-			if (data === '닉네임 중복') {
-				// 닉네임 입력 폼으로 이동
-				window.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
-			} else {
-				// 메인 페이지로 이동
-				location.reload();
-			}
-		},
-		error: function(error) {
-			console.error('Error sending user info:', error);
-		}
-	});
-}
+
 
 /* ------------------------ 네이버 script ------------------------ */
 var naver_id_login = new naver_id_login("Kc4oajEGWigub1aElsL9",
@@ -87,34 +65,36 @@ function handleCredentialResponse(response) {
 
     const nickname = payload.name;
     const email = payload.email;
+	console.log(nickname);
 
     sendUserInfoToServer('google', nickname, email);
 }
 
 function sendUserInfoToServer(platform, nickname, email) {
-    console.log('sendUserInfoToServer');
-    $.ajax({
-        type: 'POST',
-        url: `${ctx}/saveSocialLoginInfo.do`,
-        data: {
-            platform: platform,
-            nickname: nickname,
-            email: email
-        },
-        success: function(data) {
-            if (data === '닉네임 중복') {
-                // 닉네임 입력 폼으로 이동
-                window.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
-            } else {
-                // 메인 페이지로 이동
-                window.location.href = `${ctx}/main.do`;
-            }
-        },
-        error: function(error) {
-            console.error('Error sending user info:', error);
-        }
-    });
+	$.ajax({
+		type: 'POST',
+		url: `${ctx}/saveSocialLoginInfo.do`,
+		data: {
+			platform: platform,
+			nickname: nickname,
+			email: email
+		},
+		success: function(data) {
+			if (data === '닉네임 중복') {
+				// 닉네임 입력 폼으로 이동
+				window.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
+			} else {
+				// 메인 페이지로 이동
+				location.reload();
+			}
+		},
+		error: function(error) {
+			console.error('Error sending user info:', error);
+		}
+	});
 }
+
+
 
 window.onload = function() {
     google.accounts.id.initialize({
