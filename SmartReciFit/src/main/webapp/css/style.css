@@ -29,7 +29,7 @@ body {
 	/* 다른 스타일... */
 	line-height: 1.6;
 	/* 가독성을 위한 줄 간격 */
-	background-color: #f4f7f6;
+	background-color: var(--background-color, #f5f5f5); /* 기본 배경색 추가 */
 	/* 부드러운 배경색 */
 	color: #333;
 	/* 기본 글자색 */
@@ -43,81 +43,259 @@ body {
 	margin: 0 auto;
 }
 
-/* 색상 팔레트 */
+/* 색상 팔레트 (CSS 최상단) */
 :root {
-	--primary-color: #2E8B57; /* 진한 녹색 */
-	--secondary-color: #3CB371; /* 중간 녹색 */
-	--accent-color: #90EE90; /* 밝은 녹색 */
-	--text-color: #333333; /* 어두운 회색 */
-	--background-color: #f5f5f5; /* 밝은 회색 */
-	--header-footer-color: #ffffff; /* 흰색 */
+  --primary-color: #2E8B57;       /* 진한 녹색 */
+  --secondary-color: #3CB371;     /* 중간 녹색 */
+  --accent-color: #90EE90;        /* 밝은 녹색 */
+  --text-color: #333333;          /* 어두운 회색 */
+  --background-color: #f5f5f5;    /* 밝은 회색 */
+  --header-footer-color: #ffffff;  /* 흰색 */
+
+  /* 헤더 관련 색상 (목표 이미지 기준 재정의) */
+  --header-bg-color: #FEF9E7;     /* 헤더 배경 (매우 연한 노랑) */
+  --nav-text-color: #583E23;      /* 네비 텍스트 (진한 갈색) */
+  --nav-hover-bg-color: #FFF2CC;  /* 네비 호버 배경 (연한 노랑) */
+  --button-login-bg-color: #FFCD50; /* 로그인 버튼 배경 (밝은 노랑) */
+  --button-join-bg-color: #F0B41A;  /* 회원가입 버튼 배경 (조금 진한 노랑) */
+  --button-border-color: #E0A800;   /* 버튼 테두리 (진한 노랑) */
+  --button-text-color: #583E23;    /* 버튼 텍스트 (진한 갈색) */
+  --search-border-color: var(--button-border-color); /* 검색창 테두리 */
+  --search-button-bg-color: var(--nav-hover-bg-color); /* 검색 버튼 배경 */
+  --search-button-hover-bg-color: #FDE5A0; /* 검색 버튼 호버 배경 */
 }
-/*  HEADER*/
+
+/* ====================================== */
+/* ========= 헤더 스타일 재구현 ========= */
+/* ====================================== */
 header {
-	background-color: var(--header-footer-color);
-	padding: 20px 0;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* 배경 속성은 header에만 적용 */
+  background-color: var(--header-bg-color);
+  background-image: url('../img/header-bg-pattern.png'); /* 경로 확인! */
+  background-repeat: repeat;
+  position: relative; /* 자식 absolute 요소의 기준 */
+  width: 100%;
+  /* 내부 요소 높이 + 패딩을 포함할 최소 높이 */
+  /* 로고(90) + 간격(10) + 검색창(약40) + 간격(10) + 네비(약40) + 하단여백(10) = 약 200px */
+  min-height: 250px;
+  padding: 10px 0; /* 상하 패딩 */
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box; /* 패딩, 보더를 높이에 포함 */
+  /* overflow: hidden; */ /* 혹시 자식 요소가 넘칠 경우 대비 (필요시 주석 해제) */
 }
 
 .header-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  max-width: 1200px; /* 콘텐츠 최대 너비 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 0 20px; /* 좌우 여백 */
+  position: relative; /* 내부 요소 배치 기준 (필수 아님, header가 기준) */
+  height: 100%; /* 부모(header) 높이만큼 (필수 아님) */
+}
+
+/* 1. 로고 스타일 */
+.logo {
+  position: absolute;
+  left: 50%;
+  top: -5px; /* 헤더 상단에서의 여백 */
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 .logo img {
-	height: 50px;
+  height: 140px; /* 로고 크기 조정 */
+  display: block; /* 이미지 하단 여백 제거 */
 }
 
-.navigation ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	display: flex;
-	gap: 20px;
+/* 2. 검색창 컨테이너 스타일 */
+.search-bar-container {
+    position: absolute;
+    /* 로고 top(10) + 로고 height(90) + 간격(10) = 110 */
+    top: 130px; /* 로고 아래 위치 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: auto; /* 내부 컨텐츠 크기에 맞춤 */
+    display: flex; /* 내부 form 가운데 정렬 (선택 사항) */
+    justify-content: center;
 }
 
-.navigation a {
-	text-decoration: none;
-	color: var(--text-color);
-	font-weight: bold;
-	transition: color 0.3s ease;
+.search-bar-container form {
+  display: flex; /* input과 button 가로 배치 */
+  align-items: center; /* 수직 가운데 정렬 */
 }
 
-.navigation a:hover {
-	color: var(--secondary-color);
+.search-bar-container input.youtube-url {
+  padding: 9px 16px;
+  border: 1px solid var(--search-border-color);
+  border-radius: 18px 0 0 18px; /* 좌측 둥글게 */
+  min-width: 500px; /* 원하는 너비로 조정 */
+  border-right: none;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+}
+.search-bar-container input.youtube-url::placeholder {
+    color: #777;
 }
 
+.search-bar-container button { /* 전송 버튼 */
+  padding: 9px 16px;
+  background-color: var(--search-button-bg-color);
+  color: var(--button-text-color);
+  border: 1px solid var(--search-border-color);
+  border-left: none;
+  cursor: pointer;
+  border-radius: 0 18px 18px 0; /* 우측 둥글게 */
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.search-bar-container button:hover {
+  background-color: var(--search-button-hover-bg-color);
+}
+
+/* 3. 네비게이션 (링크) 스타일 */
+nav.navigation {
+  width: 100%; /* 가운데 정렬 위해 필요 */
+  position: absolute;
+  /* 검색창 top(110) + 검색창 높이(약40) + 간격(10) = 160 */
+  top: 190px; /* 검색창 아래 위치 */
+  left: 0;
+  text-align: center; /* 내부 ul 중앙 정렬 */
+  z-index: 5;
+}
+
+nav.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto; /* ul 자체를 중앙에 */
+  display: inline-flex; /* 아이템들을 가로로 나열하고 중앙 정렬 */
+  gap: 40px; /* 메뉴 사이 간격 */
+  background-color: transparent; /* 배경 없음 */
+  align-items: center;
+}
+
+nav.navigation ul li {
+  /* li 자체 스타일 불필요 */
+}
+
+nav.navigation a { /* 메뉴 링크 */
+  text-decoration: none;
+  color: var(--nav-text-color);
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 6px 18px;
+  border-radius: 6px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  white-space: nowrap;
+  background-color: transparent; /* 기본 배경 투명 */
+  display: block; /* 패딩 적용 위해 */
+}
+
+nav.navigation a:hover {
+  color: #333; /* 호버 시 텍스트 색상 */
+  background-color: var(--nav-hover-bg-color); /* 호버 시 배경색 */
+}
+
+/* 4. 사용자 액션 버튼 영역 스타일 */
 .user-actions {
-	display: flex;
-	gap: 10px;
+  position: absolute;
+  top: 15px; /* 헤더 상단에서의 거리 */
+  right: 30px; /* 헤더 우측에서의 거리 */
+  display: flex;
+  gap: 10px; /* 버튼 사이 간격 */
+  z-index: 10; /* 다른 요소 위에 */
 }
 
-.user-actions button, .user-actions a {
-	background-color: var(--primary-color);
-	color: var(--header-footer-color);
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	text-decoration: none; /* 링크 스타일 제거 */
+/* 사용자 액션 버튼/링크 기본 스타일 (테두리, 패딩 등) */
+.user-actions button,
+.user-actions a:not([href*="userContent.do"]) { /* 사용자 이름 링크 제외 */
+  border: 1px solid var(--button-border-color);
+  padding: 7px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--button-text-color); /* 기본 텍스트 색 */
 }
 
-.user-actions button:hover, .user-actions a:hover {
-	background-color: var(--secondary-color);
+/* 로그인 버튼 스타일 */
+.user-actions button.login-open {
+  background-color: var(--button-login-bg-color); /* 밝은 노랑 */
 }
-/*  로그인 모달 창*/
-/* 로그인 모달 창 */
-/* 로그인 모달 창 */
-.modal.login-modal, .overlay {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
+.user-actions button.login-open:hover {
+  background-color: #FDE5A0; /* 호버 시 약간 진하게 */
+  border-color: var(--button-border-color);
+}
+
+/* 회원가입 버튼 스타일 */
+.user-actions a.btn-userJoin {
+  background-color: var(--button-join-bg-color); /* 조금 진한 노랑 */
+}
+.user-actions a.btn-userJoin:hover {
+   background-color: #D49D00; /* 호버 시 더 진하게 */
+   border-color: #D49D00;
+}
+
+/* 로그아웃 버튼 스타일 (회원가입과 동일하게 적용) */
+.user-actions a.logout-btn {
+    background-color: var(--button-join-bg-color);
+    border-color: var(--button-border-color);
+}
+.user-actions a.logout-btn:hover {
+    background-color: #D49D00;
+    border-color: #D49D00;
+}
+
+/* 사용자 이름 링크 스타일 */
+.user-actions a[href*="userContent.do"] {
+  background-color: transparent;
+  border: none;
+  color: var(--nav-text-color); /* 네비 텍스트 색상과 동일하게 */
+  padding: 7px 5px; /* 다른 버튼과 높이 맞추기 위해 패딩 조정 */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9em;
+  display: inline-flex; /* 수직 정렬 위해 */
+  align-items: center;
+}
+.user-actions a[href*="userContent.do"]:hover {
+  text-decoration: underline; /* 호버 시 밑줄 */
+}
+/* ====================================== */
+/* ========= 헤더 스타일 끝 ========== */
+/* ====================================== */
+
+
+/* Main 영역 스타일 수정 */
+main {
+  /* header의 min-height(200px) 보다 약간 큰 값으로 설정 */
+  padding-top: 30px; /* 헤더와 겹치지 않도록 패딩 조정 */
+  /* 필요하다면 다른 main 스타일 추가 */
+  background-color: white;
+}
+
+
+/* ====================================== */
+/* ========== 모달 스타일 (기존 유지) ========== */
+/* ====================================== */
+.modal.login-modal,
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal.login-modal {
@@ -210,24 +388,29 @@ header {
 }
 /* 아이디 또는 비밀번호 찾기 링크 */
 .find-account.button {
-	display: inline-block; /* 버튼처럼 보이도록 */
-	padding: 10px 20px; /* 버튼 안쪽 여백 */
-	background-color: FFCD50; /* 배경색 노란색 */
-	color: black; /* 글자색 */
-	border: none; /* 테두리 없음 */
-	border-radius: 5px; /* 모서리 둥글게 */
-	text-align: center; /* 텍스트 중앙 정렬 */
-	text-decoration: none; /* 링크 스타일 제거 */
-	cursor: pointer; /* 커서 포인터 추가 */
-	margin-top: 20px; /* 상단 여백 */
+    display: inline-block; /* 버튼처럼 보이도록 */
+    padding: 10px 20px; /* 버튼 안쪽 여백 */
+    background-color: #FFCD50; /* 배경색 노란색 */
+    color: black; /* 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-decoration: none; /* 링크 스타일 제거 */
+    cursor: pointer; /* 커서 포인터 추가 */
+    margin-top: 20px; /* 상단 여백 */
 }
 
 .find-account.button:hover {
-	background-color: fff3c2; /* 마우스 오버 시 색상 변경 */
+    background-color: #fff3c2; /* 마우스 오버 시 색상 변경 */
 }
 
-table, td {
-	border: 1px solid black;
+
+/* ====================================== */
+/* ========== 기타 스타일 (기존 유지) ========== */
+/* ====================================== */
+
+table, td{
+	/* border: 1px solid black; */ /* 필요하다면 주석 해제 */
 }
 
 .userContentImg {
@@ -312,7 +495,8 @@ h3 {
 }
 
 #btn-infoCancel:hover {
-	border: 3px solid #494949;
+  /* border: 3px solid #494949; */ /* outline으로 변경됨 */
+   outline: 3px solid #494949;
 }
 
 #btn-infoSubmit {
@@ -332,13 +516,12 @@ h3 {
 }
 
 #btn-infoSubmit:hover {
-	border: 3px solid #127700;
+  /* border: 3px solid #127700; */ /* outline으로 변경됨 */
+   outline: 3px solid #127700;
 }
 
 .infoCheckbox:checked {
 	accent-color: #3CB371;
 }
-
-/* 인포 끝 */
 
 /* 여기까지 지영CSS */

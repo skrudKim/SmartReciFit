@@ -34,57 +34,58 @@
 </head>
 
 <header>
-	
-	<div class="header-container">
-		<div class="logo">
-			<a href="${ctx}/main.do"> <img
-				src="${ctx}/img/logo.png"
-				alt="스마트 레시핏 로고">
-			</a>
-		</div>
-		<nav class="navigation">
-			<ul>
-				<li><a href="${ctx}/recipes.do">레시피</a></li>
-				<li><a href="${ctx}/ranking.do">랭킹</a></li>
-				<li><a href="${ctx}/reviews.do?page=1">후기</a></li>
-				<li><a href="${ctx}/events.do">EVENT</a></li>
-				<li>
-					<form action="${ctx}/recipeURL.do" method="post">
-						<input class="youtube-url" type="text" name="youtube-url" />
-						<button>전송</button>
-					</form>
-				</li>
-			</ul>
-		</nav>
+    <div class="header-container">
 
+        <%-- 1. 로고 (위치/크기는 CSS로 제어) --%>
+        <div class="logo">
+            <a href="${ctx}/main.do">
+                <img src="${ctx}/img/SmartRecifitLogoSpoonFork.png" alt="스마트 레시핏 로고">
+            </a>
+        </div>
 
-		<div class="user-actions">
-			<c:choose>
-				<c:when
-					test="${empty sessionScope.user.userNickName and empty sessionScope.log}">
-					<!-- 로그인 상태가 아닐 때 -->
-					<button class="login-open">로그인</button>
-					<button class="btn-userJoin"
-						onclick="location.href='${ctx}/userJoin.do'">회원가입</button>
-				</c:when>
-				<c:otherwise>
-					<!-- 로그인 상태일 때 -->
-					<button class="btn-create-recipe"
-						onclick="location.href='${ctx}/createRecipe.do'">레시피등록</button>
-					<a href="${ctx}/logout.do" class="logout-btn">로그아웃</a>
-					<c:if test="${not empty sessionScope.user.userNickName}">
-						<a href="${ctx}/userContent.do?num=${sessionScope.log}">${sessionScope.user.userNickName}님</a>
-					</c:if>
-					<!--회원가입한 유저 로그인 상태 -->
-					<c:if
-						test="${empty sessionScope.user.userNickName and not empty sessionScope.log}">
-						<a href="${ctx}/userContent.do?num=${sessionScope.log}">${sessionScope.nickName}님</a>
-					</c:if>
-					<!--소셜로그인한 로그인상태 -->
-				</c:otherwise>
-			</c:choose>
+        <%-- 2. 유튜브 검색창 컨테이너 (새로 추가) --%>
+        <div class="search-bar-container">
+             <form action="${ctx}/recipeURL.do" method="post">
+                 <input class="youtube-url" type="text" name="youtube-url" placeholder="유튜브 레시피 영상 URL을 넣어보세요! AI가 요약해드립니다" />
+                 <button type="submit">전송</button>
+             </form>
+        </div>
 
-		</div>
-	</div>
+        <%-- 3. 네비게이션 메뉴 (링크만 포함) --%>
+        <nav class="navigation">
+            <ul>
+                <li><a href="${ctx}/recipes.do">레시피</a></li>
+                <li><a href="${ctx}/ranking.do">랭킹</a></li>
+                <li><a href="${ctx}/reviews.do?page=1">후기</a></li>
+                <li><a href="${ctx}/events.do">EVENT</a></li>
+                <%-- 유튜브 폼은 위로 이동했음 --%>
+            </ul>
+        </nav>
+
+        <%-- 4. 사용자 액션 버튼 (우측 상단) --%>
+        <div class="user-actions">
+            <c:choose>
+                <c:when test="${empty sessionScope.user.userNickName and empty sessionScope.log}">
+                    <%-- 클래스 login-open 과 btn-userJoin 유지 (JS 또는 CSS 선택자 위해) --%>
+                    <button class="login-open">로그인</button>
+                    <a href="${ctx}/userJoin.do" class="btn-userJoin">회원가입</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${ctx}/logout.do" class="logout-btn">로그아웃</a>
+                    <c:choose>
+                         <c:when test="${not empty sessionScope.user.userNickName}">
+                             <a href="${ctx}/userContent.do?num=${sessionScope.log}">${sessionScope.user.userNickName}님</a>
+                         </c:when>
+                         <c:when test="${not empty sessionScope.log}">
+                             <a href="${ctx}/userContent.do?num=${sessionScope.log}">${sessionScope.nickName}님</a>
+                         </c:when>
+                         <c:otherwise>
+                             <a href="#">내 정보</a>
+                         </c:otherwise>
+                    </c:choose>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
 </header>
 <main>
