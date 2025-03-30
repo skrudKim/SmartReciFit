@@ -274,7 +274,6 @@
 	line-height: 1.5;
 	/* padding-top: 35px; */
 	/* !!! 제거: 번호가 위에 자연스럽게 배치되므로 불필요 !!! */
-	padding-bottom: 10px;
 }
 
 .recipe-ai-manual-container {
@@ -310,10 +309,11 @@
 
 .recipe-ai-manual h1 {
 	font-size: 25px;
+	margin-bottom: 8px;
 }
 
 iframe {
-	margin: 20px 0;
+	margin-bottom: 20px;
 	border-radius: 10px;
 }
 

@@ -72,7 +72,7 @@ public class RecipeURLController implements Controller {
 		recipe.setRecipeType(RecipeType.AI);
 		if (!isExist) {
 			recipe.setAiRecipeUrl(videoId);
-			recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\(.*?\\)", ""));
+			recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\([^)]*\\)", ""));
 			dao.insertAiRecipe(recipe);
 		}
 		recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\d*\\.", ""));
