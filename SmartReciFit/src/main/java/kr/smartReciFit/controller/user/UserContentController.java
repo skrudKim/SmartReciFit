@@ -35,6 +35,8 @@ public class UserContentController implements Controller {
 		}else{
 			num = (int)getLog;
 		}
+		
+		request.setAttribute("log", num);
 		User vo=UserDAO.getInstance().numGetUser(num);
 //		System.out.println("테스트옹 vo: "+vo);
 		request.setAttribute("userContent", vo);

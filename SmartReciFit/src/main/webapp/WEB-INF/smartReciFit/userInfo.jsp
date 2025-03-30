@@ -9,9 +9,6 @@
 <%
     boolean isLoggedIn = (session.getAttribute("log") != null);
 %>
-<script>
-    let isLoggedIn = <%= isLoggedIn %>; // JavaScript 변수에 로그인 상태 전달
-</script>
 <%@ include file="../../part/header.jsp"%>
 
       <div class="inner">
@@ -93,7 +90,11 @@
 <script src="${ctx}/js/user/userInfo.js"> </script>
 <script>
 $(document).ready(function() {
-	if (!isLoggedIn) {
+	
+    let isLoggedIn = <%= isLoggedIn %>; // JavaScript 변수에 로그인 상태 전달
+	console.log("isLoggedIn="+isLoggedIn);
+	
+if (!isLoggedIn) {
 		Swal.fire({
 			icon: "info",
 			title: "선호TAG를 입력하시겠습니까?",
