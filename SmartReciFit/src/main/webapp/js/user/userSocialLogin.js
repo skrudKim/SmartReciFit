@@ -57,15 +57,15 @@ function handleCredentialResponse(response) {
     const payload = JSON.parse(atob(jwtToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
 
     console.log('ID: ' + payload.sub);
-    console.log('Full Name: ' + payload.name);
-    console.log('Given Name: ' + payload.given_name);
-    console.log('Family Name: ' + payload.family_name);
+    console.log('Full Name: ' + decodeURIComponent(escape(payload.name))); // 한글 디코딩
+    console.log('Given Name: ' + decodeURIComponent(escape(payload.given_name)));
+    console.log('Family Name: ' + decodeURIComponent(escape(payload.family_name)));
     console.log('Image URL: ' + payload.picture);
     console.log('Email: ' + payload.email);
 
-    const nickname = payload.name;
+    const nickname = decodeURIComponent(escape(payload.name)); // 한글 정상 출력
     const email = payload.email;
-	console.log(nickname);
+    console.log(nickname);
 
     sendUserInfoToServer('google', nickname, email);
 }
