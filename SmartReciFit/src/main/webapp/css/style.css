@@ -204,14 +204,14 @@ nav.navigation a:hover {
 .user-actions {
 	position: absolute;
 	top: 15px; /* 헤더 상단에서의 거리 */
-	right: 30px; /* 헤더 우측에서의 거리 */
+	right: -10px; /* 헤더 우측에서의 거리 */
 	display: flex;
 	gap: 10px; /* 버튼 사이 간격 */
 	z-index: 10; /* 다른 요소 위에 */
 }
 
 /* 사용자 액션 버튼/링크 기본 스타일 (테두리, 패딩 등) */
-.user-actions button, .user-actions a:not([href*="userContent.do"]) {
+.user-actions button, .user-actions a {
 	/* 사용자 이름 링크 제외 */
 	border: 1px solid var(--button-border-color);
 	padding: 7px 15px;
@@ -228,22 +228,32 @@ nav.navigation a:hover {
 	color: var(--button-text-color); /* 기본 텍스트 색 */
 }
 
+.user-actions a[href*="userContent.do"] {
+  color: white;
+  background-color: #3CB371;
+  border-color: #3CB371;
+}
+.user-actions a[href*="userContent.do"]:hover {
+  background-color: #218838;
+}
+
 .user-actions button.btn-create-recipe{
    color: white;
-	background-color: #fcbc1b;
+   background-color: #3CB371;
+   border-color: #3CB371;
 }
 .user-actions button.btn-create-recipe:hover{
-	background-color: var(--button-login-bg-color);
+	background-color: #218838;
 }
 
 /* 로그인 버튼 스타일 */
 .user-actions button.login-open {
   color: white;
-  background-color: var(--button-login-bg-color); /* 밝은 노랑 */
+  background-color: #fcbc1b; /* 밝은 노랑 */
 }
 
 .user-actions button.login-open:hover {
-  background-color: #fcbc1b; /* 호버 시 약간 진하게 */
+  background-color: var(--button-login-bg-color); /* 호버 시 약간 진하게 */
   border-color: var(--button-border-color);
 }
 
@@ -269,21 +279,7 @@ nav.navigation a:hover {
 }
 
 /* 사용자 이름 링크 스타일 */
-.user-actions a[href*="userContent.do"] {
-	background-color: transparent;
-	border: none;
-	color: var(--nav-text-color); /* 네비 텍스트 색상과 동일하게 */
-	padding: 7px 5px; /* 다른 버튼과 높이 맞추기 위해 패딩 조정 */
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 0.9em;
-	display: inline-flex; /* 수직 정렬 위해 */
-	align-items: center;
-}
 
-.user-actions a[href*="userContent.do"]:hover {
-	text-decoration: underline; /* 호버 시 밑줄 */
-}
 /* ====================================== */
 /* ========= 헤더 스타일 끝 ========== */
 /* ====================================== */
