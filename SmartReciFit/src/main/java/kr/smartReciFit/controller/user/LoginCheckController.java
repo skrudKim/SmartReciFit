@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import kr.smartReciFit.controller.Controller;
 import kr.smartReciFit.model.user.User;
 import kr.smartReciFit.model.user.UserDAO;
+import kr.smartReciFit.model.user.UserInfoDAO;
 
 public class LoginCheckController implements Controller {
 
@@ -36,7 +37,7 @@ public class LoginCheckController implements Controller {
 	        	  String nickName = UserDAO.getInstance().getNickName(id);
 	        	   int userNum=(int)UserDAO.getInstance().checkId(id);
 	        	   user = UserDAO.getInstance().numGetUser(userNum);
-	        	   
+	        	   session.setAttribute("userMealSize", UserInfoDAO.getInstance().numGetUserInfo(userNum).getUserMealSize());
 	        	   session.setAttribute("user", user); // User 객체를 세션에 저장
 	        	   System.out.println(user);
 	        	   System.out.println("------------------------");

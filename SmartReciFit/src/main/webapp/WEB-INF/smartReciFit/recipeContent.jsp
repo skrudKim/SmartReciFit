@@ -3,8 +3,13 @@
 <%@ include file="../../part/header.jsp"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<link rel="stylesheet" type="text/css" href="${ctx}/css/recipeContent.css">
-
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/css/recipeContent.css">
+<%@ page import="kr.smartReciFit.model.user.User"%>
+<%
+double mealSize = session.getAttribute("userMealSize") == null ? 1.0 : (double) session.getAttribute("userMealSize");
+session.setAttribute("mealSize", mealSize);
+%>
 <div class="recipe-content">
 	<input class="recipe-type" type="hidden" value="${recipe.recipeType}">
 	<c:if
@@ -36,10 +41,10 @@
 
 			<div class="recipe-convert">
 				<div class="range-container">
-					<input type="range" name="range" id="range" value="1" min="0"
+					<input type="range" name="range" id="range" value="${mealSize}" min="0"
 						max="5" oninput="output.value = this.value" step="0.2">
 					<div class="output-container">
-						<output type="number" id="output" class="output">1</output>
+						<output type="number" id="output" class="output">${mealSize}</output>
 						<p>인분</p>
 					</div>
 				</div>
