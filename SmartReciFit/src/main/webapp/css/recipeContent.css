@@ -22,7 +22,7 @@
 /* Recipe Title Header */
 .recipe-title {
 	border-radius: 10px;
-	background-color: #4CAF50;
+	background-color: var(--primary-color);
 	/* Green background like the image */
 	color: white;
 	/* White text */
@@ -243,7 +243,7 @@
 	align-self: center;
 	/* 셀 내에서 수직 중앙 정렬 (선택적) */
 	/* --- 기존 스타일 유지 --- */
-	background-color: #4CAF50;
+	background-color: var(--primary-color);
 	color: white;
 	width: 24px;
 	height: 24px;
@@ -293,7 +293,7 @@
 	align-self: center;
 	/* 셀 내에서 수직 중앙 정렬 (선택적) */
 	/* --- 기존 스타일 유지 --- */
-	background-color: #4CAF50;
+	background-color: var(--primary-color);
 	color: white;
 	width: 30px;
 	height: 30px;

@@ -38,7 +38,7 @@
 
         <%-- 1. 로고 (위치/크기는 CSS로 제어) --%>
         <div class="logo">
-            <a href="${ctx}/main.do">
+            <a href="${ctx}/recipes.do">
                 <img src="${ctx}/img/SmartRecifitLogoSpoonFork.png" alt="스마트 레시핏 로고">
             </a>
         </div>
@@ -46,7 +46,7 @@
         <%-- 2. 유튜브 검색창 컨테이너 (새로 추가) --%>
         <div class="search-bar-container">
              <form action="${ctx}/recipeURL.do" method="post">
-                 <input class="youtube-url" type="text" name="youtube-url" placeholder="유튜브 레시피 영상 URL을 넣어보세요! AI가 요약해드립니다" />
+                 <input class="youtube-url" type="text" name="youtube-url" placeholder="유튜브 레시피 영상 URL을 넣어보세요! AI가 요약해드립니다" required/>
                  <button type="submit">전송</button>
              </form>
         </div>

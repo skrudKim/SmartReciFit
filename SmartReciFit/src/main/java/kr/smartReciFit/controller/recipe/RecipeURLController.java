@@ -1,11 +1,10 @@
 package kr.smartReciFit.controller.recipe;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -33,17 +32,36 @@ public class RecipeURLController implements Controller {
 		RecipeDAO dao = RecipeDAO.getInstance();
 		AiRecipe recipe = null;
 		String videoId = dao.getVideoId(url);
+		if(videoId == null) {
+			response.setContentType("text/html;charset=UTF-8");
+			String ctx = request.getContextPath();
+			// PrintWriter를 사용하여 HTML 및 JavaScript 생성
+			PrintWriter out = response.getWriter();
+			try {
+				// JavaScript alert() 호출
+				out.println("<script type='text/javascript'>");
+				out.println("alert('youtube 링크가 아닙니다');");
+				out.println("window.location.href = '"+ ctx +"/index.jsp';");
+				out.println("</script>");
+			} finally {
+				out.close();
+			}
+			return "recipes";
+		}
+		
 		System.out.println("videoId = " + videoId);
 		recipe = dao.getAiRecipeByUrl(videoId);
 		if (recipe == null) {
 			String aiRecipe = dao.getRecipe(videoId);
 			Gson gson = new GsonBuilder().create();
 			recipe = gson.fromJson(aiRecipe, AiRecipe.class);
-	        JsonObject jsonObject = JsonParser.parseString(aiRecipe).getAsJsonObject();
-	        recipe.setEatTime(KoreanNamedEnum.getEnumByKoreanName(EatTime.class,  jsonObject.get("eatTime").getAsString()));
-	        recipe.setCookingStyle(KoreanNamedEnum.getEnumByKoreanName(CookingStyle.class, jsonObject.get("cookingStyle").getAsString()));
+			JsonObject jsonObject = JsonParser.parseString(aiRecipe).getAsJsonObject();
+			recipe.setEatTime(
+					KoreanNamedEnum.getEnumByKoreanName(EatTime.class, jsonObject.get("eatTime").getAsString()));
+			recipe.setCookingStyle(KoreanNamedEnum.getEnumByKoreanName(CookingStyle.class,
+					jsonObject.get("cookingStyle").getAsString()));
 			isExist = false;
-			
+
 		}
 
 		if (recipe.isAiRecipeBoolean()) {
@@ -52,8 +70,9 @@ public class RecipeURLController implements Controller {
 			request.setAttribute("timeStamp", dao.getRecipeTimeStamp(recipe.getRecipeManualTimeStamp()));
 		}
 		recipe.setRecipeType(RecipeType.AI);
-		if(!isExist) {
+		if (!isExist) {
 			recipe.setAiRecipeUrl(videoId);
+			recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\(.*?\\)", ""));
 			dao.insertAiRecipe(recipe);
 		}
 		recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\d*\\.", ""));
