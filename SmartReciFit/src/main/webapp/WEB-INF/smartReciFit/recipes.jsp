@@ -126,6 +126,8 @@
 	background-color: #f0f0f0; /* 검색창의 배경색 */
 	border: 1px solid #ddd; /* 검색창의 테두리 */
 	position: absolute;
+	top: 120px;
+	right: 200px;
 }
 
 /* ----- 레시피 목록 컨테이너 ----- */

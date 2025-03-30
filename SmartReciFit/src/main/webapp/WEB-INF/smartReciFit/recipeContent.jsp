@@ -3,22 +3,6 @@
 <%@ include file="../../part/header.jsp"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
-/* General Body Styles */
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body {
-	font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
-	/* Common Korean font */
-	margin: 0;
-	padding: 0;
-	/* Light background for the page */
-	line-height: 1.6;
-}
-
 /* Main Recipe Container */
 .recipe-content {
 	max-width: 800px;
