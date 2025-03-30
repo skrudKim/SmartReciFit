@@ -447,5 +447,46 @@ body {
   }
 
 
+  .contentSocialBox {
+    /* border: 1px solid red; */
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px; /* 적절한 너비 설정 */
+    margin: 0 20px 20px 20px; /* 가운데 정렬 및 상하 여백 */
+}
+
+.socialHr{
+    margin: 0px;
+}
+
+.tableSocial {
+    background-color: #f0f0f0; /* 연회색 배경 */
+    /* border: 1px solid blue; */
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+  }
+  
+  .tableSocial td {
+    padding: 10px;
+    text-align: center; /* 모든 셀 내용 가운데 정렬 */
+  }
+  
+  .tableSocial td:first-child {
+    text-align: center; 
+  }
+  
+  #kakaoIcon,
+  .naver_social_connection {
+    width: 40px;
+    cursor: pointer;
+    vertical-align: middle; /* 이미지 세로 가운데 정렬 */
+  }
+  
+  #googleSignInButton {
+    display: inline-block; /* Google 로그인 버튼을 인라인 블록으로 설정 */
+    vertical-align: middle; /* 세로 가운데 정렬 */
+  }
+
   
   /* 여기까지 지영CSS */
