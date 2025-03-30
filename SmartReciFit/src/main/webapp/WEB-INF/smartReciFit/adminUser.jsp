@@ -64,7 +64,7 @@
                 .then(response => {
                     if (response.ok) {
                         // 삭제 성공 시 userList.do 페이지로 이동
-                        location.href = "${ctx}/userList.do";
+                        location.href = "${ctx}/adminUser.do";
                     } else {
                         alert("삭제에 실패했습니다.");
                     }
@@ -79,4 +79,3 @@
     </script>
 </body>
 </html>
-<%@ include file="../../part/footer.jsp"%>

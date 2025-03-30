@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	        .then(response => response.text())
 	        .then(data => {
 	            if (data === "success") {
-	                alert("로그인 성공ccc");
+	                alert("로그인 성공");
 	                location.reload(); // 일반 사용자 페이지로 이동
 	            } else if (data === "admin_success") {
 	                alert("관리자 로그인 성공");
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (data === "done") {
 						alert("로그아웃 성공");
 						setTimeout(() => {
-							location.reload();
+							location.href = ctx + '/recipes.do';
 						}, 500);
 					} else {
 						alert("로그아웃 실패");

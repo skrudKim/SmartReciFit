@@ -15,6 +15,7 @@ public class AdminManagerUserController implements Controller {
 	@Override
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("AdminManagerUserController 진입");
 		String ctx = request.getContextPath();
 		UserDAO dao = UserDAO.getInstance();
 		if (request.getRequestURI().contains("deleteUser.do")) {
@@ -38,12 +39,14 @@ public class AdminManagerUserController implements Controller {
 			// 페이징된 관리자 목록 조회
 			ArrayList<HashMap<String, Object>> adminList = dao.getPagedAdminList(page, pageSize);
 			
+			
 
 			// 요청 속성에 데이터 추가
 			request.setAttribute("userList", adminList);
 			request.setAttribute("totalCount", totalCount);
 			request.setAttribute("totalPages", totalPages);
 			request.setAttribute("currentPage", page);
+			System.out.println(request.getAttribute("userList"));
 
 			return "adminUser"; // 관리자 목록 JSP 페이지
 		}

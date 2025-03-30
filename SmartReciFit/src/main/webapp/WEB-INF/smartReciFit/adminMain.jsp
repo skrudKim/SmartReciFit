@@ -6,10 +6,9 @@
 
   <main class="content">
         <div class="container">
-            <h2>관리자 페이지</h2>
+           
 
             <jsp:include page="menu.jsp" />
 
         </div>
     </main>
-<%@ include file="../../part/footer.jsp"%>

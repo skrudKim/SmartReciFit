@@ -116,7 +116,6 @@ public class HandlerMapping {
 		mappings.put("/userList.do", new AdminUserController()); // 전체 회원 목록
 		mappings.put("/adminUser.do", new AdminManagerUserController()); // 관리자/운영 회원 목록
 		mappings.put("/deleteUser.do", new AdminUserController());
-		mappings.put("/adminUser.do", new AdminUserController()); // 관리자/운영 회원 목록
 		mappings.put("/adminReview.do", new AdminReviewController()); // 리뷰 정보 관리
 		mappings.put("/adminRecipe.do", new AdminRecipeController());
 		mappings.put("/adminRecipeDelete.do", new AdminRecipeDeleteController()); // 레시피 삭제

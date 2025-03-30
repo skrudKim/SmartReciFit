@@ -114,9 +114,6 @@ public class SaveSocialLoginInfo implements Controller {
 		// 소셜 계정 연동 상태 저장
 		Map<String, Boolean> linkedAccounts = new HashMap<>();
 		linkedAccounts.put(platform, true); // 연동한 플랫폼만 true로 설정
-		if (linkedAccounts.getOrDefault(platform, true)) {
-			return "userContent";
-		}
 
 		// 다른 소셜 계정도 연동 여부 체크 (예: 카카오, 네이버, 구글)
 		if (userDAO.isKakaoLinked(userNum)) {
@@ -133,7 +130,7 @@ public class SaveSocialLoginInfo implements Controller {
 
 		System.out.println("세션 저장 완료: " + session.getAttribute("log") + " / " + session.getAttribute("nickName"));
 
-		return "main";
+		return "recipes";
 
 	}
 }

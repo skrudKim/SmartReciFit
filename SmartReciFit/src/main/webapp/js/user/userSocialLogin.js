@@ -12,7 +12,7 @@ function kakaoLogin() {
 
 					sendUserInfoToServer('kakao', nickname, email);
 
-					alert('로그인 성공ddd')
+					alert('로그인 성공')
 					history.go(0);
 				},
 				fail: function(error) {

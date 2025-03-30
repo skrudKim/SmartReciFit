@@ -134,50 +134,6 @@ if (user != null) {
 	}
 %>
 
-<%-- <table border="1">
-	<tr>
-		<td>카카오 계정 연동</td>
-		<td>
-			<button onclick="kakaoLogin()"
-				<%if (linkedAccounts.getOrDefault("kakao", false)) {%> disabled
-				<%}%>>
-				<%=linkedAccounts.getOrDefault("kakao", false) ? "연동됨" : "연동"%>
-			</button> <a href="javascript:kakaoLogin()"><img
-				src="<c:url value='/img/kakaoIcon.png'/>"
-				style="width: 40px <%=linkedAccounts.getOrDefault("kakao", false) ? "pointer-events: none; opacity: 0.5;" : ""%>"></a>
-		</td>
-	</tr>
-	<tr>
-		<td>네이버 계정 연동</td>
-		<td>
-			<button class="naver_social_connection"
-				<%if (linkedAccounts.getOrDefault("naver", false)) {%> disabled
-				<%}%>>
-				<%=linkedAccounts.getOrDefault("naver", false) ? "연동됨" : "연동"%>
-			</button>
-			<div id="naver_id_login"
-				<%=linkedAccounts.getOrDefault("naver", false) ? "style='pointer-events: none; opacity: 0.5;'" : ""%>></div>
-		</td>
-	</tr>
-	<tr>
-		<td>구글 계정 연동</td>
-		<td>
-			<button id="googleButton" onclick="googleLogin()"
-				<%if (linkedAccounts.getOrDefault("google", false)) {%> disabled<%}%>>
-				<%=linkedAccounts.getOrDefault("google", false) ? "연동됨" : "연동"%>
-			</button>
-			<div id="g_id_onload"
-				data-client_id="231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com"
-				data-login_uri="http://localhost:8084/SmartReciFit/main.do"
-				data-auto_prompt="false"></div>
-			<div class="g_id_signin" id="googleSignInButton" data-type="standard"
-				data-size="large" data-theme="outline" data-text="sign_in_with"
-				data-shape="rectangular" data-logo_alignment="left"
-				<%=linkedAccounts.getOrDefault("google", false) ? "style='pointer-events: none; opacity: 0.5;'" : ""%>></div>
-		</td>
-	</tr>
-</table> --%>
-
 <div class="contentSocialBox">
 	<table border="1">
 		<tr>
