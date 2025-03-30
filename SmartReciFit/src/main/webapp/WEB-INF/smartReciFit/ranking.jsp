@@ -97,12 +97,12 @@ body {
 }
 
 .ranking-entry.rank-2:hover {
-    box-shadow: 0 12px 30px rgba(192, 192, 192, 0.4); /* 은색 그림자 */
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4); 
     transform: translateY(-8px);
 }
 
 .ranking-entry.rank-3:hover {
-    box-shadow: 0 12px 30px rgba(205, 127, 50, 0.4); /* 동색 그림자 */
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4); 
     transform: translateY(-8px); 
 }
 

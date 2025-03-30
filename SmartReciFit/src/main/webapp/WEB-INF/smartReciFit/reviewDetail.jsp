@@ -289,7 +289,7 @@
 /* 수정하기 버튼 (div 안 첫번째 버튼) */
 .review-detail .review-update-delete button:first-of-type {
     padding: 8px 15px;
-    background-color: #ffc107;
+    background-color: #FFCD50;
     color: #333;
     border: none;
     border-radius: 4px;
@@ -297,11 +297,12 @@
     font-size: 0.9rem;
     margin-left: 10px;
 }
-.review-detail .review-update-delete button:first-of-type:hover { background-color: #e0a800; }
+.review-detail .review-update-delete button:first-of-type:hover { background-color: #fdd674; 
+}
 /* 삭제하기 버튼 (div 안 마지막 버튼) */
 .review-detail .review-update-delete button:last-of-type {
     padding: 8px 15px;
-    background-color: #dc3545;
+    background-color: #777777;
     color: white;
     border: none;
     border-radius: 4px;
@@ -309,7 +310,7 @@
     font-size: 0.9rem;
     margin-left: 10px;
 }
-.review-detail .review-update-delete button:last-of-type:hover { background-color: #c82333; }
+.review-detail .review-update-delete button:last-of-type:hover { background-color: #5a6268; }
 
 /* 댓글 h3 */
 /* 기존 h3 스타일 재사용 */
@@ -367,15 +368,13 @@
 /* 목록 버튼 (기존 클래스 활용) */
 .review-detail .review-list-btn {
     padding: 8px 15px;
-    background-color: #6c757d;
+    background-color: #777777;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.95rem;
-    /* 높이는 align-items: stretch 로 자동 조절됨 */
     white-space: nowrap; /* 버튼 이름 줄바꿈 방지 */
-    /* margin-left: 10px; /* gap 속성으로 대체 */
 }
 .review-detail .review-list-btn:hover {
     background-color: #5a6268;

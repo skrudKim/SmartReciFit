@@ -65,7 +65,7 @@
 
 .event-section h3::before {
 	content: '◎';
-	color: #FF6347; 
+	color: #FF7300; 
 	font-size: 1.2rem;
 	margin-right: 10px; 
 	line-height: 1; 
