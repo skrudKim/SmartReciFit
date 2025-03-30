@@ -1,0 +1,451 @@
+@charset "UTF-8";
+
+/* @font-face {
+  font-family: 'HakgyoansimDunggeunmisoTTF-B';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+} */
+
+@font-face {
+    font-family: 'ChosunGu';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    font-family: 'ChosunGu', sans-serif;
+    /* font-family: Arial, sans-serif; */
+    margin: 0;
+    padding: 0;
+  }
+
+  
+/* 여기 아래로 지영CSS */
+.inner {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd; */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .title {
+    height: 30px;
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    color: black; /* title div 전체 텍스트 색상 검정색으로 설정 */
+    display: flex; /* flexbox 레이아웃 적용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+  }
+  
+  .title span { /* title div 내부 span 태그 스타일 */
+    color: #FF7300; /* span 태그 내부 텍스트 색상 흰색으로 설정 */
+    margin: 0
+  }
+  
+  .title h2 {
+    color: inherit; /* h2 태그의 텍스트 색상을 부모 요소(title div)로부터 상속 */
+  }
+  
+  .inner p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .notice{
+    color: red;
+  }
+  
+  .inner hr {
+    border: none; /* 기본 테두리 제거 */
+    width: 80%;
+    height: 1px; /* 선의 높이를 1px로 설정 */
+    background-color: #777777; /* 선의 색상 설정 (원하는 색상으로 변경 가능) */
+    margin: 10px 0 40px 0;
+  }
+  
+  .contentEvery{
+    display: flex;
+    width: 80%;
+    align-items: center;
+  }
+  
+  .contentImg, .contentTable, .contentInfoBox { /* 두 div 박스의 공통 스타일 */
+    box-sizing: border-box; /* padding 및 border를 너비에 포함 */
+  }
+  
+  .contentImg {
+    width: 40%;
+    padding-right: 20px; /* 이미지 div 박스에 오른쪽 여백 추가 */
+  }
+  
+  .contentTable {
+    width: 60%;
+    padding-left: 10px; /* 테이블 div 박스에 왼쪽 여백 추가 */
+  }
+  
+  .contentImg img.photo,
+  .contentImg img.default { /* 이미지 스타일 */
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 가로세로 비율 1:1 설정 */
+    border-radius: 20px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border: 8px solid #FFCD50;
+  }
+  
+  .contentTable table { /* 테이블 스타일 */
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .contentTable table td {
+    padding: 10px;
+    /* border: 1px solid #ddd; */
+  }
+  
+  .contentTable table td:nth-child(1) { /* 테이블 첫 번째 열 스타일 (주황색) */
+    color: orange;
+    font-weight: bold;
+    text-align: right; /* 텍스트 우측 정렬 추가 */
+  }
+  
+  .contentTable table td:nth-child(2) { /* 테이블 두 번째 열 스타일 (검정색) */
+    color: black;
+  }
+  
+  .inner button { /* 버튼 스타일 */
+    width: 150px;
+    height: 40px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    box-sizing: border-box; /* padding 및 border를 너비에 포함 */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* 애니메이션 효과 추가 */
+}
+
+.inner button:hover {
+    transform: scale(1.1); /* hover 시 110% 크기로 확대 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
+}
+
+.inner button:disabled {
+    opacity: 0.5; /* 버튼 투명도 설정 (0 ~ 1) */
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+.inner .btn-green{
+    background-color: #3CB371;
+    border: 3px solid #3CB371;
+}
+    
+.inner .btn-green:hover{
+    border: 3px solid #127700;
+}
+.inner .btn-grey{
+    background-color: #777777;
+    border: 3px solid #777777;
+}
+    
+.inner .btn-grey:hover{
+    border: 3px solid #494949;
+}
+.inner .btn-yellow{
+    background-color: #FFCD50;
+    border: 3px solid #FFCD50;
+}
+    
+.inner .btn-yellow:hover{
+    border: 3px solid #FFA300;
+}
+
+    
+  .contentInfoBox table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+    border-radius: 8px; /* 테이블 모서리 둥글게 */
+    overflow: hidden; /* 둥근 모서리 적용을 위해 overflow: hidden 추가 */
+  }
+  
+  .contentInfoBox table td:nth-child(1) { /* 테이블 첫 번째 열 스타일 */
+    color: #127700;
+    font-weight: bold;
+    text-align: right; /* 텍스트 우측 정렬 추가 */
+  }
+  
+  .contentTable table td:nth-child(2) { /* 테이블 두 번째 열 스타일 (검정색) */
+    color: black;
+  }
+  
+  .contentInfoBox table td {
+    padding: 12px 15px; /* 패딩 값 조정 */
+    text-align: center;
+  }
+  
+  .contentInfoBox form { /* 인포 수정 폼 스타일 */
+    margin-top: 20px;
+  }
+  
+  .mealSize {
+    font-weight: bold;
+    width: 60px; /* 박스 길이 60px 설정 */
+    background-color: #E7FFE3;
+    color: #3CB371; /* 글씨색 #3CB371로 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 (선택 사항) */
+  }
+  
+  .infoItem {
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #E7FFE3;
+    border: 2px solid #3CB371;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px; /* height 값과 동일하게 설정하여 세로 중앙 정렬 */
+    margin: 5px;
+    color: #3CB371; /* border 색상과 동일하게 설정 */
+    font-size: 15px;
+  }
+  
+  .checkMealSize, .checkItem{
+    height: 50px;
+    border: 1px solid #777777;
+    border-radius: 15px;
+    display: flex; /* flexbox 레이아웃 적용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center;
+    margin: 10px 0 50px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
+  }
+  
+  .infoRadio, .infoCheckbox{
+    accent-color: #3CB371;
+    margin-left: 15px; /* 체크박스 간 간격 설정 (선택 사항) */
+}
+
+.delCheckBoxDiv {
+    height: 50px;
+    width: 300px;
+    border: 1px solid #777777;
+    border-radius: 15px;
+    display: flex; /* flexbox 레이아웃 적용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center;
+    margin: 10px 0 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
+}
+
+.delCheckBox{
+    accent-color: #777777;
+  }
+  
+  .infoRadio:hover,
+  .infoCheckbox:hover,
+  .delCheckBox:hover{
+    transform: scale(1.1); /* hover 시 110% 크기로 확대 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
+  }
+  
+  .tableUserJoin, .tableUserFix{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .tableUserJoin td, .tableUserFix td{
+    padding: 10px;
+    text-align: center; /* 기본적으로 중앙 정렬 */
+  }
+  
+  .tableUserJoin td:nth-child(1),
+  .tableUserFix td:nth-child(1){
+    text-align: right;
+  }
+
+  .tableUserJoin tr:nth-child(2), 
+  .tableUserFix tr:nth-child(2) {
+    width: 60%; /* 두 번째 행의 너비를 테이블의 60%로 설정 */
+}
+  
+  .inputUserJoin, .inputUserFix{
+    width: 300px;
+    padding: 8px;
+    box-sizing: border-box;
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+  }
+
+  .inputUserJoin:valid,
+  .inputUserFix:valid{
+    border-color: #777777;
+  }
+  
+  .tableUserJoin button,
+  .tableUserFix button {
+    width: 150px;
+    height: 35px;
+    padding: 8px 12px;
+    background-color: #FFCD50;
+    color: white;
+    border: #FFCD50;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .tableUserJoin button:hover,
+  .tableUserFix button:hover {
+    transform: scale(1.0); /* hover 시 110% 크기로 확대 */
+    border: #FFA300;
+  }
+
+  .btn-imgDel{
+    background-color: #777777;
+  }
+  
+  .inputFileHidden {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  
+  .fileLabel {
+    width: 100px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fileLabel:hover {
+    border: #127700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
+  }
+  
+  #imgPreview {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  #imgPreview img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 가로세로 비율 1:1 설정 */
+    object-fit: cover;
+  }
+
+  .UserFindDiv {
+    border: 1px red;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputUserFind {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.foldCount {
+      border: 1px blue;
+      height: 20px;
+      width: 100%;
+      text-align: center;
+    color: black;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.foldBox {
+    border: 1px purple;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .foldBox p {
+    margin-bottom: 20px;
+  }
+  
+  .btn-setUserFind {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 인증 완료 후 input 크기 유지 */
+.inputUserFind, #checkEmailOk {
+    width: 80%;
+}
+
+.idBox{
+    width: 80%;
+    height: 50px;
+    border: 1px solid #777777;
+    border-radius: 15px;
+    display: flex; /* flexbox 레이아웃 적용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* hover 시 그림자 추가 */
+    margin: 10px 0 50px 0;
+  }
+
+  .resetPwDiv {
+    width: 100%; /* resetPwDiv 전체 너비 사용 */
+    margin-top: 20px; /* resetPwDiv 상단 간격 추가 */
+  }
+  
+  .inputPwReset {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px; /* inputPwReset 아래쪽 간격 추가 */
+  }
+
+
+  
+  /* 여기까지 지영CSS */

@@ -1,18 +1,6 @@
 /* 전체 스타일*/
 
-/* @font-face {
-  font-family: 'HakgyoansimDunggeunmisoTTF-B';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-} */
 
-@font-face {
-  font-family: 'ChosunGu';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
 
 body {
   font-family: 'ChosunGu', sans-serif;
@@ -20,8 +8,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-
 
 .container {
   width: 80%;
@@ -88,19 +74,13 @@ header {
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;  /* 링크 스타일 제거 */
-
-  
 }
-
-
 
 .user-actions button:hover,
 .user-actions a:hover {
   background-color: var(--secondary-color);
 }
 /*  로그인 모달 창*/
-/* 로그인 모달 창 */
-/* 로그인 모달 창 */
 .modal.login-modal,
 .overlay {
   display: none;
@@ -111,15 +91,12 @@ header {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 .modal.login-modal {
   z-index: 1001; /* 다른 요소 위에 표시 */
 }
-
 .overlay {
   z-index: 1000;
 }
-
 .modal.login-modal.active,
 .overlay.active {
   display: block;
@@ -131,10 +108,10 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--header-footer-color);
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 320px; /* 모달 너비 조정 */
+  width: 400px; /* 모달 너비 조정 */
 }
 
 .modal-content button.btn-close {
@@ -159,7 +136,7 @@ header {
 
 .modal-content input {
   padding: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -178,168 +155,12 @@ header {
   background-color: var(--secondary-color);
 }
 
-.modal-content #naver_id_login {
-  display: none; /* 이 요소를 숨깁니다 */
-}
-
-/* 아이콘 컨테이너 */
-
-.icon-container {
-  display: flex; /* 가로 정렬 */
-  justify-content: center; /* 아이콘을 중앙에 정렬 */
-  margin: 50px 0; /* 상하 여백 조정 */
-  width: 100%; /* 너비를 100%로 설정 */
-}
-
-.login-icon {
-  width: 40px; /* 아이콘 크기 통일 */
-  height: 40px; /* 아이콘 높이 통일 */
-  object-fit: contain; /* 이미지 비율 유지 */
-  cursor: pointer; /* 커서 포인터 추가 */
-  margin: 0 10px; /* 아이콘 간격 조정 */
-}
-.icon-container img.naver_login_connection {
-    margin-right: 20px; /* 네이버 아이콘 오른쪽에 10px 마진 추가 */
-}
-/* 아이디 또는 비밀번호 찾기 링크 */
-.find-account.button {
-    display: inline-block; /* 버튼처럼 보이도록 */
-    padding: 10px 20px; /* 버튼 안쪽 여백 */
-    background-color: FFCD50; /* 배경색 노란색 */
-    color: black; /* 글자색 */
-    border: none; /* 테두리 없음 */
-    border-radius: 5px; /* 모서리 둥글게 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    text-decoration: none; /* 링크 스타일 제거 */
-    cursor: pointer; /* 커서 포인터 추가 */
-    margin-top: 20px; /* 상단 여백 */
-}
-
-.find-account.button:hover {
-    background-color: fff3c2; /* 마우스 오버 시 색상 변경 */
-}
-
-
-table, td{
-	border: 1px solid black;
-}
-
 .userContentImg{
-	width: 150px;
-	height: 150px;
+	width: 50px;
+	height: 50px;
+  border-radius: 15px;
 	object-fit: cover;
 	margin: 10px;
 }
 
 
-
-/* 여기 아래로 지영CSS */
-
-/* 인포 시작 */
-
-.inner {
-  width: 80%;
-  margin: 50px auto;
-  padding: 30px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: inherit; /* inner 내부 폰트 body와 동일하게 설정 */
-}
-
-.inner h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.inner p {
-  margin-bottom: 20px;
-  color: #555;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.checkMealSize, .checkItem {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  text-align: center; /* 내부 input, label 좌측 정렬 */
-}
-
-.checkMealSize input[type="radio"], .checkItem input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.checkMealSize label, .checkItem label {
-  margin-right: 20px;
-}
-
-h3 {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #444;
-}
-
-#btn-infoCancel, #btn-infoSubmit {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#btn-infoCancel {
-  background-color: #777777;
-  color: white;
-  margin-right: 10px;
-}
-
-#btn-infoCancel {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  /* transition: border 0.3s ease, background-color 0.3s ease; 부드러운 효과를 위한 transition 추가 */
-}
-
-#btn-infoCancel:hover {
-  border: 3px solid #494949;
-}
-
-#btn-infoSubmit {
-  background-color: #3CB371;
-  color: white;
-}
-
-#btn-infoSubmit {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  /* transition: border 0.3s ease, background-color 0.3s ease; 부드러운 효과를 위한 transition 추가 */
-}
-
-#btn-infoSubmit:hover {
-  border: 3px solid #127700;
-}
-
-.infoCheckbox:checked {
-  accent-color: #3CB371;
-}
-
-
-
-
-
-/* 인포 끝 */
-
-/* 여기까지 지영CSS */
