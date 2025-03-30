@@ -17,7 +17,7 @@
 <div class="inner">
     <h2>TAG 입력하기</h2>
     <hr>
-    <form id="userInfoForm" method="post" action="userInfoFix.do">
+    <form id="userInfoForm" method="post" action="userInfo.do">
         <p class="infoP">평소 식사량을 선택해 주세요. 해당 정보를 기반으로 레시피의 재료양이 수정됩니다.</p>
         <div class="checkMealSize" id="box-mealSixe">
             <input type="radio" class="infoRadio" name="mealSize" value="0.5"> 0.5인분
@@ -94,7 +94,7 @@
 </div>
 
 <script>
-$(document).ready(function() {
+<%-- $(document).ready(function() {
 	
     let isLogin = <%= isLogin %>; // JavaScript 변수에 로그인 상태 전달
 	console.log("isLogin="+isLogin);
@@ -126,7 +126,7 @@ if (!isLogin||isLogin==='false'||isLogin=='false') {
 			}
 		});
 } 
-}
+} --%>
 </script>
 <script src="${ctx}/js/user/userInfo.js"> </script>
 
