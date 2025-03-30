@@ -530,5 +530,135 @@ h3 {
 .infoCheckbox:checked {
 	accent-color: #3CB371;
 }
+/* ====================================== */
+/* ========= 헤더 스타일 반응형 ========= */
+/* ====================================== */
 
+/* === 태블릿 화면 (992px 이하) === */
+@media (max-width: 992px) {
+  /* ... 기존 태블릿 스타일 ... */
+  .header-container { max-width: 95%; padding: 0 15px; }
+  .logo img { height: 120px; }
+  .search-bar-container { top: 115px; }
+  .search-bar-container input.youtube-url { min-width: 400px; }
+  nav.navigation { top: 165px; }
+  nav.navigation ul { gap: 30px; }
+  header { min-height: 230px; }
+  main { padding-top: 240px; }
+  .user-actions { right: 15px; top: 10px; } /* top 값 명시 */
+  .user-actions button, .user-actions a { padding: 6px 12px; font-size: 0.85em; }
+}
+
+
+/* === 모바일 화면 (768px 이하) === */
+@media (max-width: 768px) {
+  .header-container { max-width: 100%; padding: 0 10px; }
+
+  /* 1. 로고 중앙 */
+  .logo { top: 10px; transform: translateX(-50%); }
+  .logo img { height: 80px; }
+
+  /* === 수정: 사용자 액션 버튼 위치 재조정 === */
+  .user-actions {
+    top: 15px; /* 헤더 상단에서 적절한 간격 */
+    right: 10px; /* 우측 여백 */
+    /* bottom, left, transform 제거 */
+    position: absolute; /* 위치 고정 */
+    z-index: 12; /* 검색창보다 위에 오도록 */
+    gap: 5px;
+  }
+  /* 버튼 크기/폰트 조정 */
+  .user-actions button, .user-actions a {
+    padding: 5px 8px; /* 패딩 약간 더 줄임 */
+    font-size: 0.75em; /* 폰트 크기 조정 */
+  }
+
+
+  /* 2. 검색창: 로고 아래 */
+  .search-bar-container {
+    /* 로고 top(10) + 높이(80) + 간격(15) = 105 */
+    top: 105px;
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 11; /* 버튼 아래, 네비 위 */
+  }
+  .search-bar-container form { width: 100%; justify-content: center; }
+  .search-bar-container input.youtube-url { /* ... 너비, 폰트 등 ... */ width: 70%; flex-grow: 1; font-size: 0.85rem; padding: 8px 12px;}
+  .search-bar-container button { /* ... 폰트, 패딩 등 ... */ font-size: 0.85rem; padding: 8px 12px; flex-shrink: 0; }
+
+  /* 3. 네비게이션: 검색창 아래 */
+  nav.navigation {
+    /* 검색창 top(105) + 높이(약38) + 간격(15) = 158 */
+    top: 158px;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    z-index: 5; /* 제일 아래 */
+    text-align: center;
+  }
+  nav.navigation ul { gap: 15px; flex-wrap: wrap; justify-content: center; padding: 5px 0; display: inline-flex; }
+  nav.navigation a { font-size: 1rem; padding: 5px 10px; }
+
+  /* === 수정: 헤더 높이 재계산 === */
+  header {
+    /* 버튼 영역이 상단에 고정되므로 높이 계산 시 수직 공간 고려 */
+    /* 로고(80)+간격(15)+검색창(38)+간격(15)+네비(wrap 시 최소 2줄, 약 70px)+하단여백(10) => 최소 약 228px */
+    min-height: 230px; /* 버튼이 들어갈 공간 확보 및 네비 wrap 고려 */
+  }
+
+  /* === 수정: 메인 영역 패딩 조정 === */
+  main {
+    padding-top: 240px; /* 최종 헤더 높이에 맞춤 */
+  }
+}
+
+/* === 더 작은 모바일 화면 (480px 이하) === */
+@media (max-width: 480px) {
+  .logo img { height: 60px; } /* 로고 더 작게 */
+
+  /* 사용자 버튼 위치/크기 조정 */
+  .user-actions {
+    top: 10px; /* 위쪽 여백 조정 */
+    right: 5px; /* 오른쪽 여백 조정 */
+    gap: 4px;
+  }
+  .user-actions button, .user-actions a {
+    padding: 4px 6px; /* 패딩 더 줄임 */
+    font-size: 0.7em; /* 폰트 더 줄임 */
+  }
+
+
+  /* 검색창 위치/크기 조정 */
+  .search-bar-container {
+    /* 로고 top(10) + 높이(60) + 간격(10) = 80 */
+    top: 80px;
+    width: 98%;
+  }
+   .search-bar-container input.youtube-url { font-size: 0.8rem; padding: 7px 10px;}
+   .search-bar-container button { font-size: 0.8rem; padding: 7px 10px;}
+
+   /* 네비 위치/크기 조정 */
+   nav.navigation {
+     /* 검색창 top(80) + 높이(약36) + 간격(10) = 126 */
+     top: 126px;
+   }
+   nav.navigation ul { gap: 10px; }
+   nav.navigation a { font-size: 0.9rem; padding: 4px 8px; }
+
+   /* 헤더 높이 재조정 */
+   header {
+     /* 로고(60)+간격(10)+검색(36)+간격(10)+네비(wrap 최소 2줄, 약 60)+하단여백(10) => 최소 약 186px */
+     min-height: 200px; /* 버튼, 네비 고려 */
+   }
+   /* 메인 패딩 재조정 */
+   main {
+     padding-top: 210px;
+   }
+}
+
+/* ====================================== */
+/* ========= 반응형 끝 ================== */
+/* ====================================== */
 /* 여기까지 지영CSS */
