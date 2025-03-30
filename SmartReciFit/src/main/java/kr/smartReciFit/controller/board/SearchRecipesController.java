@@ -1,6 +1,7 @@
 package kr.smartReciFit.controller.board;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -21,8 +22,13 @@ public class SearchRecipesController implements Controller {
 			throws ServletException, IOException {
 
 		String keyword = request.getParameter("keyword");
+		int limit = request.getParameter("limit") == null ? 4 : Integer.parseInt(request.getParameter("limit"));
+		HashMap<String, Object> parameter = new HashMap<String, Object>();
+		parameter.put("keyword", keyword);
+		parameter.put("limit", limit);
+		
 		Gson gson = new Gson();
-		String jsonArray = gson.toJson(RecipeDAO.getInstance().searchRecipes(keyword));
+		String jsonArray = gson.toJson(RecipeDAO.getInstance().searchRecipes(parameter));
 
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().write(jsonArray.toString());

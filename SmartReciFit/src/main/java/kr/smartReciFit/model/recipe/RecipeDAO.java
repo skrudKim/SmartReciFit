@@ -18,6 +18,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import kr.smartReciFit.model.recipe.tags.RecipeType;
 import kr.smartReciFit.soketServer.JavaServer;
 import kr.smartReciFit.util.Config;
 
@@ -101,23 +102,69 @@ public class RecipeDAO {
 		return message;
 	}
 
-	public ApiRecipe getRecipeByRecipeNum(int recipeNum) {
-		ApiRecipe apiRecipe = null;
+	public Recipe getRecipeByRecipeNum(int recipeNum) {
+		Recipe recipe = null;
 		try (SqlSession session = Config.getSession().openSession()) {
-			apiRecipe = session.selectOne("getRecipeByRecipeNum", recipeNum);
+			recipe = session.selectOne("getRecipeByRecipeNum", recipeNum);
 		} catch (Exception e) {
 			System.out.println("getRecipeByRecipeNum() 오류");
 			e.printStackTrace();
 		}
-		return apiRecipe;
+		return recipe;
+	}
+	
+	public ApiRecipe getApiRecipeByRecipeNum(int recipeNum) {
+		ApiRecipe recipe = null;
+		try (SqlSession session = Config.getSession().openSession()) {
+			recipe = session.selectOne("getApiRecipeByRecipeNum", recipeNum);
+		} catch (Exception e) {
+			System.out.println("getApiRecipeByRecipeNum() 오류");
+			e.printStackTrace();
+		}
+		return recipe;
+	}
+	
+	public AiRecipe getAiRecipeByRecipeNum(int recipeNum) {
+		AiRecipe recipe = null;
+		try (SqlSession session = Config.getSession().openSession()) {
+			recipe = session.selectOne("getAiRecipeByRecipeNum", recipeNum);
+		} catch (Exception e) {
+			System.out.println("getAiRecipeByRecipeNum() 오류");
+			e.printStackTrace();
+		}
+		return recipe;
+	}
+	
+	public UserRecipe getUserRecipeByRecipeNum(int recipeNum) {
+		UserRecipe recipe = null;
+		try (SqlSession session = Config.getSession().openSession()) {
+			recipe = session.selectOne("getUserRecipeByRecipeNum", recipeNum);
+		} catch (Exception e) {
+			System.out.println("getUserRecipeByRecipeNum() 오류");
+			e.printStackTrace();
+		}
+		return recipe;
+	}
+	
+
+
+	
+	public RecipeType getRecipeType(int recipeNum) {
+		RecipeType recipeType = null;
+		try (SqlSession session = Config.getSession().openSession()) {
+			recipeType = session.selectOne("getRecipeTypeByRecipeNum", recipeNum);
+		} catch (Exception e) {
+			System.out.println("getRecipeByRecipeNum() 오류");
+			e.printStackTrace();
+		}
+		return recipeType;
 	}
 
 	// 후기글 작성중 레시피 검색 (명보)
-	public ArrayList<Recipe> searchRecipes(String keyword) {
+	public ArrayList<Recipe> searchRecipes(HashMap<String, Object> parameter) {
 		ArrayList<Recipe> list = new ArrayList<Recipe>();
 		try (SqlSession session = Config.getSession().openSession()) {
-			list = (ArrayList) session.selectList("searchRecipes", keyword);
-			System.out.println("검색결과" + list);
+			list = (ArrayList) session.selectList("searchRecipes", parameter);
 			return list;
 		} catch (Exception e) {
 			System.out.println("searchRecipes 에러");

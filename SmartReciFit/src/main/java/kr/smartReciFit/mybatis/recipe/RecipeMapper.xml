@@ -28,19 +28,23 @@
 
 	<!--명보가 추가함 레시피등록할 때 쓰려고 -->
 	<insert id="insertUserRecipe" parameterType="map">
-		INSERT INTO user_recipe (recipe_num, user_num, user_recipe_img)
-		VALUES (#{recipeNum}, #{userNum}, #{userRecipeImg})
+		INSERT INTO
+		user_recipe (recipe_num, user_num, user_recipe_img)
+		VALUES
+		(#{recipeNum}, #{userNum}, #{userRecipeImg})
 	</insert>
 
 	<!--참고한 레시피 찾기 -->
-	<select id="searchRecipes" parameterType="string"
+	<select id="searchRecipes" parameterType="HashMap"
 		resultMap="recipeResultMap">
 		SELECT * FROM recipe r
 		INNER JOIN tag t
-		ON r.recipe_num = t.tag_recipe_id
+		ON r.recipe_num =
+		t.tag_recipe_id
 		WHERE recipe_name LIKE
 		CONCAT('%',
-		#{keyword}, '%') LIMIT 4
+		#{keyword}, '%') LIMIT
+		#{limit}
 	</select>
 
 	<resultMap type="recipe" id="recipeResultMap">
@@ -91,6 +95,14 @@
 		<result property="recipeManualTimeStamp"
 			column="recipe_manual_timeStamp" />
 		<result property="aiRecipeBoolean" column="ai_recipe_boolean" />
+	</resultMap>
+
+	<resultMap type="userRecipe" id="UserRecipeResultMap"
+		extends="recipeResultMap">
+
+		<!-- AiRecipe 클래스의 고유 필드 매핑 -->
+		<result property="userNum" column="user_num" />
+		<result property="userRecipeImg" column="user_recipe_img" />
 	</resultMap>
 
 	<update id="updateEnumTag" parameterType="HashMap">
@@ -184,13 +196,9 @@
 	</update>
 
 	<select id="getRecipeByRecipeNum" parameterType="int"
-		resultMap="ApiRecipeResultMap">
+		resultMap="recipeResultMap">
 		SELECT *
 		FROM recipe r
-		INNER JOIN api_recipe ar
-		ON
-		r.recipe_num=
-		ar.recipe_num
 		INNER JOIN tag t
 		ON t.tag_recipe_id =
 		r.recipe_num
@@ -198,14 +206,49 @@
 		r.recipe_num = #{recipeNum}
 	</select>
 
-	<select id="getRecipeByNum" parameterType="int"
-		resultMap="recipeResultMap">
+	<select id="getApiRecipeByRecipeNum" parameterType="int"
+		resultMap="ApiRecipeResultMap">
 		SELECT *
 		FROM recipe r
+		INNER JOIN api_recipe ar
+		ON
+		ar.recipe_num = r.recipe_num
+		INNER JOIN tag t
+		ON r.recipe_num =
+		t.tag_recipe_id
+		WHERE r.recipe_num = ${recipeNum}
+	</select>
+
+	<select id="getAiRecipeByRecipeNum" parameterType="int"
+		resultMap="AiRecipeResultMap">
+		SELECT *
+		FROM recipe r
+		INNER JOIN ai_recipe ar
+		ON
+		ar.ai_recipe_num = r.recipe_num
 		INNER JOIN tag t
 		ON r.recipe_num =
 		t.tag_recipe_id
 		WHERE recipe_num = ${recipeNum}
+	</select>
+	
+	<select id="getUserRecipeByRecipeNum" parameterType="int"
+		resultMap="UserRecipeResultMap">
+		SELECT *
+		FROM recipe r
+		INNER JOIN user_recipe ur
+		ON
+		ur.recipe_num = r.recipe_num
+		INNER JOIN tag t
+		ON r.recipe_num =
+		t.tag_recipe_id
+		WHERE r.recipe_num = ${recipeNum}
+	</select>
+
+	<select id="getRecipeTypeByRecipeNum" parameterType="int"
+		resultType="recipeType">
+		SELECT tag_recipe_type FROM tag WHERE tag_recipe_id =
+		#{recipe_num}
 	</select>
 
 	<select id="getAiRecipeByUrl" parameterType="String"
@@ -224,7 +267,8 @@
 	</select>
 
 	<select id="getLastInsertedId" resultType="int">
-		SELECT LAST_INSERT_ID()
+		SELECT
+		LAST_INSERT_ID()
 	</select>
 
 	<select id="getRecipeByLimitOffest" parameterType="HashMap"
@@ -232,7 +276,8 @@
 		SELECT *
 		FROM recipe r
 		INNER JOIN tag t
-		ON r.recipe_num = t.tag_recipe_id
+		ON r.recipe_num =
+		t.tag_recipe_id
 		ORDER
 		BY r.recipe_num
 		LIMIT #{limit} OFFSET #{offset};
@@ -240,11 +285,13 @@
 
 	<select id="getRecipeCount" resultType="int">
 		SELECT COUNT(*)
-		FROM recipe;
+		FROM
+		recipe;
 	</select>
 
 	<delete id="deleteRecipeByRecipeNum" parameterType="int">
-		DELETE FROM recipe
+		DELETE FROM
+		recipe
 		WHERE recipe_num = #{recipeNum}
 	</delete>
 </mapper>

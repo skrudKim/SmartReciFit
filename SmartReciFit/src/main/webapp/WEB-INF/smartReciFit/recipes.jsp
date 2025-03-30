@@ -3,52 +3,70 @@
 <%@ include file="../../part/header.jsp"%>
 <style>
 
-/* ----- 필터 섹션 ----- */
+/* ----- 필터 섹션 (수정됨) ----- */
 .recipe-filter {
 	background-color: #fff;
 	width: 80%;
-	/* 필터 영역 배경색 */
-	padding: 20px;
-	margin-bottom: 30px;
-	/* 필터와 레시피 목록 사이 간격 */
+	padding: 20px; /* 컬럼 간 간격은 grid gap으로 처리, 내부 여백 유지 */
+	margin: 0 auto 30px auto; /* 위쪽 margin 제거, 아래쪽 유지 */
 	border-radius: 8px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-	/* 은은한 그림자 */
-	margin: auto;
-	margin-bottom: 20px;
+	/* === Grid Layout으로 변경 === */
+	display: grid;
+	grid-template-columns: repeat(4, 1fr); /* 4개의 동일한 너비 컬럼 생성 */
+	gap: 25px; /* 컬럼 사이의 간격 */
+	position: relative;
 }
 
+/* --- 기존 .filter-container 스타일 제거 또는 주석 처리 --- */
+/*
 .filter-container {
 	display: flex;
 	flex-wrap: wrap;
-	/* 항목이 많으면 자동으로 줄바꿈 */
 	gap: 10px;
-	/* 필터 버튼 사이의 간격 (가로, 세로 모두 적용) */
 	margin-bottom: 15px;
-	/* 필터 그룹 간의 간격 */
 	padding-bottom: 15px;
-	/* 그룹 하단 여백 */
 	border-bottom: 1px solid #eee;
-	/* 그룹 구분선 */
 }
-
 .filter-container:last-child {
 	margin-bottom: 0;
-	/* 마지막 그룹 아래 여백 제거 */
 	padding-bottom: 0;
 	border-bottom: none;
-	/* 마지막 그룹 구분선 제거 */
+}
+*/
+
+/* ----- 새 필터 컬럼 스타일 ----- */
+.filter-column {
+	/* 컬럼 자체에 대한 추가 스타일링 가능 (예: 배경, 테두리) */
+	/* border-right: 1px solid #eee; 컬럼 구분선 (선택 사항) */
+	/* padding: 10px; 컬럼 내부 여백 (선택 사항) */
+	
+}
+/* .filter-column:last-child {
+    border-right: none; 마지막 컬럼 구분선 제거
+} */
+
+/* 컬럼 제목 스타일 (선택 사항 - HTML의 h3에 적용) */
+.filter-column-title {
+	font-size: 1rem; /* 0.9rem 또는 원하는 크기 */
+	color: #333;
+	font-weight: 600;
+	margin-bottom: 12px; /* 제목과 버튼 그룹 사이 간격 */
+	/* padding-left: 5px; 약간의 들여쓰기 (선택 사항) */
 }
 
-/* 필터 그룹 제목 (선택적 - HTML에 추가 필요)
-.filter-container h3 {
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: 1rem;
-  color: #555;
-} */
+/* ----- 필터 버튼들을 감싸는 컨테이너 (수정됨) ----- */
+/* 이 클래스는 각 컬럼 내에서 버튼들의 레이아웃을 담당합니다. */
+.filter-items {
+	display: flex;
+	flex-wrap: wrap; /* 버튼이 많으면 자동으로 줄바꿈 */
+	gap: 8px 10px; /* 버튼 사이 간격 (세로 8px, 가로 10px) */
+	/* justify-content: space-between; */ /* 버튼이 2개일 때 양쪽 정렬 (선택 사항) */
+	align-items: flex-start; /* 버튼 높이가 다를 경우 상단 정렬 */
+}
+
+/* ----- 필터 버튼 (기존 스타일 유지) ----- */
 .recipe-filter input[type="checkbox"] {
-	/* 기존 스타일 유지 - 화면에서 숨김 */
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
@@ -58,50 +76,56 @@
 
 .recipe-filter label {
 	display: inline-flex;
-	/* 내용을 가운데 정렬하면서 inline 요소처럼 배치 */
 	align-items: center;
 	justify-content: center;
-	padding: 8px 15px;
-	/* 내부 여백 (너비 대신 사용) */
-	min-width: 80px;
-	/* 최소 너비 보장 (선택 사항) */
-	height: 34px;
-	/* 높이 */
+	padding: 7px 12px; /* 내부 여백 약간 조정 (선택 사항) */
+	/* width: calc(50% - 5px); */ /* 중요: 한 줄에 2개씩 강제 배치 (가로 gap 고려) */
+	/* min-width 제거 또는 조정 */
+	height: 32px; /* 높이 약간 조정 (선택 사항) */
 	border: 1px solid #ccc;
-	/* 테두리 색상 약간 연하게 */
-	border-radius: 17px;
-	/* 높이의 절반으로 완전한 캡슐 형태 */
-	font-size: 0.9rem;
-	/* 폰트 크기 약간 작게 */
+	border-radius: 16px; /* 높이의 절반 */
+	font-size: 0.85rem; /* 폰트 크기 약간 작게 (선택 사항) */
 	color: #555;
-	/* 기본 글자색 */
 	background-color: #fff;
-	/* 기본 배경색 */
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
-	/* 부드러운 전환 효과 */
 	user-select: none;
-	/* 텍스트 선택 방지 */
+	text-align: center; /* 내부 텍스트 가운데 정렬 */
+	flex-grow: 1; /* 남는 공간을 채우도록 함 (선택 사항) */
+	/* 한 줄에 정확히 2개를 맞추려면 width를 calc()로 계산해야 할 수 있습니다. */
+	/* 예: width: calc(50% - (gap / 2)); 가로 gap이 10px이면 width: calc(50% - 5px); */
+	/* 하지만 flex-wrap과 함께 사용하면 자연스럽게 배치될 수도 있습니다. */
+	margin-bottom: 10px;
+}
+
+/* 버튼 너비를 자동으로 하되, 한 줄에 두 개 정도 들어가도록 유도 */
+.recipe-filter label {
+	/* ... 기존 스타일 ... */
+	flex-basis: calc(50% - 10px); /* 기본 너비를 50%에서 gap 절반 뺀 값으로 시도 */
+	flex-grow: 0; /* 더 이상 늘어나지 않게 */
+	min-width: 80px; /* 너무 작아지는 것 방지 */
+	box-sizing: border-box; /* 패딩/테두리 포함해서 너비 계산 */
 }
 
 .recipe-filter label:hover {
 	background-color: #e9f5ff;
-	/* 호버 시 배경색 (은은하게) */
 	border-color: #a0d3f0;
-	/* 호버 시 테두리 색 */
 	color: #1a7dbe;
-	/* 호버 시 글자색 */
 }
 
 .recipe-filter input[type="checkbox"]:checked+label {
 	background-color: #2196F3;
-	/* 체크 시 배경색 */
 	color: #fff;
-	/* 체크 시 글자색 */
 	border-color: #1a7dbe;
-	/* 체크 시 테두리 색 */
 	font-weight: 500;
-	/* 약간 굵게 (선택 사항) */
+}
+
+.recipe-search {
+	grid-column: 3/span 2; /* 1번 열부터 시작하여 3칸을 차지 */
+	padding: 10px; /* 검색창의 패딩 */
+	background-color: #f0f0f0; /* 검색창의 배경색 */
+	border: 1px solid #ddd; /* 검색창의 테두리 */
+	position: absolute;
 }
 
 /* ----- 레시피 목록 컨테이너 ----- */
@@ -221,68 +245,70 @@
 }
 
 #searchResults {
-    display: flex; /* Arrange cards horizontally */
-    flex-wrap: wrap; /* Allow cards to wrap to the next line */
-    gap: 15px; /* Space between cards */
-    width: 80%;
-    justify-content: space-between; /* Center the cards if they don't fill the row */
-    padding: 20px; /* Padding around the group of cards */
-    margin: auto;
+	display: flex; /* Arrange cards horizontally */
+	flex-wrap: wrap; /* Allow cards to wrap to the next line */
+	gap: 15px; /* Space between cards */
+	width: 80%;
+	justify-content: space-between;
+	/* Center the cards if they don't fill the row */
+	padding: 20px; /* Padding around the group of cards */
+	margin: auto;
 }
 
 /* ----- Individual Search Result Card (Small Recipe Card Style) ----- */
 .search-result {
-    display: flex;
-    flex-direction: column; /* Stack image and title vertically */
-    align-items: center; /* Center content horizontally */
-    width: 100px; /* << --- SETTING THE CARD WIDTH */
-    background-color: #fff;
-    border-radius: 8px; /* Slightly smaller radius for small card */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
-    overflow: hidden; /* Important for image bounds and border-radius */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    padding-bottom: 8px; /* Space below the title */
+	display: flex;
+	flex-direction: column; /* Stack image and title vertically */
+	align-items: center; /* Center content horizontally */
+	width: 100px; /* << --- SETTING THE CARD WIDTH */
+	background-color: #fff;
+	border-radius: 8px; /* Slightly smaller radius for small card */
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
+	overflow: hidden; /* Important for image bounds and border-radius */
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	cursor: pointer;
+	padding-bottom: 8px; /* Space below the title */
 }
 
 .search-result:hover {
-    /* transform: translateY(-3px); */ /* Subtle lift effect */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+	/* transform: translateY(-3px); */ /* Subtle lift effect */
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+	/* Enhanced shadow on hover */
 }
 
 /* Search Result Image */
 .search-result img {
-    display: block; /* Remove extra space below image */
-    width: 100%; /* Make image fill the card width */
-    height: 100px; /* Make image square (same as width) */
-    /* aspect-ratio: 1 / 1; /* Alternative: maintain 1:1 ratio */
-    object-fit: cover; /* Cover the area, cropping if needed */
-    /* border-radius: 0; Removed: parent overflow:hidden handles corners */
-    margin-bottom: 8px; /* Space between image and title */
-    transition: transform 0.3s ease;
-    /* Override inline width/height if necessary (though CSS usually wins) */
-    /* height: auto; */ /* Let object-fit and height handle it */
+	display: block; /* Remove extra space below image */
+	width: 100%; /* Make image fill the card width */
+	height: 100px; /* Make image square (same as width) */
+	/* aspect-ratio: 1 / 1; /* Alternative: maintain 1:1 ratio */
+	object-fit: cover; /* Cover the area, cropping if needed */
+	/* border-radius: 0; Removed: parent overflow:hidden handles corners */
+	margin-bottom: 8px; /* Space between image and title */
+	transition: transform 0.3s ease;
+	/* Override inline width/height if necessary (though CSS usually wins) */
+	/* height: auto; */ /* Let object-fit and height handle it */
 }
 
 .search-result:hover img {
-    transform: scale(1.05); /* Slightly zoom image on hover */
+	transform: scale(1.05); /* Slightly zoom image on hover */
 }
 
 /* Search Result Title */
 .search-result-title {
-    font-weight: 600;
-    font-size: 0.75rem; /* Smaller font size for the small card */
-    color: #333;
-    text-align: center;
-    padding: 0 5px; /* Small horizontal padding */
-    line-height: 1.3; /* Adjust line height for small text */
-    /* Optional: Ellipsis for long text (single line) */
-    /* white-space: nowrap; */
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
-    /* Optional: Ellipsis for long text (multi-line, requires careful height setting) */
-    /* max-height: 2.6em; */ /* Approx 2 lines (line-height * 2) */
-    /* overflow: hidden; */
+	font-weight: 600;
+	font-size: 0.75rem; /* Smaller font size for the small card */
+	color: #333;
+	text-align: center;
+	padding: 0 5px; /* Small horizontal padding */
+	line-height: 1.3; /* Adjust line height for small text */
+	/* Optional: Ellipsis for long text (single line) */
+	/* white-space: nowrap; */
+	/* overflow: hidden; */
+	/* text-overflow: ellipsis; */
+	/* Optional: Ellipsis for long text (multi-line, requires careful height setting) */
+	/* max-height: 2.6em; */ /* Approx 2 lines (line-height * 2) */
+	/* overflow: hidden; */
 }
 </style>
 <script src="${ctx}/js/recipe/searchRecipe.js"></script>
@@ -290,19 +316,19 @@
 
 <div class="recipe-filter">
 	<div class="filter-container">
-		<c:forEach var="cookingMethod" items="${tagCookingMethod}">
-			<input type="checkbox" class="cooking-method"
-				id="cooking-method-${cookingMethod }" name="cooking-method"
-				value="${cookingMethod}">
-			<label for="cooking-method-${cookingMethod }">${cookingMethod }</label>
-		</c:forEach>
-	</div>
-	<div class="filter-container">
 		<c:forEach var="ingredient" items="${tagIngredient}">
 			<input type="checkbox" class="ingredient"
 				id="ingredient-${ingredient }" name="ingredient"
 				value="${ingredient}">
 			<label for="ingredient-${ingredient }">${ingredient }</label>
+		</c:forEach>
+	</div>
+	<div class="filter-container">
+		<c:forEach var="cookingMethod" items="${tagCookingMethod}">
+			<input type="checkbox" class="cooking-method"
+				id="cooking-method-${cookingMethod }" name="cooking-method"
+				value="${cookingMethod}">
+			<label for="cooking-method-${cookingMethod }">${cookingMethod }</label>
 		</c:forEach>
 	</div>
 	<div class="filter-container">
@@ -319,10 +345,11 @@
 				value="${cookingStyle}">
 			<label for="cookingStyle-${cookingStyle }">${cookingStyle }</label>
 		</c:forEach>
-		<div class="recipe-search">
-			<input type="text" id="keyword" placeholder="레시피 검색"
-				class="search-input" required onkeyup="searchRecipes()">
-		</div>
+
+	</div>
+	<div class="recipe-search">
+		<input type="text" id="keyword" placeholder="레시피 검색"
+			class="search-input" required onkeyup="searchRecipes()">
 	</div>
 </div>
 <div id="searchResults" class="search-results"></div>

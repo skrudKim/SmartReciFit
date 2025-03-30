@@ -1,15 +1,13 @@
 package kr.smartReciFit.controller.recipe;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +15,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import kr.smartReciFit.controller.Controller;
 import kr.smartReciFit.model.recipe.AiRecipe;
 import kr.smartReciFit.model.recipe.RecipeDAO;
+import kr.smartReciFit.model.recipe.tags.CookingStyle;
+import kr.smartReciFit.model.recipe.tags.EatTime;
+import kr.smartReciFit.model.recipe.tags.KoreanNamedEnum;
 import kr.smartReciFit.model.recipe.tags.RecipeType;
 
 public class RecipeURLController implements Controller {
@@ -38,21 +39,24 @@ public class RecipeURLController implements Controller {
 			String aiRecipe = dao.getRecipe(videoId);
 			Gson gson = new GsonBuilder().create();
 			recipe = gson.fromJson(aiRecipe, AiRecipe.class);
+	        JsonObject jsonObject = JsonParser.parseString(aiRecipe).getAsJsonObject();
+	        recipe.setEatTime(KoreanNamedEnum.getEnumByKoreanName(EatTime.class,  jsonObject.get("eatTime").getAsString()));
+	        recipe.setCookingStyle(KoreanNamedEnum.getEnumByKoreanName(CookingStyle.class, jsonObject.get("cookingStyle").getAsString()));
 			isExist = false;
+			
 		}
-		request.setAttribute("rn", 1400);
 
 		if (recipe.isAiRecipeBoolean()) {
 			String thumbnailUrl = "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
 			recipe.setRecipeThumbnail(thumbnailUrl);
 			request.setAttribute("timeStamp", dao.getRecipeTimeStamp(recipe.getRecipeManualTimeStamp()));
 		}
+		recipe.setRecipeType(RecipeType.AI);
 		if(!isExist) {
 			recipe.setAiRecipeUrl(videoId);
 			dao.insertAiRecipe(recipe);
 		}
-		recipe.setRecipeType(RecipeType.AI);
-		recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\d\\.", ""));
+		recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\d*\\.", ""));
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("videoId", videoId);
 		return "recipeContent";

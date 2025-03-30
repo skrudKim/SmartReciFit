@@ -16,6 +16,8 @@
 	<typeAlias type="kr.smartReciFit.model.recipe.Recipe" alias="recipe"/>
 	<typeAlias type="kr.smartReciFit.model.recipe.ApiRecipe" alias="apiRecipe"/>
 	<typeAlias type="kr.smartReciFit.model.recipe.AiRecipe" alias="aiRecipe"/>
+	<typeAlias type="kr.smartReciFit.model.recipe.UserRecipe" alias="userRecipe"/>
+	<typeAlias type="kr.smartReciFit.model.recipe.tags.RecipeType" alias="recipeType"/>
 </typeAliases>
 
 <typeHandlers>

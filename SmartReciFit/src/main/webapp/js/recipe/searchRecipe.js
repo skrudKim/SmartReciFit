@@ -1,23 +1,28 @@
 function searchRecipes() {
 	var keyword = document.getElementById("keyword").value;
+	if (keyword) {
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", `${ctx}/searchRecipes.do?keyword=${keyword}&limit=10`, true);
 
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", `${ctx}/searchRecipes.do?keyword=` + keyword, true);
+		xhr.onload = function() {
+			if (xhr.status >= 200 && xhr.status < 300) {
+				var results = JSON.parse(xhr.responseText);
+				displayResults(results);
+			} else {
+				console.error("Request failed with status: " + xhr.status);
+			}
+		};
 
-	xhr.onload = function() {
-		if (xhr.status >= 200 && xhr.status < 300) {
-			var results = JSON.parse(xhr.responseText);
-			displayResults(results);
-		} else {
-			console.error("Request failed with status: " + xhr.status);
-		}
-	};
+		xhr.onerror = function() {
+			console.error("Request failed");
+		};
 
-	xhr.onerror = function() {
-		console.error("Request failed");
-	};
+		xhr.send();
+	} else {
+		var searchResultsDiv = document.getElementById("searchResults");
+		searchResultsDiv.innerHTML = ""; // 이전 결과 지우기
+	}
 
-	xhr.send();
 }
 
 function displayResults(results) {
