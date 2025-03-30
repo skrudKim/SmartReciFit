@@ -22,7 +22,7 @@
 <!--명보 리뷰 슬릭슬라이더 api-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-<!--  -->
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -37,7 +37,7 @@
 	<div class="header-container">
 		<div class="logo">
 			<a href="${ctx}/main.do"> <img
-				src="${pageContext.request.contextPath}/img/logo.png"
+				src="${ctx}/img/logo.png"
 				alt="스마트 레시핏 로고">
 			</a>
 		</div>

@@ -54,7 +54,6 @@ function sendUserInfoToServer(platform, nickname, email) {
 var naver_id_login = new naver_id_login("Kc4oajEGWigub1aElsL9",
 	"http://localhost:8084/SmartReciFit/loginSuccess.do");
 var state = naver_id_login.getUniqState();
-naver_id_login.setButton("white", 2, 40);
 let domain = window.location.pathname;
 console.log(domain);
 naver_id_login.setDomain("http://localhost:8084/SmartReciFit/main.do");
@@ -72,9 +71,8 @@ window.addEventListener('message', function(event) {
 	}
 }, false);
 
-
 /* ------------------------ 구글 script ------------------------ */
-function handleCredentialResponse(response) {
+/*function handleCredentialResponse(response) {
 	const jwtToken = response.credential;
 	const payload = JSON.parse(Base64.decode(jwtToken.split('.')[1]));
 
@@ -127,8 +125,67 @@ window.onload = function() {
 		{
 			theme: "outline",
 			size: "large",
-			shape: "rectangular",
+			shape: "c",
 			logo_alignment: "left"
 		});
-	google.accounts.id.prompt();
+}*/
+
+function handleCredentialResponse(response) {
+    const jwtToken = response.credential;
+    const payload = JSON.parse(atob(jwtToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+
+    console.log('ID: ' + payload.sub);
+    console.log('Full Name: ' + payload.name);
+    console.log('Given Name: ' + payload.given_name);
+    console.log('Family Name: ' + payload.family_name);
+    console.log('Image URL: ' + payload.picture);
+    console.log('Email: ' + payload.email);
+
+    const nickname = payload.name;
+    const email = payload.email;
+
+    sendUserInfoToServer('google', nickname, email);
 }
+
+function sendUserInfoToServer(platform, nickname, email) {
+    console.log('sendUserInfoToServer');
+    $.ajax({
+        type: 'POST',
+        url: `${ctx}/saveSocialLoginInfo.do`,
+        data: {
+            platform: platform,
+            nickname: nickname,
+            email: email
+        },
+        success: function(data) {
+            if (data === '닉네임 중복') {
+                // 닉네임 입력 폼으로 이동
+                window.location.href = `${ctx}/nicknameInputForm.do?platform=${platform}&email=${email}&nickname=${nickname}`;
+            } else {
+                // 메인 페이지로 이동
+                window.location.href = `${ctx}/main.do`;
+            }
+        },
+        error: function(error) {
+            console.error('Error sending user info:', error);
+        }
+    });
+}
+
+window.onload = function() {
+    google.accounts.id.initialize({
+        client_id: "231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com",
+        callback: handleCredentialResponse,
+        login_uri: "http://localhost:8084/SmartReciFit/main.do"
+    });
+
+    google.accounts.id.renderButton(document.querySelector(".g_id_signin"), {
+        theme: "outline",
+        size: "large",
+        shape: "circle", // 원형 아이콘으로 변경
+        type: "icon", // 아이콘 스타일로 변경
+        logo_alignment: "left"
+    });
+};
+
+
