@@ -166,6 +166,7 @@ if (user != null) {
 				data-client_id="231194762579-nbasfr2j9k5nrb2nu78t6r6ou03c3btk.apps.googleusercontent.com"
 				data-login_uri="http://localhost:8084/SmartReciFit/main.do"
 				data-auto_prompt="false"></div>
+			<button class="test" >테스트</button>
 			<div class="g_id_signin" id="googleSignInButton" data-type="standard"
 				data-size="large" data-theme="outline" data-text="sign_in_with"
 				data-shape="rectangular" data-logo_alignment="left"
@@ -235,6 +236,7 @@ session.removeAttribute("message"); // 메시지 삭제 (새로고침 시 alert 
 	onclick="location.href='${ctx}/userDel.do'">회원탈퇴</button>
 
 <%-- <script src="${ctx}/js/user/userContent.js"></script> --%>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script type="text/javascript">
 	document.querySelector('.naver_social_connection').addEventListener('click', function() {
 	    document.querySelector('#naver_id_login').querySelector('a').click();

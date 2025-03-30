@@ -5,6 +5,8 @@ const manualList = [...document.querySelectorAll('.recipe-manual')];
 const targeMealSzie = document.querySelector('.output');
 const recipeType = document.querySelector('.recipe-type').value;
 const convertRecipe = document.querySelector('.recipe-convert');
+const convertIngredient = document.querySelector('.convert-ingredient-container');
+const convertSeasoning = document.querySelector('.convert-seasoning-container');
 let timeoutId = null;
 
 function getRecipeConverter() {
@@ -35,16 +37,17 @@ function getRecipeConverter() {
 			console.log(data["recipeIngredient"]);
 			let ingredients = data["recipeIngredient"].split("|");
 			let seasonings = data["recipeSeasoning"].split("|");
-
-			let html = '';
+			let ingredient = '';
 			ingredients.forEach(e => {
-				html += `<div class="convert-ingredient">${e}</div>`;
+				ingredient += `<div class="ingredient">${e}</div>`;
 
 			});
+			convertIngredient.innerHTML = ingredient
+			let seasoning = '';
 			seasonings.forEach(e => {
-				html += `<div class="convert-seasoning">${e}</div>`;
+				seasoning += `<div class="seasoning">${e}</div>`;
 			});
-			convertRecipe.innerHTML = html;
+			convertSeasoning.innerHTML = seasoning;
 		})
 		.catch(error => console.error('Error:', error));
 }

@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.smartReciFit.controller.Controller;
+import kr.smartReciFit.model.recipe.Recipe;
 import kr.smartReciFit.model.recipe.RecipeDAO;
 
 public class RecipeContentController implements Controller{
@@ -14,7 +15,9 @@ public class RecipeContentController implements Controller{
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int recipeNum = Integer.parseInt(request.getParameter("rn"));
-		request.setAttribute("recipe", RecipeDAO.getInstance().getRecipeByRecipeNum(recipeNum));
+		Recipe recipe = RecipeDAO.getInstance().getRecipeByRecipeNum(recipeNum);
+		recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\d\\.", ""));
+		request.setAttribute("recipe", recipe);
 		return "recipeContent";
 	}
 

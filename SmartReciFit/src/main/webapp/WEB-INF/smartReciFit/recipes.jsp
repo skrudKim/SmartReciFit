@@ -243,7 +243,73 @@ body {
 	/* 이미지 바로 뒤에 오는 텍스트 노드 (완벽하지 않음) */
 	margin-top: 10px;
 }
+
+#searchResults {
+    display: flex; /* Arrange cards horizontally */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    gap: 15px; /* Space between cards */
+    width: 80%;
+    justify-content: space-between; /* Center the cards if they don't fill the row */
+    padding: 20px; /* Padding around the group of cards */
+    margin: auto;
+}
+
+/* ----- Individual Search Result Card (Small Recipe Card Style) ----- */
+.search-result {
+    display: flex;
+    flex-direction: column; /* Stack image and title vertically */
+    align-items: center; /* Center content horizontally */
+    width: 100px; /* << --- SETTING THE CARD WIDTH */
+    background-color: #fff;
+    border-radius: 8px; /* Slightly smaller radius for small card */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
+    overflow: hidden; /* Important for image bounds and border-radius */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    padding-bottom: 8px; /* Space below the title */
+}
+
+.search-result:hover {
+    /* transform: translateY(-3px); */ /* Subtle lift effect */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Search Result Image */
+.search-result img {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Make image fill the card width */
+    height: 100px; /* Make image square (same as width) */
+    /* aspect-ratio: 1 / 1; /* Alternative: maintain 1:1 ratio */
+    object-fit: cover; /* Cover the area, cropping if needed */
+    /* border-radius: 0; Removed: parent overflow:hidden handles corners */
+    margin-bottom: 8px; /* Space between image and title */
+    transition: transform 0.3s ease;
+    /* Override inline width/height if necessary (though CSS usually wins) */
+    /* height: auto; */ /* Let object-fit and height handle it */
+}
+
+.search-result:hover img {
+    transform: scale(1.05); /* Slightly zoom image on hover */
+}
+
+/* Search Result Title */
+.search-result-title {
+    font-weight: 600;
+    font-size: 0.75rem; /* Smaller font size for the small card */
+    color: #333;
+    text-align: center;
+    padding: 0 5px; /* Small horizontal padding */
+    line-height: 1.3; /* Adjust line height for small text */
+    /* Optional: Ellipsis for long text (single line) */
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* Optional: Ellipsis for long text (multi-line, requires careful height setting) */
+    /* max-height: 2.6em; */ /* Approx 2 lines (line-height * 2) */
+    /* overflow: hidden; */
+}
 </style>
+<script src="${ctx}/js/recipe/searchRecipe.js"></script>
 <input class="offset" type="hidden" value="${offset }">
 
 <div class="recipe-filter">
@@ -284,19 +350,7 @@ body {
 	</div>
 </div>
 <div id="searchResults" class="search-results"></div>
-<div class="recipe-container">
-	<%-- <c:forEach var="recipe" items="${recipeList }">
-		<div class="recipe ${recipe.recipeNum }">
-			<div class="recipe-img">
-				<a href="${ctx }/recipeContent.do?rn=${recipe.recipeNum }"> <img
-					class="img ${recipe.recipeNum }" src="${recipe.recipeThumbnail }"
-					alt="" width="300px" height="300px">
-				</a>
-			</div>
-			${recipe.recipeName}
-		</div>
-	</c:forEach> --%>
-</div>
-<script src="${ctx}/js/board/searchRecipe.js"></script>
+<div class="recipe-container"></div>
+
 <script src="${ctx}/js/recipe/recipes.js"></script>
 <%@ include file="../../part/footer.jsp"%>

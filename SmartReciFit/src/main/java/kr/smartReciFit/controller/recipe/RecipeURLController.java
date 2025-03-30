@@ -52,6 +52,7 @@ public class RecipeURLController implements Controller {
 			dao.insertAiRecipe(recipe);
 		}
 		recipe.setRecipeType(RecipeType.AI);
+		recipe.setRecipeManual(recipe.getRecipeManual().replaceAll("\\d\\.", ""));
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("videoId", videoId);
 		return "recipeContent";
