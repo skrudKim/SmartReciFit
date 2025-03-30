@@ -49,8 +49,6 @@
         <p>검색 결과가 없습니다.</p>
     </c:if>
    
-	
-	</div>
        	<div class="action-buttons-area">
 		<c:if test="${not empty user}">
            <button type="button" class="review-write"
@@ -58,6 +56,8 @@
  		  </c:if>
        <button class="list-btn" onclick="location.href='${ctx}/reviews.do?page=1'">목록</button>
        </div>
+	
+	</div>
 
 	
 	
