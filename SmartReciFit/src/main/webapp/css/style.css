@@ -1,6 +1,22 @@
 /* 전체 스타일*/
+
+/* @font-face {
+  font-family: 'HakgyoansimDunggeunmisoTTF-B';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'ChosunGu';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'ChosunGu', sans-serif;
+  /* font-family: Arial, sans-serif; */
   margin: 0;
   padding: 0;
 }
@@ -161,3 +177,116 @@ table, td{
 	object-fit: cover;
 	margin: 10px;
 }
+
+
+
+/* 여기 아래로 지영CSS */
+
+/* 인포 시작 */
+
+.inner {
+  width: 80%;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: inherit; /* inner 내부 폰트 body와 동일하게 설정 */
+}
+
+.inner h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.inner p {
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.checkMealSize, .checkItem {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  text-align: center; /* 내부 input, label 좌측 정렬 */
+}
+
+.checkMealSize input[type="radio"], .checkItem input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checkMealSize label, .checkItem label {
+  margin-right: 20px;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+#btn-infoCancel, #btn-infoSubmit {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#btn-infoCancel {
+  background-color: #777777;
+  color: white;
+  margin-right: 10px;
+}
+
+#btn-infoCancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  /* transition: border 0.3s ease, background-color 0.3s ease; 부드러운 효과를 위한 transition 추가 */
+}
+
+#btn-infoCancel:hover {
+  border: 3px solid #494949;
+}
+
+#btn-infoSubmit {
+  background-color: #3CB371;
+  color: white;
+}
+
+#btn-infoSubmit {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  /* transition: border 0.3s ease, background-color 0.3s ease; 부드러운 효과를 위한 transition 추가 */
+}
+
+#btn-infoSubmit:hover {
+  border: 3px solid #127700;
+}
+
+.infoCheckbox:checked {
+  accent-color: #3CB371;
+}
+
+
+
+
+
+/* 인포 끝 */
+
+/* 여기까지 지영CSS */
