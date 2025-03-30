@@ -79,7 +79,7 @@
 	</td></tr>
 	</table>
 	
-	<button class="btn-submit" name="btn-submit" id="btn-submit">수정완료</button>
+	<button class="btn-submit btn-green" name="btn-submit" id="btn-submit">수정완료</button>
 	</form>
 	</div>
 	
