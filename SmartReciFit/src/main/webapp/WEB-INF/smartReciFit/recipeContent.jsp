@@ -196,7 +196,7 @@ body {
 
 .recipe-manual-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   /* 데스크탑에서는 2열 그리드 */
   gap: 20px;
   counter-reset: recipe-step;
@@ -209,7 +209,7 @@ body {
 .recipe-manual {
   display: grid;
   /* !!! 그리드 컨테이너로 변경 !!! */
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 200px 1fr;
   /* 1열(이미지): 120px, 2열(나머지): 남은 공간 */
   /* grid-template-rows: auto auto; */
   /* 행 높이는 콘텐츠에 맞게 자동 설정 (명시 불필요) */
@@ -232,7 +232,7 @@ body {
   /* 1행에서 시작해서 2개 행을 차지 (번호와 텍스트 높이만큼) */
   /* flex-shrink: 0; */
   /* 그리드 아이템에는 불필요 */
-  width: 120px;
+  width: 200px;
   /* 이미지 너비 */
   /* height: 100px; */
   /* 높이는 auto 또는 고정값 */
@@ -289,7 +289,7 @@ body {
   /* flex: 1; */
   /* 그리드 아이템에는 불필요 (셀이 크기 조절) */
 
-  font-size: 0.9em;
+  font-size: 1.1em;
   margin: 0;
   color: #333;
   line-height: 1.5;
