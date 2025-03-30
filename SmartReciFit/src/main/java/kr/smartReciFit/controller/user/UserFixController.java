@@ -112,9 +112,9 @@ public class UserFixController implements Controller {
 				out.println("window.onload = function() {");
 				out.println("  Swal.fire({");
 				out.println("title: '회원 정보 수정 성공!',");
-				//out.println("text: '정보수정을 완료했습니다',");
+				out.println("text: '정보수정을 완료했습니다',");
 				out.println("icon: 'success',");
-				out.println("confirmButtonText: '확인'}).then(function() {");
+				out.println("confirmButtonColor: '#3CB371'}).then(function() {");
 				out.println("location.href='" + ctx + "/userContent.do';");
 				out.println("  });");
 				out.println("};");
@@ -129,7 +129,7 @@ public class UserFixController implements Controller {
 				out.println("title: '회원 정보 수정 실패!',");
 				out.println("text: '오류가 발생했습니다',");
 				out.println("icon: 'error,");
-				out.println("confirmButtonText: '확인'}).then(function() {");
+				out.println("confirmButtonColor: '#777777'}).then(function() {");
 				out.println("    history.go(-1);");
 				out.println("  });");
 				out.println("};");
@@ -146,16 +146,17 @@ public class UserFixController implements Controller {
 			out.println("  Swal.fire({");
 			out.println("title: '회원 정보 수정 실패!',");
 			out.println("text: '오류가 발생했습니다',");
-			out.println("icon: 'error,");
-			out.println("confirmButtonText: '확인'}).then(function() {");
+			out.println("icon: 'error,'");
+			out.println("confirmButtonColor: '#777777'}).then(function() {");
 			out.println("    history.go(-1);");
 			out.println("  });");
 			out.println("};");
 			out.println("</script>");
-			System.out.println("회원 가입 실패");
+			System.out.println("회원 정보 수정 실패");
 //			return "userJoin.do";
+		}finally {
+			out.close();
 		}
-		out.close();
 		return null;
 	}
 

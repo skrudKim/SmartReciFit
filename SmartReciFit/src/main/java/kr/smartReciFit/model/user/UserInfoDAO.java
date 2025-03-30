@@ -1,5 +1,8 @@
 package kr.smartReciFit.model.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import kr.smartReciFit.util.Config;
@@ -46,6 +49,25 @@ public class UserInfoDAO {
 		session.selectOne("delUserInfobyUserNum", userNum);
 		session.close();
 		System.out.println("인포 삭제");
+	}
+
+	public int updateUserInfo(int userNum, double mealSizeInt, String ingredient, String cookingStyle,
+			String cookingMethod, String eatTime) {
+		SqlSession session = Config.getSession().openSession();
+		Map<String, Object> userInfoMap = new HashMap<>();
+		userInfoMap.put("userNum", userNum);
+		userInfoMap.put("mealSizeInt", mealSizeInt);
+		userInfoMap.put("ingredient", ingredient);
+		userInfoMap.put("cookingStyle", cookingStyle);
+		userInfoMap.put("cookingMethod", cookingMethod);
+		userInfoMap.put("eatTime",eatTime);
+		System.out.println(userInfoMap);
+		
+		int cnt= session.update("updateInfoByNum", userInfoMap);
+		session.commit();
+		session.close();
+		System.out.println("UserInfoDAO.updateUserInfo 완료");
+		return cnt;
 	}
 
 }

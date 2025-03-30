@@ -59,8 +59,8 @@ btnImgDel.addEventListener('click', (event) => {
 //어떤 이벤트를 명시적으로 처리하지 않은 경우, 해당 이벤트에 대한 사용자 에이전트의 기본 동작을 실행하지 않도록 지정
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
-	alert("버튼 클릭 제출되는 값: "+elementImg);
-	alert("버튼 클릭 제출되는 값: "+document.getElementById('originalImgHidden').dataset.originalId);
+	//alert("버튼 클릭 제출되는 값: "+elementImg);
+	//alert("버튼 클릭 제출되는 값: "+document.getElementById('originalImgHidden').dataset.originalId);
 	/*const formData = new FormData(form);
 	    formData.append('imgChange', imgChange); // imgChange 값 추가
 
@@ -685,7 +685,12 @@ function tryImgPreview(event) {
     fileArr.forEach(function (f) {
       // 이미지만 가능
       if (!f.type.match("image.*")) {
-        alert("이미지 확장자만 가능합니다.");
+		swal.fire({
+			icon: "error",
+			title: "확장자 오류",
+			text: "이미지 확장자만 가능합니다.",
+			confirmButtonColor: "#F7C525",
+		  });
         return;
       }
       // 이미지를 읽을 객체
@@ -694,7 +699,7 @@ function tryImgPreview(event) {
       reader.onload = function (e) {
         let img_html = "<img src=\"" + e.target.result + "\" style='width:30%; margin-right: 10px;' />";
         preview.append(img_html);
-		alert("e.target.result: "+e.target.result);
+		//alert("e.target.result: "+e.target.result);
 		elementImg.setAttribute('data-original-id', e.target.result);
 		elementImg.value=e.target.result;
       }
