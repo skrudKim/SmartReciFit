@@ -13,32 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.querySelector('.overlay').classList.remove('active');
 	};
 
-	// 로그인 요청 처리
-/*	const loginAjax = (form) => {
-		const id = form.id.value.trim();
-		const pw = form.pw.value.trim();
 
-		if (!id || !pw) {
-			alert("아이디와 비밀번호를 입력해주세요.");
-			return;
-		}
-
-		fetch(ctx + "/login.do", {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" },
-			body: `id=${id}&pw=${pw}`
-		})
-			.then(response => response.text())
-			.then(data => {
-				if (data === "success") {
-					alert("로그인 성공");
-					location.href = ctx + "/main.do";
-				} else {
-					alert("아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요.");
-				}
-			})
-			.catch(error => console.error("로그인 요청 에러:", error));
-	};*/
 	const loginAjax = (form) => {
 	    const id = form.id.value.trim();
 	    const pw = form.pw.value.trim();
@@ -56,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	        .then(response => response.text())
 	        .then(data => {
 	            if (data === "success") {
-	                alert("로그인 성공");
-	                location.href = ctx + "/main.do"; // 일반 사용자 페이지로 이동
+	                alert("로그인 성공ccc");
+	                location.reload(); // 일반 사용자 페이지로 이동
 	            } else if (data === "admin_success") {
 	                alert("관리자 로그인 성공");
 	                location.href = ctx + "/adminMain.do"; // 관리자 페이지로 이동
@@ -103,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (data === "done") {
 						alert("로그아웃 성공");
 						setTimeout(() => {
-							location.href = ctx + "/main.do";
+							location.reload();
 						}, 500);
 					} else {
 						alert("로그아웃 실패");
@@ -114,12 +89,3 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 
-    function findId() {
-        alert("아이디 찾기 기능은 아직 구현되지 않았습니다.");
-        // 아이디 찾기 모달 또는 페이지로 이동하는 코드
-    }
-
-    function findPw() {
-        alert("비밀번호 찾기 기능은 아직 구현되지 않았습니다.");
-        // 비밀번호 찾기 모달 또는 페이지로 이동하는 코드
-    }

@@ -337,6 +337,43 @@ public class UserDAO {
 
 	    return success;
 	}
+	
+	public boolean unlinkSocialAccount(int userNum, String platform) {
+	    SqlSession session = Config.getSession().openSession();
+	    try {
+	        Map<String, Object> params = new HashMap<>();
+	        params.put("userNum", userNum);
+	        params.put("platform", platform);
+	        int result = session.update("unlinkSocialAccount", params);
+	        if (result > 0) {
+	            session.commit();
+	            return true;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return false;
+	}
+	
+	// 추가: social 테이블에서 해당 user_num의 행 삭제
+	public boolean deleteSocialAccount(int userNum) {
+	    SqlSession session = Config.getSession().openSession();
+	    try {
+	        int result = session.delete("deleteSocialAccount", userNum);
+	        if (result > 0) {
+	            session.commit();
+	            return true;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return false;
+	}
+	
 		public int UserUpdate(Integer userNum, String id, String pw, String name, String nickName, String email,
 				String phone, String profileImg) {
 			

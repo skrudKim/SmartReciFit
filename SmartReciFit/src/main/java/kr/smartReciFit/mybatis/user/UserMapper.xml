@@ -283,6 +283,21 @@
 		VALUES (#{userNum}, #{kakao},
 		#{naver}, #{google})
 	</insert>
+	
+	
+	<update id="unlinkSocialAccount" parameterType="map">
+    UPDATE social
+    <set>
+        <if test="platform == 'kakao'">kakao = NULL,</if>
+        <if test="platform == 'naver'">naver = NULL,</if>
+        <if test="platform == 'google'">google = NULL,</if>
+    </set>
+    WHERE user_num = #{userNum}
+</update>
+
+<delete id="deleteSocialAccount" parameterType="int">
+    DELETE FROM social WHERE user_num = #{userNum}
+</delete>
 
 
 </mapper>

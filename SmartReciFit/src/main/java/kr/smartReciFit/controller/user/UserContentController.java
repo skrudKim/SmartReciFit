@@ -25,13 +25,14 @@ public class UserContentController implements Controller {
 		String ctx=request.getContextPath();
 		
 		int num =-1;
-		//String getNum=request.getParameter("num");
-		//System.out.println("UserContentController의 num"+getNum);
-		Integer getLog=(Integer)session.getAttribute("log");
-		System.out.println("UserContentController의 log"+getLog);
-		
-		if(getLog==null){
-			return "redirect:"+ctx+"/recipes.do";
+		String getNum=request.getParameter("num");
+		System.out.println("UserContentController의 num"+getNum);
+		if(getNum==null){
+			System.out.println("여기 들어옴");
+			if(session.getAttribute("log") == null) {
+				return "recipes.do";
+			}
+			return "userContent";
 		}else{
 			num = (int)getLog;
 		}
