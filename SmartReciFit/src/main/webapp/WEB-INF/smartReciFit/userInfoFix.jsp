@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <%@ include file="../../part/header.jsp"%>
+<link rel="stylesheet" type="text/css" href="${ctx}/css/CJYstyle.css">
 <% 
     String[] list = (String[]) request.getAttribute("list");
 	double userMealSize = (Double) request.getAttribute("userMealSize"); // 서버에서 식사량 값을 가져옴
@@ -14,11 +15,11 @@
     System.out.println("list2: " + Arrays.toString(list));
 %>
 
-
 <div class="inner">
-    <h2>내 태그 수정하기</h2>
+    <h2>내 TAG 수정하기</h2>
+    <hr>
     <form id="userInfoForm" method="post" action="userInfoFix.do">
-        <p>평소 식사량을 선택해 주세요. 해당 정보를 기반으로 레시피의 재료양이 수정됩니다.</p>
+        <p class="infoP">평소 식사량을 선택해 주세요. 해당 정보를 기반으로 레시피의 재료양이 수정됩니다.</p>
         <div class="checkMealSize" id="box-mealSixe">
             <input type="radio" class="infoRadio" name="mealSize" value="0.5"> 0.5인분
             <input type="radio" class="infoRadio" name="mealSize" value="0.7"> 0.7인분
@@ -28,8 +29,9 @@
             <input type="radio" class="infoRadio" name="mealSize" value="2.0"> 2인분
         </div>
 
-        <p>좋아하는 재료를 선택해주세요. 추천 알고리즘의 기반이 됩니다.<br>
-            총 5가지를 선택할 수 있으며 최소 1가지를 선택해주세요. 한 카테고리에 여러 재료를 선택하는 것도 가능합니다.</p>
+        <p class="infoP">좋아하는 재료를 선택해주세요. </p>
+        <p class="infoP">총 5가지를 선택할 수 있으며 최소 1가지를 선택해주세요. </p>
+        <p class="infoP">한 카테고리에 여러 재료를 선택하는 것도 가능합니다. </p>
 
             <h3>메인 재료</h3>
         <div class="checkItem" id="box-itemMain">
@@ -86,8 +88,10 @@
             <input type="checkbox"  class="infoCheckbox" name="itemTime" value="간식">간식
         </div>
     </form>
-    <button name="btn-infoSubmit" id="btn-infoSubmit">검사완료</button>
-    <button name="btn-infoCancel" id="btn-infoCancel">입력취소</button>
+    <div class="info-btnBox">
+    <button class="btn-green" name="btn-infoSubmit" id="btn-infoSubmit">검사완료</button>
+    <button class="btn-grey"name="btn-infoCancel" id="btn-infoCancel">입력취소</button>
+    </div>
 </div>
 
 <script>

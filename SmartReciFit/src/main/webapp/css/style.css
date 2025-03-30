@@ -305,11 +305,9 @@ main {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 .modal.login-modal {
 	z-index: 1001; /* 다른 요소 위에 표시 */
 }
-
 .overlay {
 	z-index: 1000;
 }
