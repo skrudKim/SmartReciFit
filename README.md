@@ -1,4 +1,9 @@
 # 🍴 SmartReciFit  
+
+<p align="center">
+  <img src="assets/logo.jpg" width="100%"/>
+</p>
+
 **Smart Recipe & Fitness Service**  
 *(2025.03.11 ~ 2025.03.31 — 21 days)*
 
