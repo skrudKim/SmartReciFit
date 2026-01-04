@@ -62,9 +62,9 @@ AI로 1차 가공한 뒤, 서버 단에서 검증·통합하여
 
 ---
 
-## 🧠 AI Architecture
+## 🧠 AI Demo
 
-
+![SmartReciFit Demo](assets/demo.gif)
 ---
 
 ## 👨‍💻 My Responsibilities
